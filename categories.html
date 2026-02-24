@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MR FOCUS | Categories</title>
+
+  <!-- ✅ Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* Light section */
+      --light-bg:#f6f6f2;
+      --light-text:#111111;
+      --light-muted:rgba(17,17,17,.68);
+      --light-line:#e6e6e0;
+
+      /* Dark hero + footer */
+      --dark:#0b0b0b;
+      --dark-2:#101010;
+      --dark-text:rgba(255,255,255,.92);
+      --dark-muted:rgba(255,255,255,.62);
+
+      /* ✅ SQUARE */
+      --radius:0px;
+
+      --container:1120px;
+
+      /* ✅ Fonts */
+      --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      --font-logo: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+
+      /* Navbar */
+      --nav-bg:#f3efe8;
+      --nav-line:rgba(0,0,0,.08);
+
+      /* ✅ Header height for layer math */
+      --header-h: 78px;
+
+      /* ✅ Overlap amount (layer feel) */
+      --layer-overlap: 96px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--font-sans);
+      color: var(--light-text);
+      background: var(--light-bg);
+      overflow-x:hidden;
+    }
+    a{color:inherit}
+    .container{
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* ================= HEADER ================= */
+    .header{
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--nav-line);
+    }
+    .header__inner{
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 14px;
+      min-height: var(--header-h);
+      padding: 12px 0;
+    }
+    .header__spacer{ height: 1px; }
+
+    .header__logo{
+      justify-self: center;
+      text-decoration: none;
+      color: var(--light-text);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      line-height: 1;
+    }
+    .brand{ display: grid; place-items: center; }
+    .brand__name{
+      font-family: var(--font-logo);
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      font-size: clamp(26px, 3.1vw, 52px);
+      line-height: .95;
+    }
+    .brand__tag{
+      margin-top: 6px;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: .20em;
+      text-transform: uppercase;
+      color: rgba(17,17,17,.55);
+    }
+
+    .header__right{
+      justify-self: end;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    /* Burger */
+    .burger{
+      width: 44px;
+      height: 44px;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      display: inline-grid;
+      align-content: center;
+      justify-items: end;
+      gap: 6px;
+    }
+    .burger span{
+      display: block;
+      height: 2px;
+      width: 28px;
+      background: rgba(0,0,0,.75);
+      border-radius: 999px;
+    }
+    .burger span:nth-child(2){ width: 22px; }
+    .burger:focus-visible{
+      outline: 3px solid rgba(0,0,0,.18);
+      outline-offset: 3px;
+    }
+
+    /* Drawer */
+    .drawer{position:fixed; inset:0; display:none; z-index:1200}
+    .drawer.is-open{display:block}
+    .drawer__panel{
+      position:absolute;
+      right:14px;
+      top:14px;
+      width:min(380px, calc(100% - 28px));
+      border-radius: var(--radius);
+      background:rgba(255,255,255,.92);
+      border:1px solid rgba(0,0,0,.10);
+      box-shadow: 0 18px 55px rgba(0,0,0,.12);
+      backdrop-filter:blur(12px);
+      padding:14px;
+    }
+    .drawer__top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:6px 4px 12px;
+      font-family: var(--font-sans);
+    }
+    .drawer__close{
+      border:0;
+      background:transparent;
+      cursor:pointer;
+      padding:10px;
+      border-radius: var(--radius);
+    }
+    .drawer__close:hover{background:rgba(0,0,0,.06)}
+    .drawer__link{
+      display:block;
+      padding:12px 12px;
+      border-radius: var(--radius);
+      border:1px solid rgba(0,0,0,.08);
+      background:rgba(255,255,255,.70);
+      margin-bottom:10px;
+      text-decoration:none;
+      color: rgba(17,17,17,.86);
+      letter-spacing: .04em;
+      font-family: var(--font-sans);
+    }
+    .drawer__link:hover{background:rgba(0,0,0,.06)}
+    .drawer__link.is-active{
+      border-color: rgba(0,0,0,.18);
+      background: rgba(0,0,0,.04);
+      color: rgba(17,17,17,.95);
+    }
+    .drawer__link--cta{
+      border-color:rgba(200,162,106,.38);
+      box-shadow:0 16px 30px rgba(200,162,106,.16);
+    }
+
+    /* ================= ✅ LAYER HERO (fixed bottom layer) ================= */
+    .heroFull{
+      position: fixed;                 /* ✅ makes it a bottom layer */
+      top: var(--header-h);
+      left: 0;
+      right: 0;
+      height: calc(100vh - var(--header-h));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: #fff;
+      background: black;
+      overflow:hidden;
+      z-index: 0;                      /* ✅ below other sections */
+    }
+
+    .heroFull::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        url("assets/thumb4.png");
+      background-size: cover;
+      background-position: center;
+      opacity: .95;
+      transform: scale(1.02);
+    }
+    .heroFull::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(900px 500px at 50% 40%, rgba(255,255,255,.08), transparent 60%),
+        radial-gradient(1200px 700px at 50% 85%, rgba(0,0,0,.55), transparent 70%);
+      pointer-events:none;
+    }
+
+    .heroInner{
+      position:relative;
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+      text-align:center;
+      padding: 80px 0 60px;
+    }
+
+    .heroTitle{
+      margin: 0;
+      font-family: var(--font-logo);
+      font-weight: 500;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      font-size: clamp(40px, 5vw, 90px);
+      line-height: 1;
+    }
+    .heroTitle .bracket{
+      display:inline-block;
+      padding: 0 .10em;
+      position:relative;
+    }
+    .heroTitle .bracket::before{
+      content:"[";
+      margin-right: .12em;
+      color: rgba(255,255,255,.92);
+    }
+    .heroTitle .bracket::after{
+      content:"]";
+      margin-left: .12em;
+      color: rgba(255,255,255,.92);
+    }
+
+    .heroSub{
+      margin: 16px auto 0;
+      max-width: 72ch;
+      color: rgba(255,255,255,.72);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      font-size: 13px;
+      font-family: var(--font-sans);
+    }
+
+    .scrollHint{
+      position:absolute;
+      left:50%;
+      bottom: 26px;
+      transform: translateX(-50%);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:10px;
+      color: rgba(255,255,255,.55);
+      font-size: 10px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      font-family: var(--font-sans);
+    }
+
+    .chev{
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.18);
+      display:grid;
+      place-items:center;
+      background: rgba(0,0,0,.18);
+      backdrop-filter: blur(10px);
+      animation: bob 1.8s ease-in-out infinite;
+      cursor:pointer;
+      user-select:none;
+    }
+    @keyframes bob{
+      0%,100%{ transform: translateY(0); }
+      50%{ transform: translateY(6px); }
+    }
+
+    /* ✅ spacer to create scroll space (since hero is fixed) */
+    .heroSpacer{
+      height: calc(100vh - var(--header-h));
+    }
+
+    /* ================= ✅ CATEGORIES (upper layer) ================= */
+    .categoriesLight{
+      position: relative;
+      z-index: 2;                       /* ✅ above hero */
+      background: var(--light-bg);
+      padding: 72px 0 40px;
+
+      /* ✅ layer overlap look */
+      margin-top: calc(var(--layer-overlap) * -1);
+      padding-top: calc(72px + var(--layer-overlap));
+      box-shadow: 0 -24px 60px rgba(0,0,0,.18);
+      border-top: 1px solid rgba(0,0,0,.08);
+    }
+
+    /* make scroll land nicely under sticky header */
+    #categories{ scroll-margin-top: calc(var(--header-h) + 20px); }
+
+    .catGrid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 54px 36px;
+      align-items:start;
+    }
+    .catItem{
+      text-align:center;
+      grid-column: span 4;
+    }
+    .catItem:nth-child(4){ grid-column: 3 / span 4; }
+    .catItem:nth-child(5){ grid-column: 7 / span 4; }
+
+    .catName{
+      margin: 0 0 26px;
+      font-family: var(--font-logo);
+      font-weight: 500;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: rgba(17,17,17,.78);
+      font-size: clamp(20px, 2vw, 40px);
+      line-height: 1.05;
+    }
+
+    .catFrame{
+      position:relative;
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 18px;
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(0,0,0,.10);
+      box-shadow: 0 20px 60px rgba(0,0,0,.10);
+      border-radius: var(--radius);
+    }
+
+    .catFrame img{
+      display:block;
+      width:100%;
+      aspect-ratio: 3 / 4;
+      height:auto;
+      object-fit:cover;
+      object-position:center;
+      filter: contrast(1.02) saturate(1.03);
+      border-radius: var(--radius);
+    }
+
+    .viewLink{
+      display:inline-block;
+      margin-top: 26px;
+      text-decoration:none;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-size: 13px;
+      color: rgba(17,17,17,.70);
+      border-bottom: 2px solid rgba(17,17,17,.40);
+      padding-bottom: 6px;
+      transition: transform .18s ease, color .18s ease, border-color .18s ease;
+      font-family: var(--font-sans);
+    }
+    .viewLink:hover{
+      transform: translateY(-2px);
+      color: rgba(17,17,17,.92);
+      border-color: rgba(17,17,17,.70);
+    }
+
+    /* ================= FOOTER (top layer too) ================= */
+    .footer{
+      position: relative;
+      z-index: 3; /* ✅ above hero + categories if needed */
+      background:
+        radial-gradient(900px 500px at 10% 10%, rgba(255,255,255,.07), transparent 60%),
+        radial-gradient(900px 500px at 80% 30%, rgba(255,255,255,.05), transparent 60%),
+        linear-gradient(180deg, var(--dark-2), var(--dark));
+      color: var(--dark-text);
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .footer__wrap{
+      display:grid;
+      grid-template-columns: 1.2fr .9fr .9fr 1.1fr;
+      gap: 32px;
+      padding: 56px 0 34px;
+    }
+
+    .footer__brand{
+      font-family: var(--font-logo);
+      font-weight: 700;
+      letter-spacing: .18em;
+      font-size: 22px;
+      text-transform: uppercase;
+    }
+    .footer__tag{
+      margin-top: 8px;
+      color: var(--dark-muted);
+      font-size: 14px;
+      font-family: var(--font-sans);
+    }
+    .footer__about{
+      margin: 18px 0 18px;
+      color: rgba(255,255,255,.72);
+      line-height: 1.7;
+      max-width: 52ch;
+      font-family: var(--font-sans);
+    }
+
+    .footer__social{
+      display:flex;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+
+    .socialBtn{
+      width: 48px;
+      height: 48px;
+      display:grid;
+      place-items:center;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.04);
+      text-decoration:none;
+      color: rgba(255,255,255,.88);
+      font-size: 13px;
+      transition: transform .18s ease, background .18s ease;
+      font-family: var(--font-sans);
+    }
+    .socialBtn:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.08);
+    }
+
+    .footer__title{
+      color: rgba(255,255,255,.70);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      font-size: 12px;
+      margin-bottom: 14px;
+      font-family: var(--font-sans);
+    }
+
+    .footer__link{
+      display:block;
+      text-decoration:none;
+      color: rgba(255,255,255,.78);
+      padding: 8px 0;
+      border-bottom: 1px dashed rgba(255,255,255,.06);
+      width: fit-content;
+      font-family: var(--font-sans);
+    }
+    .footer__link:hover{ color: rgba(255,255,255,.95); }
+
+    .footer__item{
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      margin-bottom: 8px;
+      font-family: var(--font-sans);
+    }
+    .footer__label{
+      display:block;
+      font-size: 12px;
+      color: rgba(255,255,255,.58);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      font-family: var(--font-sans);
+    }
+    .footer__text{
+      color: rgba(255,255,255,.80);
+      font-size: 14px;
+      font-family: var(--font-sans);
+    }
+
+    .footer__cta{
+      margin-top: 16px;
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      height: 54px;
+      padding: 0 18px;
+      width: 100%;
+      max-width: 420px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.92);
+      text-decoration:none;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-size: 13px;
+      transition: transform .18s ease, background .18s ease;
+      font-family: var(--font-sans);
+    }
+    .footer__cta:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.10);
+    }
+
+    .footer__bottom{
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding: 16px 0;
+      color: rgba(255,255,255,.62);
+      font-size: 13px;
+      font-family: var(--font-sans);
+    }
+    .footer__bottomInner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .footer__miniLinks{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .footer__miniLink{
+      color: rgba(255,255,255,.70);
+      text-decoration:none;
+      font-family: var(--font-sans);
+    }
+    .footer__miniLink:hover{ color: rgba(255,255,255,.92); }
+    .dotSep{ color: rgba(255,255,255,.35); }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 980px){
+      .heroInner{ padding: 70px 0 70px; }
+      .catGrid{ grid-template-columns: 1fr; gap: 54px; }
+      .catItem{ grid-column: auto !important; }
+      .catFrame{ max-width: 520px; }
+      .footer__wrap{ grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px){
+      .footer__wrap{ grid-template-columns: 1fr; }
+      .footer__cta{ max-width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .chev{ animation:none; }
+      .socialBtn, .footer__cta, .viewLink { transition:none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ✅ NAVBAR -->
+  <header class="header" id="top">
+    <div class="header__inner">
+      <div class="header__spacer" aria-hidden="true"></div>
+
+      <a class="header__logo" href="index.html#top" aria-label="Go to home top">
+        <span class="brand">
+          <span class="brand__name">MR FOCUS</span>
+          <span class="brand__tag">BY ANUKA INDEERA</span>
+        </span>
+      </a>
+
+      <div class="header__right">
+        <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" type="button">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="drawer" id="drawer" aria-hidden="true">
+      <div class="drawer__panel" role="dialog" aria-label="Mobile menu">
+        <div class="drawer__top">
+          <strong>Menu</strong>
+          <button class="drawer__close" id="drawerClose" aria-label="Close" type="button">✕</button>
+        </div>
+
+        <a class="drawer__link" href="index.html">Home</a>
+        <a class="drawer__link is-active" href="about.html">About</a>
+        <a class="drawer__link drawer__link--cta" href="contact.html">Enquire</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ✅ HERO (fixed bottom layer) -->
+  <section class="heroFull">
+    <div class="heroInner">
+      <h1 class="heroTitle">
+        <span class="bracket">PORTFOLIO</span>
+      </h1>
+
+      <div class="heroSub">MR FOCUS PHOTO + FILMS • SRI LANKA</div>
+
+      <div class="scrollHint">
+        <div class="chev" aria-label="Scroll to categories">↓</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ spacer (important) -->
+  <div class="heroSpacer" aria-hidden="true"></div>
+
+  <!-- ✅ CATEGORIES (upper layer, scroll over hero) -->
+  <section class="categoriesLight" id="categories">
+    <div class="container">
+      <div class="catGrid">
+
+        <div class="catItem">
+          <h2 class="catName">Wedding Cinematography</h2>
+          <div class="catFrame">
+            <img src="assets/img14.jpg" alt="Wedding Cinematography" loading="lazy">
+          </div>
+          <a class="viewLink" href="#">View Gallery</a>
+        </div>
+
+        <div class="catItem">
+          <h2 class="catName">Wedding Photography</h2>
+          <div class="catFrame">
+            <img src="assets/img11.jpg" alt="Wedding Photography" loading="lazy">
+          </div>
+          <a class="viewLink" href="#">View Gallery</a>
+        </div>
+
+        <div class="catItem">
+          <h2 class="catName">Pre Wedding Shoots</h2>
+          <div class="catFrame">
+            <img src="assets/img2.jpg" alt="Pre Wedding Shoots" loading="lazy">
+          </div>
+          <a class="viewLink" href="#">View Gallery</a>
+        </div>
+
+        <div class="catItem">
+          <h2 class="catName">Event Coverage</h2>
+          <div class="catFrame">
+            <img src="assets/evenycoverage.jpg" alt="Event Coverage" loading="lazy">
+          </div>
+          <a class="viewLink" href="#">View Gallery</a>
+        </div>
+
+        <div class="catItem">
+          <h2 class="catName">Commercial Productions</h2>
+          <div class="catFrame">
+            <img src="assets/COMMERCIALPRODUCTIONS.jpg" alt="Commercial Productions" loading="lazy">
+          </div>
+          <a class="viewLink" href="#">View Gallery</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__wrap">
+      <div class="footer__brandBlock">
+        <div class="footer__brand">MR FOCUS</div>
+        <div class="footer__tag">Photography & Films • Sri Lanka</div>
+
+        <p class="footer__about">
+          Clean, emotional, documentary-style storytelling with gentle guidance so you never feel awkward.
+        </p>
+
+        <div class="footer__social">
+          <a class="socialBtn" href="YOUR_INSTAGRAM_LINK" target="_blank" rel="noreferrer" aria-label="Instagram">IG</a>
+          <a class="socialBtn" href="https://www.facebook.com/Mr.Focusphotography/" target="_blank" rel="noreferrer" aria-label="Facebook">FB</a>
+          <a class="socialBtn" href="YOUR_YOUTUBE_LINK" target="_blank" rel="noreferrer" aria-label="YouTube">YT</a>
+          <a class="socialBtn" href="YOUR_TIKTOK_LINK" target="_blank" rel="noreferrer" aria-label="TikTok">TT</a>
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <div class="footer__title">Quick Links</div>
+        <a class="footer__link" href="index.html#work">Work</a>
+        <a class="footer__link" href="index.html#packages">Packages</a>
+        <a class="footer__link" href="index.html#meet">Meet</a>
+        <a class="footer__link" href="index.html#faq">FAQ</a>
+        <a class="footer__link" href="contact.html">Enquire</a>
+      </div>
+
+      <div class="footer__col">
+        <div class="footer__title">Services</div>
+        <a class="footer__link" href="index.html#packages">Wedding Photography</a>
+        <a class="footer__link" href="index.html#packages">Wedding Films</a>
+        <a class="footer__link" href="index.html#packages">Pre-Shoots</a>
+        <a class="footer__link" href="index.html#packages">Engagement</a>
+        <a class="footer__link" href="index.html#packages">Events</a>
+      </div>
+
+      <div class="footer__col footer__contact">
+        <div class="footer__title">Contact</div>
+
+        <div class="footer__item">
+          <span class="footer__label">Phone</span>
+          <a class="footer__link" href="tel:+94700000000">+94 70 000 0000</a>
+        </div>
+
+        <div class="footer__item">
+          <span class="footer__label">Email</span>
+          <a class="footer__link" href="mailto:hello@mrfocus.lk">hello@mrfocus.lk</a>
+        </div>
+
+        <div class="footer__item">
+          <span class="footer__label">Location</span>
+          <div class="footer__text">Sri Lanka • Islandwide</div>
+        </div>
+
+        <a class="footer__cta" href="contact.html#contactForm">Get a Quote</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div class="container footer__bottomInner">
+        <div class="footer__mini">
+          © <span id="year"></span> MR FOCUS. All rights reserved.
+        </div>
+        <div class="footer__miniLinks">
+          <a href="#" class="footer__miniLink">Privacy</a>
+          <span class="dotSep">•</span>
+          <a href="#" class="footer__miniLink">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // scroll
+    document.querySelector(".chev")?.addEventListener("click", () => {
+      document.getElementById("categories")?.scrollIntoView({ behavior: "smooth" });
+    });
+
+    // drawer
+    const burger = document.getElementById("burger");
+    const drawer = document.getElementById("drawer");
+    const drawerClose = document.getElementById("drawerClose");
+
+    function openDrawer(){
+      drawer.classList.add("is-open");
+      drawer.setAttribute("aria-hidden", "false");
+      burger.setAttribute("aria-expanded", "true");
+    }
+    function closeDrawer(){
+      drawer.classList.remove("is-open");
+      drawer.setAttribute("aria-hidden", "true");
+      burger.setAttribute("aria-expanded", "false");
+    }
+
+    burger?.addEventListener("click", () => {
+      drawer.classList.contains("is-open") ? closeDrawer() : openDrawer();
+    });
+
+    drawerClose?.addEventListener("click", closeDrawer);
+
+    drawer?.addEventListener("click", (e) => {
+      if (e.target === drawer) closeDrawer();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeDrawer();
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact | Let’s Connect</title>
+
+  <style>
+    :root{
+      --bg: #fbfaf8;
+      --card: #ffffff;
+      --stroke: #e7e0d6;
+      --text: #111111;
+      --muted: #5a5a5a;
+      --accent: #111111;
+      --shadow: 0 18px 55px rgba(0,0,0,0.08);
+
+      /* ✅ MAKE ALL BOXES SQUARE */
+      --radius: 0px;
+      --radius-sm: 0px;
+
+      --container: 1100px;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      min-height: 100vh;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x:hidden;
+    }
+
+    a{ color: inherit; }
+    img{ max-width:100%; display:block; }
+    .container{ width:min(var(--container), 92%); margin-inline:auto; }
+
+    /* Force a section to be FULL width even if it’s inside a container */
+    .full-bleed{
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+    }
+
+    /* ===== Topbar ===== */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(251,250,248,0.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+
+    /* Grid keeps title centered */
+    .topbar__inner{
+      display:grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items:center;
+      gap: 12px;
+      padding: 14px 0;
+    }
+
+    .back{
+      justify-self:start;
+      color: var(--text);
+      text-decoration:none;
+      opacity:.75;
+      white-space: nowrap;
+      font-size: 14px;
+    }
+    .back:hover{ opacity:1; }
+
+    .brand{
+      justify-self:center;
+      letter-spacing: .22em;
+      font-size: 12px;
+      opacity:.75;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .topbar__spacer{ justify-self:end; }
+
+    /* ===== Hero (FULL width background) ===== */
+    .hero{
+      position: relative;
+      overflow:hidden;
+      padding: clamp(44px, 6vw, 90px) 0 clamp(30px, 4vw, 56px);
+
+      background: var(--hero-img, none);
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: rgba(251,250,248,0.22);
+      pointer-events:none;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 15% 25%, rgba(0,0,0,0.04), transparent 55%),
+        radial-gradient(circle at 85% 30%, rgba(0,0,0,0.03), transparent 55%);
+      pointer-events:none;
+    }
+
+    .hero__inner{
+      position:relative;
+      z-index:1;
+      display:flex;
+      align-items:flex-end;
+      min-height: clamp(240px, 55vh, 420px);
+      padding-bottom: 8px;
+    }
+
+    /* ✅ HERO COPY BOX NOW SQUARE */
+    .hero__copy{
+      max-width: 680px;
+      width: 100%;
+      padding: clamp(14px, 2.2vw, 18px);
+      border-radius: var(--radius);
+      background: rgba(251,250,248,0.62);
+      border: 1px solid rgba(0,0,0,0.08);
+      backdrop-filter: blur(6px);
+    }
+
+    .hero__copy h1{
+      margin:0 0 12px;
+      font-size: clamp(30px, 5vw, 64px);
+      line-height: 1.02;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      overflow-wrap:anywhere;
+    }
+    .hero__copy p{ margin: 6px 0; }
+    .muted{ color: var(--muted); }
+
+    .hero__actions{
+      display:flex;
+      gap:12px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    /* ===== Layout ===== */
+    .section{ padding: clamp(34px, 5vw, 52px) 0 clamp(60px, 7vw, 90px); }
+    .grid{
+      display:grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 22px;
+      align-items:start;
+    }
+
+    /* ===== Cards ===== */
+    .card{
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      padding: clamp(16px, 2.4vw, 22px);
+      box-shadow: var(--shadow);
+    }
+    .card h2{ margin: 0 0 8px; }
+    .tiny{ font-size: 12px; opacity: .8; margin-top: 10px; }
+
+    /* ===== Info list ===== */
+    .info__list{ margin-top: 14px; display:grid; gap: 12px; }
+
+    /* ✅ INFO ITEM NOW SQUARE */
+    .info__item{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(0,0,0,0.08);
+      background: rgba(0,0,0,0.02);
+    }
+
+    /* ✅ DOT NOW SQUARE */
+    .dot{
+      width:10px; height:10px;
+      margin-top: 6px;
+      border-radius: var(--radius);
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(0,0,0,0.06);
+      flex: 0 0 auto;
+    }
+
+    /* ✅ NOTE NOW SQUARE */
+    .note{
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(0,0,0,0.12);
+      background: rgba(0,0,0,0.03);
+    }
+
+    /* ===== Form ===== */
+    .form{ margin-top: 14px; display:grid; gap: 14px; }
+    .row2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    label{ display:grid; gap: 8px; font-size: 13px; }
+
+    /* ✅ INPUTS/TEXTAREA/SELECT NOW SQUARE */
+    input, textarea, select{
+      width:100%;
+      padding: 12px 14px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(0,0,0,0.14);
+      background: #fff;
+      color: var(--text);
+      outline: none;
+      transition: .18s ease;
+    }
+    textarea{ resize: vertical; min-height: 120px; }
+    input::placeholder, textarea::placeholder{ color: rgba(0,0,0,0.45); }
+
+    input:focus, textarea:focus, select:focus{
+      border-color: rgba(0,0,0,0.55);
+      box-shadow: 0 0 0 4px rgba(0,0,0,0.10);
+    }
+
+    /* ===== Buttons ===== */
+    /* ✅ BUTTONS NOW SQUARE */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height: 44px;
+      padding: 0 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(0,0,0,0.18);
+      background: transparent;
+      color: var(--text);
+      text-decoration:none;
+      cursor:pointer;
+      transition: .18s ease;
+      user-select:none;
+      white-space: nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); border-color: rgba(0,0,0,0.38); }
+
+    .btn--ghost{ background: transparent; }
+
+    .btn--full{
+      width: 100%;
+      height: 46px;
+      border: 1px solid #111;
+      background: #111;
+      color: #fff;
+    }
+    .btn--full:hover{ box-shadow: 0 18px 40px rgba(0,0,0,0.14); }
+
+    /* hero primary button black */
+    .hero .btn:first-child{
+      border-color: #111;
+      background: #111;
+      color:#fff;
+    }
+
+    /* Jump offset */
+    #contactForm{ scroll-margin-top: 90px; }
+
+    /* Pulse highlight */
+    .pulse{ animation: pulseGlow 1.2s ease both; }
+    @keyframes pulseGlow{
+      0%{ box-shadow: 0 0 0 rgba(0,0,0,0); }
+      40%{ box-shadow: 0 0 0 6px rgba(0,0,0,0.10); }
+      100%{ box-shadow: 0 0 0 rgba(0,0,0,0); }
+    }
+
+    /* ===== Footer ===== */
+    .footer{
+      background: #0b0b0b;
+      color: rgba(255,255,255,0.92);
+      padding: 64px 0 0;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      position: relative;
+      overflow: hidden;
+    }
+    .footer::before{
+      content:"";
+      position:absolute;
+      inset:-220px;
+      background:
+        radial-gradient(circle at 18% 25%, rgba(255,255,255,0.08), transparent 45%),
+        radial-gradient(circle at 80% 15%, rgba(255,255,255,0.06), transparent 50%),
+        radial-gradient(circle at 50% 95%, rgba(255,255,255,0.05), transparent 55%);
+      pointer-events:none;
+    }
+    .footer__wrap{
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.2fr 0.9fr 0.9fr 1.1fr;
+      gap: 32px;
+      padding-bottom: 52px;
+    }
+    .footer__brand{
+      font-size: 24px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .footer__tag{ opacity: .75; margin-bottom: 14px; }
+    .footer__about{
+      margin: 0;
+      max-width: 420px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.72);
+      font-size: 14px;
+    }
+    .footer__social{
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* ✅ FOOTER SOCIAL BUTTONS NOW SQUARE */
+    .socialBtn{
+      width: 42px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.92);
+      text-decoration: none;
+      transition: .18s ease;
+      font-size: 12px;
+      letter-spacing: .08em;
+    }
+    .socialBtn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.10);
+    }
+    .footer__col{
+      display: grid;
+      align-content: start;
+      gap: 10px;
+      min-width: 0;
+    }
+    .footer__title{
+      font-size: 12px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.70);
+      margin-bottom: 6px;
+    }
+    .footer__link{
+      color: rgba(255,255,255,0.86);
+      text-decoration: none;
+      font-size: 14px;
+      opacity: .92;
+      transition: .18s ease;
+      overflow-wrap:anywhere;
+    }
+    .footer__link:hover{ opacity: 1; transform: translateX(2px); }
+
+    .footer__contact .footer__item{
+      display: grid;
+      gap: 4px;
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(255,255,255,0.10);
+    }
+    .footer__label{
+      font-size: 12px;
+      color: rgba(255,255,255,0.62);
+      letter-spacing: .06em;
+    }
+    .footer__text{
+      font-size: 14px;
+      color: rgba(255,255,255,0.78);
+    }
+
+    /* ✅ FOOTER CTA NOW SQUARE */
+    .footer__cta{
+      margin-top: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 46px;
+      padding: 0 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.10);
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      transition: .18s ease;
+      width: fit-content;
+      max-width: 100%;
+    }
+    .footer__cta:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.40);
+      background: rgba(255,255,255,0.14);
+    }
+    .footer__bottom{
+      border-top: 1px solid rgba(255,255,255,0.10);
+      padding: 16px 0;
+      background: rgba(0,0,0,0.35);
+    }
+    .footer__bottomInner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .footer__mini{
+      color: rgba(255,255,255,0.70);
+      font-size: 13px;
+    }
+    .footer__miniLinks{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .footer__miniLink{
+      color: rgba(255,255,255,0.70);
+      text-decoration:none;
+      font-size: 13px;
+    }
+    .footer__miniLink:hover{ color: rgba(255,255,255,0.92); }
+    .dotSep{ color: rgba(255,255,255,0.35); font-size: 12px; }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr; }
+      .footer__wrap{ grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 760px){
+      .topbar__inner{ padding: 12px 0; }
+      .brand{ letter-spacing: .16em; font-size: 11px; }
+      .row2{ grid-template-columns: 1fr; }
+      .grid{ gap: 16px; }
+    }
+
+    @media (max-width: 560px){
+      .hero__actions{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .btn{ width: 100%; }
+      .footer{ padding-top: 48px; }
+      .footer__wrap{ grid-template-columns: 1fr; gap: 24px; padding-bottom: 36px; }
+    }
+
+    @media (max-width: 380px){
+      .hero__actions{ grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior: auto; }
+      *{ transition: none !important; animation: none !important; }
+      .btn:hover{ transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="back" href="index.html">← Back to Home</a>
+      <div class="brand">LET’S CONNECT</div>
+      <div class="topbar__spacer"></div>
+    </div>
+  </header>
+
+  <!-- FULL WIDTH HERO -->
+  <section class="hero full-bleed" style="--hero-img: url('assets/img3.jpg');">
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <h1>Let’s Connect!</h1>
+        <p>You don’t need to have everything figured out yet.</p>
+        <p class="muted">Share your date + location, and we’ll guide the next steps.</p>
+
+        <div class="hero__actions">
+          <a class="btn" href="#contactForm">Get a Quote</a>
+          <a class="btn btn--ghost" href="#info">Contact Details</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="main">
+    <section class="section" id="info">
+      <div class="container grid">
+        <div class="card info">
+          <h2>Contact Details</h2>
+          <p class="muted">Fast reply within working hours.</p>
+
+          <div class="info__list">
+            <div class="info__item">
+              <span class="dot"></span>
+              <div>
+                <strong>Phone</strong>
+                <div class="muted">07X XXX XXXX</div>
+              </div>
+            </div>
+
+            <div class="info__item">
+              <span class="dot"></span>
+              <div>
+                <strong>Email</strong>
+                <div class="muted">you@email.com</div>
+              </div>
+            </div>
+
+            <div class="info__item">
+              <span class="dot"></span>
+              <div>
+                <strong>Location</strong>
+                <div class="muted">Colombo / Islandwide</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="note">
+            <strong>Tip:</strong> Add your event date + location to get an accurate quote.
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Send an Enquiry</h2>
+          <p class="muted">Fill out the form below and we’ll reply with availability & a quote.</p>
+
+          <form class="form" id="contactForm">
+            <div class="row2">
+              <label>
+                <span>Name</span>
+                <input name="name" required placeholder="Your name" />
+              </label>
+              <label>
+                <span>Phone</span>
+                <input name="phone" placeholder="07X XXX XXXX" />
+              </label>
+            </div>
+
+            <div class="row2">
+              <label>
+                <span>Email</span>
+                <input type="email" name="email" required placeholder="you@email.com" />
+              </label>
+              <label>
+                <span>Date</span>
+                <input type="date" name="date" />
+              </label>
+            </div>
+
+            <div class="row2">
+              <label>
+                <span>Location</span>
+                <input name="location" placeholder="City / Venue" />
+              </label>
+              <label>
+                <span>Service</span>
+                <select name="service">
+                  <option value="">Select</option>
+                  <option>Photography</option>
+                  <option>Videography</option>
+                  <option>Photography + Videography</option>
+                  <option>Pre-shoot</option>
+                </select>
+              </label>
+            </div>
+
+            <label>
+              <span>Message</span>
+              <textarea name="message" rows="5" placeholder="Tell us what you need (type of event, hours, style)"></textarea>
+            </label>
+
+            <button class="btn btn--full" type="submit">Send Message</button>
+
+            <p class="tiny muted">
+              By submitting, you agree to be contacted about your enquiry.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__wrap">
+      <div class="footer__brandBlock">
+        <div class="footer__brand">MR FOCUS</div>
+        <div class="footer__tag">Photography & Films • Sri Lanka</div>
+
+        <p class="footer__about">
+          Clean, emotional, documentary-style storytelling with gentle guidance so you never feel awkward.
+        </p>
+
+        <div class="footer__social">
+          <a class="socialBtn" href="#" aria-label="Instagram">IG</a>
+          <a class="socialBtn" href="#" aria-label="Facebook">FB</a>
+          <a class="socialBtn" href="#" aria-label="YouTube">YT</a>
+          <a class="socialBtn" href="#" aria-label="TikTok">TT</a>
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <div class="footer__title">Quick Links</div>
+        <a class="footer__link" href="index.html#work">Work</a>
+        <a class="footer__link" href="index.html#packages">Packages</a>
+        <a class="footer__link" href="index.html#meet">Meet</a>
+        <a class="footer__link" href="index.html#faq">FAQ</a>
+        <a class="footer__link" href="contact.html">Enquire</a>
+      </div>
+
+      <div class="footer__col">
+        <div class="footer__title">Services</div>
+        <a class="footer__link" href="index.html#packages">Wedding Photography</a>
+        <a class="footer__link" href="index.html#packages">Wedding Films</a>
+        <a class="footer__link" href="index.html#packages">Pre-Shoots</a>
+        <a class="footer__link" href="index.html#packages">Engagement</a>
+        <a class="footer__link" href="index.html#packages">Events</a>
+      </div>
+
+      <div class="footer__col footer__contact">
+        <div class="footer__title">Contact</div>
+
+        <div class="footer__item">
+          <span class="footer__label">Phone</span>
+          <a class="footer__link" href="tel:+94700000000">+94 70 000 0000</a>
+        </div>
+
+        <div class="footer__item">
+          <span class="footer__label">Email</span>
+          <a class="footer__link" href="mailto:hello@mrfocus.lk">hello@mrfocus.lk</a>
+        </div>
+
+        <div class="footer__item">
+          <span class="footer__label">Location</span>
+          <div class="footer__text">Sri Lanka • Islandwide</div>
+        </div>
+
+        <a class="footer__cta" href="contact.html#contactForm">Get a Quote</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div class="container footer__bottomInner">
+        <div class="footer__mini">
+          © <span id="year"></span> MR FOCUS. All rights reserved.
+        </div>
+        <div class="footer__miniLinks">
+          <a href="#" class="footer__miniLink">Privacy</a>
+          <span class="dotSep">•</span>
+          <a href="#" class="footer__miniLink">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const form = document.querySelector("#contactForm");
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener("click", (e) => {
+        const id = a.getAttribute("href");
+        const el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        history.pushState(null, "", id);
+      });
+    });
+
+    function pulseForm(){
+      if (!form) return;
+      form.classList.remove("pulse");
+      void form.offsetWidth;
+      form.classList.add("pulse");
+      setTimeout(()=> form.classList.remove("pulse"), 1200);
+    }
+
+    if (location.hash === "#contactForm") {
+      setTimeout(() => {
+        form.scrollIntoView({ behavior: "smooth", block: "start" });
+        pulseForm();
+        const firstInput = form.querySelector("input, textarea, select");
+        if (firstInput) firstInput.focus();
+      }, 200);
+    }
+  </script>
+</body>
+</html>

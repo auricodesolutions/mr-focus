@@ -1,0 +1,1024 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#fbfaf7" />
+  <title>About | MR FOCUS Photography & Films</title>
+  <meta name="description" content="MR FOCUS — Wedding photography & filmmaking in Sri Lanka. Natural, clean, timeless storytelling with calm guidance." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#fbfaf7;
+      --panel: rgba(255,255,255,.72);
+      --ink:#141414;
+      --muted:rgba(20,20,20,.68);
+
+      --radius:0px;
+      --shadow: 0 18px 55px rgba(0,0,0,.10);
+      --shadow2: 0 14px 40px rgba(0,0,0,.12);
+      --container:1140px;
+
+      /* ✅ dynamic header height (JS updates) */
+      --headerH: 76px;
+
+      /* ✅ layer look */
+      --layerShadow: 0 26px 70px rgba(0,0,0,.12);
+      --layerLine: rgba(0,0,0,.08);
+
+      /* ✅ menu accent */
+      --accent: rgba(197,160,98,.55);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:"Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.65;
+      overflow-x:hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+
+      opacity:0;
+      transform: translateY(6px);
+      transition: opacity .35s ease, transform .35s ease;
+    }
+    body.is-ready{ opacity:1; transform:none; }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(var(--container), 92%); margin-inline:auto;}
+    .muted{color:var(--muted)}
+
+    .btn{
+      border-radius: var(--radius);
+      padding:12px 16px;
+      border:1px solid rgba(0,0,0,.14);
+      background:rgba(255,255,255,.78);
+      cursor:pointer;
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      transition:.15s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      white-space:nowrap;
+      user-select:none;
+    }
+    .btn:hover{transform:translateY(-1px); box-shadow:0 18px 40px rgba(0,0,0,.10)}
+    .btn:active{transform:translateY(0)}
+    .btn--primary{ background: var(--ink); color:#fff; border-color: rgba(0,0,0,.35); }
+    .btn--ghost{background:rgba(255,255,255,.50)}
+
+    /* Header */
+    .header{
+      position: sticky;
+      top: 0;
+      z-index: 2000;
+      background: rgba(251,250,247,.96);
+      border-bottom: 1px solid rgba(0,0,0,.10);
+      backdrop-filter: blur(8px);
+    }
+    .header__inner{
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+    }
+
+    .header__logo{justify-self:center; display:inline-grid; place-items:center; padding:6px 10px;}
+    .brand{display:grid; justify-items:center; line-height:1;}
+    .brand__name{
+      font-family:Georgia, "Times New Roman", serif;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.35em;
+      font-size: clamp(18px, 2.2vw, 34px);
+    }
+    .brand__tag{
+      margin-top:4px;
+      font-size:10px;
+      letter-spacing:.35em;
+      text-transform:uppercase;
+      color: rgba(20,20,20,.68);
+    }
+
+    /* ✅ Hamburger (no box – like your image) */
+    .menuBtn{
+      justify-self:end;
+      width:56px; height:56px;
+      border:0;
+      background:transparent;
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      padding:0;
+    }
+    .menuBtn span{
+      display:block;
+      width:28px;
+      height:2px;
+      background: rgba(20,20,20,.75);
+      margin:4px 0;
+      transition: .18s ease;
+    }
+    .menuBtn.is-open span:nth-child(1){ transform: translateY(6px) rotate(45deg); }
+    .menuBtn.is-open span:nth-child(2){ opacity:0; transform: scaleX(.6); }
+    .menuBtn.is-open span:nth-child(3){ transform: translateY(-6px) rotate(-45deg); }
+
+    /* =======================================================
+       ✅ RIGHT DRAWER (like your images)
+       ======================================================= */
+    .drawer{
+      position: fixed;
+      inset: 0;
+      z-index: 2500;
+      pointer-events: none;
+    }
+    .drawer.is-open{ pointer-events: auto; }
+
+    .drawer__backdrop{
+      position:absolute;
+      inset:0;
+      background: rgba(0,0,0,.22);
+      backdrop-filter: blur(4px);
+      opacity:0;
+      transition: opacity .18s ease;
+    }
+    .drawer.is-open .drawer__backdrop{ opacity:1; }
+
+    .drawer__panel{
+      position:absolute;
+      right: 0;
+      top: var(--headerH);
+      height: calc(100% - var(--headerH));
+      width: min(560px, 92vw);
+
+      background: rgba(255,255,255,.98);
+      border-left: 1px solid rgba(0,0,0,.10);
+      box-shadow: 0 26px 70px rgba(0,0,0,.18);
+
+      padding: 18px;
+      overflow:auto;
+
+      transform: translateX(104%);
+      transition: transform .22s ease;
+    }
+    .drawer.is-open .drawer__panel{ transform: translateX(0); }
+
+    .drawer__top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 4px 2px 14px;
+      border-bottom: 1px solid rgba(0,0,0,.10);
+      margin-bottom: 14px;
+    }
+    .drawer__title{
+      font-size: 22px;
+      font-weight: 600;
+      color: rgba(20,20,20,.92);
+    }
+    .drawer__close{
+      border:0;
+      background:transparent;
+      font-size: 26px;
+      line-height:1;
+      cursor:pointer;
+      padding: 10px 12px;
+      color: rgba(20,20,20,.75);
+    }
+
+    .drawer__links{ display:grid; gap:12px; }
+
+    .drawer__link{
+      display:block;
+      padding: 22px 18px;
+      background: #f3f4f4;
+      border: 1px solid rgba(0,0,0,.08);
+      font-size: 22px;
+      font-weight: 500;
+      color: rgba(20,20,20,.90);
+      transition: .15s ease;
+    }
+    .drawer__link:hover{
+      background:#fff;
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(0,0,0,.08);
+    }
+    .drawer__link--accent{
+      background:#fff;
+      border-color: var(--accent);
+    }
+
+    @media (max-width: 520px){
+      .drawer__panel{ width: min(420px, 92vw); }
+      .drawer__link{ font-size: 18px; padding: 18px 16px; }
+    }
+
+    /* Reveal */
+    .reveal{opacity:0; transform: translateY(14px); transition: .6s ease;}
+    .reveal.is-in{opacity:1; transform:none;}
+
+    /* Hero */
+    .aboutHero{
+      position:relative;
+      overflow:hidden;
+      padding: clamp(28px, 5vw, 72px) 0;
+      border-bottom:1px solid rgba(0,0,0,.06);
+      background:
+        radial-gradient(900px 520px at 18% 20%, rgba(255,255,255,.65), transparent 62%),
+        radial-gradient(980px 640px at 82% 10%, rgba(0,0,0,.05), transparent 64%),
+        #efe9e6;
+    }
+    .aboutHero__inner{
+      position:relative; z-index:1;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: clamp(16px, 3vw, 56px);
+      align-items:center;
+    }
+    .kicker{
+      display:inline-flex;
+      padding:10px 14px;
+      border-radius: var(--radius);
+      border:1px solid rgba(0,0,0,.12);
+      background:rgba(255,255,255,.62);
+      font-size:12px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+    .h1{
+      margin:14px 0 10px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size: clamp(28px, 4vw, 58px);
+      line-height:1.08;
+    }
+    .subline{
+      margin:0 0 16px;
+      font-size:12px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:rgba(20,20,20,.60);
+    }
+    .heroLead{
+      margin:0 0 16px;
+      max-width: 62ch;
+      font-size: clamp(15.5px, 1.1vw, 18px);
+      line-height: 1.9;
+      color: rgba(20,20,20,.78);
+    }
+    .heroActions{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px;}
+    .heroImgWrap{position:relative; display:grid; justify-items:end;}
+    .heroImg{
+      width:min(560px, 100%);
+      aspect-ratio: 16/11;
+      border-radius: var(--radius);
+      border:1px solid rgba(0,0,0,.08);
+      box-shadow:0 22px 55px rgba(0,0,0,.18);
+      object-fit:cover;
+      object-position: 50% 25%;
+      background:#fff;
+    }
+    .heroBadge{
+      position:absolute;
+      left:10px;
+      bottom:10px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.86);
+      border: 1px solid rgba(0,0,0,.10);
+      box-shadow: 0 14px 34px rgba(0,0,0,.14);
+      font-size: 12px;
+      letter-spacing:.10em;
+      text-transform: uppercase;
+    }
+    .dot{
+      width:10px;height:10px;border-radius: var(--radius);
+      background: rgba(0,0,0,.75);
+      box-shadow: 0 0 0 4px rgba(0,0,0,.08);
+    }
+
+    /* Sections */
+    .section{
+      padding: clamp(46px, 6vw, 86px) 0;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .sectionTitle{
+      font-size: 12px;
+      letter-spacing: .20em;
+      text-transform: uppercase;
+      color: rgba(20,20,20,.62);
+      margin: 0 0 10px;
+    }
+    .sectionH2{
+      margin:0 0 12px;
+      font-size: clamp(22px, 2.2vw, 34px);
+      line-height:1.2;
+      letter-spacing:.02em;
+      font-weight: 800;
+    }
+    .sectionLead{
+      margin:0 0 18px;
+      color: rgba(20,20,20,.74);
+      max-width: 72ch;
+      line-height:1.9;
+    }
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: clamp(14px, 2.6vw, 34px);
+      align-items:start;
+    }
+    .card{
+      border: 1px solid rgba(0,0,0,.10);
+      background: var(--panel);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .storyCard{padding: 22px;}
+    .storyCard p{margin:0 0 14px; color: rgba(20,20,20,.78); line-height:1.9;}
+    .storyCard p:last-child{margin-bottom:0}
+
+    .stats{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .stat{
+      padding: 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.70);
+      box-shadow: 0 12px 28px rgba(0,0,0,.08);
+    }
+    .stat strong{display:block; font-size:22px;}
+    .stat span{
+      display:block;
+      margin-top:4px;
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform: uppercase;
+      color: rgba(20,20,20,.62);
+    }
+
+    .contactLine{
+      margin-top: 14px;
+      display:flex;
+      gap: 12px;
+      flex-wrap:wrap;
+      color: rgba(20,20,20,.70);
+      font-size: 14px;
+    }
+    .contactLine a{ text-decoration: underline; text-underline-offset: 3px; }
+
+    /* Approach */
+    .approachGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .approach{
+      padding: 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.72);
+      box-shadow: 0 14px 40px rgba(0,0,0,.08);
+      transition: .18s ease;
+    }
+    .approach:hover{ transform: translateY(-2px); box-shadow: var(--shadow2); }
+    .approach h3{
+      margin: 0 0 8px;
+      font-size: 14px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+    .approach p{margin:0; color: rgba(20,20,20,.74); line-height: 1.9;}
+
+    /* ✅ SHOWREEL (smaller size) */
+    .reelWrap{
+      margin-top: 12px;
+      max-width: 860px;
+      margin-inline: auto;
+    }
+    .reel{
+      position: relative;
+      overflow:hidden;
+      border-radius: var(--radius);
+      border: 1px solid rgba(0,0,0,.10);
+      background: #000;
+      box-shadow: var(--shadow);
+      aspect-ratio: 16 / 9;
+    }
+    .reel iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+      display:block;
+    }
+    @media (max-width: 520px){
+      .reelWrap{ max-width: 100%; }
+      .reel{ aspect-ratio: 16 / 9; }
+    }
+
+    .ytNotice{
+      position:absolute;
+      inset:0;
+      display:none;
+      place-items:center;
+      text-align:center;
+      padding: 22px;
+      background: rgba(0,0,0,.58);
+      color:#fff;
+      z-index:2;
+    }
+    .ytNotice__box{
+      max-width: 520px;
+      border:1px solid rgba(255,255,255,.20);
+      background: rgba(0,0,0,.35);
+      padding: 18px;
+    }
+    .ytNotice__title{
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:8px;
+      font-size: 14px;
+    }
+    .ytNotice__text{
+      opacity:.9;
+      line-height:1.7;
+      margin-bottom: 14px;
+      font-size: 14px;
+    }
+    .ytNotice__btns{display:flex; gap:10px; justify-content:center; flex-wrap:wrap;}
+    .reel.is-file .ytNotice{display:grid;}
+
+    /* Steps */
+    .steps{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .step{
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.72);
+      box-shadow: 0 12px 28px rgba(0,0,0,.08);
+    }
+    .step strong{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-size: 12px;
+      letter-spacing:.16em;
+      text-transform: uppercase;
+    }
+    .step .num{
+      width: 28px;height: 28px;border-radius: var(--radius);
+      border: 1px solid rgba(0,0,0,.14);
+      display:grid; place-items:center;
+      font-weight: 800;
+      background: rgba(255,255,255,.75);
+    }
+    .step p{margin: 10px 0 0; color: rgba(20,20,20,.74); line-height: 1.85;}
+
+    /* BTS */
+    .btsGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .btsImg{
+      border-radius: var(--radius);
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.60);
+      box-shadow: 0 14px 40px rgba(0,0,0,.10);
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    /* Footer (keep yours) */
+    .footer{
+      background: #0b0b0b;
+      color: rgba(255,255,255,0.92);
+      padding: 56px 0 0;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      position: relative;
+      overflow: hidden;
+    }
+    .footer__wrap{
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.2fr 0.9fr 1.1fr;
+      gap: 32px;
+      padding-bottom: 40px;
+    }
+    .footer__brand{
+      font-size: 22px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      font-weight: 800;
+    }
+    .footer__tag{opacity:.75;margin-bottom: 12px;}
+    .footer__about{
+      margin: 0;
+      max-width: 420px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.72);
+      font-size: 14px;
+    }
+    .footer__title{
+      font-size: 12px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.70);
+      margin-bottom: 8px;
+    }
+    .footer__link{
+      color: rgba(255,255,255,0.86);
+      font-size: 14px;
+      opacity: .92;
+      transition: .18s ease;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .footer__link:hover{opacity: 1;}
+    .footer__col{display:grid; align-content:start; gap:10px;}
+    .footer__item{display:grid; gap:4px; padding:10px 0; border-bottom:1px dashed rgba(255,255,255,0.10);}
+    .footer__label{font-size:12px; color: rgba(255,255,255,0.62); letter-spacing:.06em;}
+    .footer__text{font-size:14px; color: rgba(255,255,255,0.78);}
+
+    .footer__bottom{
+      border-top: 1px solid rgba(255,255,255,0.10);
+      padding: 16px 0;
+      background: rgba(0,0,0,0.35);
+    }
+    .footer__bottomInner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .footer__mini{color: rgba(255,255,255,0.70); font-size: 13px;}
+    .footer__miniLinks{display:flex; align-items:center; gap:10px; flex-wrap: wrap;}
+    .dotSep{ color: rgba(255,255,255,0.35); font-size: 12px; }
+
+    /* -------------------------------------------------------
+       ✅ LAYER STACK EFFECT (full section visible)
+       ------------------------------------------------------- */
+    .layerStack{ position: relative; background: var(--bg); }
+
+    .layer{
+      position: sticky;
+      top: var(--headerH);
+
+      height: calc(100vh - var(--headerH));
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+
+      border-top: 1px solid var(--layerLine);
+      box-shadow: var(--layerShadow);
+      background: var(--bg);
+      will-change: transform;
+    }
+
+    .layer{ scrollbar-width: thin; scrollbar-color: rgba(0,0,0,.22) transparent; }
+    .layer::-webkit-scrollbar{ width: 8px; }
+    .layer::-webkit-scrollbar-thumb{ background: rgba(0,0,0,.22); border-radius: 999px; }
+    .layer::-webkit-scrollbar-track{ background: transparent; }
+
+    .aboutHero.layer{ background: unset; border-top: none; }
+
+    .layer::before{
+      content:"";
+      position:absolute;
+      left:0; right:0;
+      top:0;
+      height: 10px;
+      background: linear-gradient(to bottom, rgba(0,0,0,.08), transparent);
+      opacity: .22;
+      pointer-events:none;
+    }
+    .aboutHero.layer::before{ display:none; }
+
+    .stackEnd{ height: 70vh; background: var(--bg); }
+
+    @media (max-width: 980px){
+      .aboutHero__inner{grid-template-columns:1fr;}
+      .heroImgWrap{justify-items:center; order:-1;}
+      .grid2{grid-template-columns:1fr;}
+      .approachGrid{grid-template-columns:1fr;}
+      .steps{grid-template-columns:1fr 1fr;}
+      .btsGrid{grid-template-columns:1fr 1fr;}
+      .footer__wrap{grid-template-columns: 1fr 1fr;}
+    }
+    @media (max-width: 560px){
+      .footer__wrap{grid-template-columns:1fr; gap:22px; padding-bottom:30px;}
+    }
+    @media (max-width: 520px){
+      .steps{grid-template-columns:1fr;}
+      .btsGrid{grid-template-columns:1fr;}
+    }
+
+    @media (max-width: 740px){
+      .layer{
+        position: relative;
+        top: auto;
+        height: auto;
+        overflow: visible;
+        box-shadow: none;
+        border-top: none;
+      }
+      .stackEnd{display:none;}
+    }
+  </style>
+</head>
+
+<body id="top">
+
+  <!-- ✅ HEADER -->
+  <header class="header">
+    <div class="container header__inner">
+      <div aria-hidden="true"></div>
+
+      <a class="header__logo header__logo--text" href="index.html#top" aria-label="Go to top">
+        <span class="brand">
+          <span class="brand__name">MR FOCUS</span>
+          <span class="brand__tag">BY ANUKA INDEERA</span>
+        </span>
+      </a>
+
+      <button class="menuBtn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ✅ RIGHT DRAWER MENU -->
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer__backdrop" id="drawerBackdrop" aria-hidden="true"></div>
+
+    <aside class="drawer__panel" role="dialog" aria-modal="true" aria-label="Main menu">
+      <div class="drawer__top">
+        <div class="drawer__title">Menu</div>
+        <button class="drawer__close" id="drawerClose" aria-label="Close menu">×</button>
+      </div>
+
+      <nav class="drawer__links" aria-label="Menu links">
+        <a class="drawer__link" href="index.html">Home</a>
+        <a class="drawer__link" href="categories.html">Our Portfolio</a>
+        <a class="drawer__link drawer__link--accent" href="contact.html#contactForm">Enquire</a>
+      </nav>
+    </aside>
+  </div>
+
+  <!-- ✅ LAYER STACK START -->
+  <main class="layerStack" id="layerStack">
+
+    <!-- HERO -->
+    <section class="aboutHero layer" data-layer>
+      <div class="container aboutHero__inner">
+        <div class="reveal">
+          <span class="kicker">About MR Focus</span>
+          <h1 class="h1">Photography • Films</h1>
+          <p class="subline">Pre-shoots • Weddings • Model Shoots • Drone • Events • Production Reels</p>
+          <p class="heroLead">
+            I capture real moments — calm, natural, and timeless.
+            My style is clean and true to color, with gentle guidance so you never feel awkward.
+          </p>
+          <div class="heroActions">
+            <a href="contact.html#contactForm" class="btn btn--primary">Check Availability</a>
+            <a href="index.html#work" class="btn btn--ghost">View Work</a>
+          </div>
+        </div>
+
+        <div class="heroImgWrap reveal">
+          <img class="heroImg" src="assets/ownerimg1.jpg" alt="MR Focus photographer portrait" />
+          <div class="heroBadge">
+            <span class="dot" aria-hidden="true"></span>
+            Story-first • Clean edit • Calm guidance
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORY + STATS -->
+    <section class="section layer" data-layer>
+      <div class="container grid2">
+        <div class="storyCard card reveal">
+          <div class="sectionTitle">My Story</div>
+          <h2 class="sectionH2">Simple. Honest. Cinematic.</h2>
+          <p class="sectionLead">
+            I’m MR FOCUS — a wedding photographer & filmmaker based in Sri Lanka.
+            I focus on emotions and real details, and I keep the whole experience relaxed.
+          </p>
+          <p>
+            I guide you naturally when needed, but I never force moments. The best photos and films
+            come from comfort, trust, and a calm atmosphere.
+          </p>
+          <p>
+            From pre-shoots to full-day coverage, I deliver clean edits, true colors, and storytelling that
+            still feels powerful years later.
+          </p>
+        </div>
+
+        <div class="reveal">
+          <div class="sectionTitle">What you can expect</div>
+          <h2 class="sectionH2">A smooth, stress-free shoot</h2>
+
+          <div class="stats" aria-label="Quick highlights">
+            <div class="stat"><strong>Calm</strong><span>On the day</span></div>
+            <div class="stat"><strong>Clean</strong><span>Color & skin tones</span></div>
+            <div class="stat"><strong>Natural</strong><span>Posing guidance</span></div>
+            <div class="stat"><strong>Story</strong><span>Moments first</span></div>
+          </div>
+
+          <div class="contactLine" aria-label="Quick contact">
+            <span>Phone: <a href="tel:+94700000000">+94 70 000 0000</a></span>
+            <span>Email: <a href="mailto:hello@mrfocus.lk">hello@mrfocus.lk</a></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPROACH -->
+    <section class="section layer" data-layer>
+      <div class="container">
+        <div class="reveal">
+          <div class="sectionTitle">Approach</div>
+          <h2 class="sectionH2">Professional quality, friendly vibe</h2>
+          <p class="sectionLead">
+            You’ll get a premium look, but the experience stays easy and human — like working with a friend who knows exactly what to do.
+          </p>
+        </div>
+
+        <div class="approachGrid">
+          <div class="approach reveal">
+            <h3>Calm guidance</h3>
+            <p>Simple posing + natural direction, so your photos look real and confident.</p>
+          </div>
+          <div class="approach reveal">
+            <h3>True colors</h3>
+            <p>Clean edits, natural skin tones, and a timeless style (not heavy filters).</p>
+          </div>
+          <div class="approach reveal">
+            <h3>Storytelling</h3>
+            <p>Real moments, real reactions — captured in a cinematic, emotional way.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOWREEL -->
+    <section class="section layer" data-layer>
+      <div class="container">
+        <div class="reveal">
+          <div class="sectionTitle">Videography</div>
+          <h2 class="sectionH2">Watch a short showreel</h2>
+          <p class="sectionLead">A quick look at the vibe and style of my cinematic wedding films.</p>
+        </div>
+
+        <div class="reelWrap reveal">
+          <div class="reel" id="showreelBox">
+            <div class="ytNotice">
+              <div class="ytNotice__box">
+                <div class="ytNotice__title">Video can’t play in file mode</div>
+                <div class="ytNotice__text">
+                  Please open this page using a local server (VS Code Live Server) to play the video here.
+                </div>
+                <div class="ytNotice__btns">
+                  <a class="btn btn--primary" href="https://youtu.be/Q0cKGwMkyh4" target="_blank" rel="noreferrer">Watch on YouTube</a>
+                </div>
+              </div>
+            </div>
+
+            <iframe
+              id="showreelFrame"
+              title="MR FOCUS Showreel"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section layer" data-layer>
+      <div class="container">
+        <div class="reveal">
+          <div class="sectionTitle">Process</div>
+          <h2 class="sectionH2">How we work together</h2>
+          <p class="sectionLead">
+            Clear steps, quick communication, and smooth delivery — so you always know what’s happening.
+          </p>
+        </div>
+
+        <div class="steps">
+          <div class="step reveal">
+            <strong><span class="num">1</span> Inquiry</strong>
+            <p>Share your date and location. I’ll confirm availability and packages.</p>
+          </div>
+          <div class="step reveal">
+            <strong><span class="num">2</span> Plan</strong>
+            <p>We align your timeline and key moments. Simple plan, no stress.</p>
+          </div>
+          <div class="step reveal">
+            <strong><span class="num">3</span> Shoot day</strong>
+            <p>Calm direction + real moments for photos and cinematic film coverage.</p>
+          </div>
+          <div class="step reveal">
+            <strong><span class="num">4</span> Delivery</strong>
+            <p>Clean edits, organized albums, and a film that tells your story.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BTS -->
+    <section class="section layer" data-layer>
+      <div class="container">
+        <div class="reveal">
+          <div class="sectionTitle">Behind the scenes</div>
+          <h2 class="sectionH2">A small look at the vibe</h2>
+          <p class="sectionLead">Use 3 natural BTS photos. It builds trust and keeps the page authentic.</p>
+        </div>
+
+        <div class="btsGrid">
+          <img class="btsImg reveal" src="assets/ownerimg3.jpg" alt="Behind the scenes 1">
+          <img class="btsImg reveal" src="assets/bts2.jpg" alt="Behind the scenes 2">
+          <img class="btsImg reveal" src="assets/bts3.jpg" alt="Behind the scenes 3">
+        </div>
+      </div>
+    </section>
+
+    <div class="stackEnd" aria-hidden="true"></div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__wrap">
+      <div>
+        <div class="footer__brand">MR FOCUS</div>
+        <div class="footer__tag">Photography & Films • Sri Lanka</div>
+        <p class="footer__about">
+          Clean, emotional, documentary-style storytelling with gentle guidance so you never feel awkward.
+        </p>
+        <div style="margin-top:12px; display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="footer__link" href="#" aria-label="Instagram">Instagram</a>
+          <span class="dotSep">•</span>
+          <a class="footer__link" href="https://www.facebook.com/Mr.Focusphotography/" target="_blank" rel="noreferrer" aria-label="Facebook">Facebook</a>
+          <span class="dotSep">•</span>
+          <a class="footer__link" href="#" aria-label="YouTube">YouTube</a>
+          <span class="dotSep">•</span>
+          <a class="footer__link" href="#" aria-label="TikTok">TikTok</a>
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <div class="footer__title">Links</div>
+        <a class="footer__link" href="#top">About</a>
+        <a class="footer__link" href="index.html#work">Work</a>
+        <a class="footer__link" href="contact.html#contactForm">Contact</a>
+      </div>
+
+      <div class="footer__col">
+        <div class="footer__title">Contact</div>
+        <div class="footer__item">
+          <span class="footer__label">Phone</span>
+          <a class="footer__link" href="tel:+94700000000">+94 70 000 0000</a>
+        </div>
+        <div class="footer__item">
+          <span class="footer__label">Email</span>
+          <a class="footer__link" href="mailto:hello@mrfocus.lk">hello@mrfocus.lk</a>
+        </div>
+        <div class="footer__item" style="border-bottom:none;">
+          <span class="footer__label">Location</span>
+          <div class="footer__text">Sri Lanka • Islandwide</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div class="container footer__bottomInner">
+        <div class="footer__mini">© <span id="year"></span> MR FOCUS. All rights reserved.</div>
+        <div class="footer__miniLinks">
+          <a href="#" class="footer__link" style="text-decoration:none; opacity:.85;">Privacy</a>
+          <span class="dotSep">•</span>
+          <a href="#" class="footer__link" style="text-decoration:none; opacity:.85;">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // year + fade in
+    document.getElementById('year').textContent = new Date().getFullYear();
+    window.addEventListener('DOMContentLoaded', () => {
+      requestAnimationFrame(() => document.body.classList.add('is-ready'));
+    });
+
+    // reveal animation
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          e.target.classList.add('is-in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(el => io.observe(el));
+
+    // ✅ YouTube embed
+    const videoId = "Q0cKGwMkyh4";
+    const box = document.getElementById('showreelBox');
+    const frame = document.getElementById('showreelFrame');
+
+    if (location.protocol === "file:") {
+      box.classList.add('is-file');
+    } else {
+      const origin = encodeURIComponent(location.origin);
+      frame.src = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=0&playsinline=1&origin=${origin}`;
+    }
+
+    // ✅ Layer logic: header height + z-index order
+    const header = document.querySelector('.header');
+    const root = document.documentElement;
+
+    function setHeaderHeight(){
+      const h = header ? header.offsetHeight : 76;
+      root.style.setProperty('--headerH', `${h}px`);
+    }
+    window.addEventListener('resize', setHeaderHeight);
+    setHeaderHeight();
+
+    const layers = document.querySelectorAll('[data-layer]');
+    layers.forEach((layer, i) => layer.style.zIndex = String(i + 1));
+
+    // ✅ Drawer open/close
+    const menuBtn = document.getElementById('menuBtn');
+    const drawer = document.getElementById('drawer');
+    const drawerClose = document.getElementById('drawerClose');
+    const drawerBackdrop = document.getElementById('drawerBackdrop');
+
+    function openDrawer(){
+      drawer.classList.add('is-open');
+      menuBtn.classList.add('is-open');
+      menuBtn.setAttribute('aria-expanded','true');
+      drawer.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDrawer(){
+      drawer.classList.remove('is-open');
+      menuBtn.classList.remove('is-open');
+      menuBtn.setAttribute('aria-expanded','false');
+      drawer.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+    }
+
+    menuBtn.addEventListener('click', () => {
+      drawer.classList.contains('is-open') ? closeDrawer() : openDrawer();
+    });
+    drawerClose.addEventListener('click', closeDrawer);
+    drawerBackdrop.addEventListener('click', closeDrawer);
+
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape') closeDrawer();
+    });
+
+    document.querySelectorAll('.drawer__link').forEach(a => a.addEventListener('click', closeDrawer));
+  </script>
+</body>
+</html>
