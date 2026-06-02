@@ -23,69 +23,85 @@
 <body>
 
   <!-- ✅ NEW PRELOADER (MR FOCUS) -->
-  <div class="preloader" id="preloader" role="status" aria-live="polite" aria-label="Loading">
-    <div class="preloader__box">
-      <div class="preloader__brand">
-        <div class="preloader__name">MR FOCUS</div>
-        <div class="preloader__tag">BY ANUKA INDEERA</div>
-      </div>
+ <!-- ✅ PRELOADER WITH BACKGROUND IMAGE -->
+<div class="preloader" id="preloader" role="status" aria-live="polite" aria-label="Loading"
+  style="--preloader-bg:url('assets/hero.jpg');">
 
-      <div class="preloader__barWrap" aria-hidden="true">
-        <div class="preloader__bar" id="preBar"></div>
-      </div>
+  <div class="preloader__box">
+    <div class="preloader__brand">
+      <div class="preloader__name">MR FOCUS</div>
+      <div class="preloader__tag">BY ANUKA INDEERA</div>
+    </div>
 
-      <div class="preloader__meta">
-        <span class="preloader__pct" id="prePct">0%</span>
-        <span class="preloader__dots" aria-hidden="true"></span>
-      </div>
+    <div class="preloader__barWrap" aria-hidden="true">
+      <div class="preloader__bar" id="preBar"></div>
+    </div>
+
+    <div class="preloader__meta">
+      <span class="preloader__pct" id="prePct">0%</span>
+      <span class="preloader__dots" aria-hidden="true"></span>
     </div>
   </div>
+</div>
 
   <div class="progress" aria-hidden="true">
     <div class="progress__bar" id="progressBar"></div>
   </div>
 
   <header class="header header--astray" id="top">
-    <div class="container header__inner">
-      <div class="header__spacer" aria-hidden="true"></div>
+  <span class="navScrollLine" aria-hidden="true"></span>
 
-      <a class="header__logo header__logo--center" href="index.html#top" aria-label="Go to top">
-        <span class="brand brand--center">
-          <span class="brand__name">MR FOCUS</span>
-          <span class="brand__tag">BY ANUKA INDEERA</span>
-        </span>
-      </a>
+  <div class="container header__inner">
+    <div class="header__spacer" aria-hidden="true"></div>
 
-      <div class="header__right">
-        <button class="burger burger--astray" id="burger" aria-label="Open menu" aria-expanded="false" type="button">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+    <a class="header__logo header__logo--center" href="#" aria-label="Go to top">
+      <span class="brand brand--center">
+        <span class="brand__name">MR FOCUS</span>
+        <span class="brand__tag">BY ANUKA INDEERA</span>
+      </span>
+    </a>
+
+    <div class="header__right">
+      <button class="burger burger--astray" id="burger" aria-label="Open menu" aria-expanded="false" type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
+  </div>
 
-    <div class="drawer" id="drawer" aria-hidden="true">
-      <div class="drawer__panel" role="dialog" aria-label="Mobile menu">
-        <div class="drawer__top">
-          <strong>Menu</strong>
-          <button class="drawer__close" id="drawerClose" aria-label="Close" type="button">✕</button>
-        </div>
+  <!-- ✅ NEW DRAWER -->
+  <div class="drawer" id="drawer" aria-hidden="true">
+      <span class="navScrollLine" aria-hidden="true"></span>
+    <div class="drawer__panel" role="dialog" aria-label="Mobile menu">
 
+      <button class="drawer__close" id="drawerClose" aria-label="Close menu" type="button">
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="drawer__nav" aria-label="Main menu">
+        <a class="drawer__link" href="index.html">Home</a>
         <a class="drawer__link" href="about.html">About</a>
         <a class="drawer__link" href="categories.html">Our Portfolio</a>
         <a class="drawer__link" href="index.html#services">Services</a>
         <a class="drawer__link" href="index.html#work">Stories</a>
         <a class="drawer__link" href="index.html#films">Cinematic Gallery</a>
-        <a class="drawer__link drawer__link--cta" href="contact.html">Enquire</a>
-      </div>
-    </div>
-  </header>
+        <a class="drawer__link" href="#reviews">Reviews</a>
+        <a class="drawer__link" href="contact.html">Contact</a>
+       
+      </nav>
 
+    </div>
+  </div>
+</header>
+  
   <!-- ✅ LAYER SCROLL WRAPPER ADDED -->
   <main id="main" class="layerScroll">
 
     <!-- ✅ LAYER 1 -->
-    <section class="hero" id="hero" style="--layer:1">
-      <div class="hero__bg">
+<section class="hero layer" id="hero" style="--layer:1; --hold:10vh; --stack-offset:0px;">
+          <div class="hero__bg">
         <video class="hero__video" id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" aria-hidden="true">
           <source src="assets/hero.mp4" type="video/mp4" />
         </video>
@@ -101,110 +117,57 @@
       </div>
     </section>
 
-    <!-- ✅ LAYER 3 (keep approach animation working) -->
-    <section class="approachStage layer" id="approach"
-      style="--layer:3; --img-left:url('assets/img11.jpg'); --img-right:url('assets/img4.jpg');">
+  <section class="approachStage layer" id="approach"style="--layer:2; --img-left:url('assets/img11.jpg');">
 
-      <div class="approachStage__sticky" aria-hidden="false">
-        <div class="approachStage__bg" aria-hidden="true">
-          <div class="approachStage__half approachStage__half--left"></div>
-          <div class="approachStage__half approachStage__half--right"></div>
-        </div>
+  <div class="approachStage__sticky" aria-hidden="false">
+    <div class="approachStage__bg" aria-hidden="true">
 
-        <div class="approachStage__overlay" aria-hidden="true"></div>
+      <!-- LEFT SIDE FIXED IMAGE -->
+      <div class="approachStage__half approachStage__half--left"></div>
 
-        <div class="approachStage__titleWrap" aria-hidden="true">
-          <div class="approachStage__title">
-            OUR APPROACH<br>
-            IS ALL ABOUT<br>
-            CONNECTION
-          </div>
-        </div>
-
-        <article class="approachStage__card" aria-label="Our approach message">
-          <p class="approachStage__top">
-            LETTING THE DAY UNFOLD NATURALLY, AND CAPTURING IT IN A WAY THAT FEELS TRUE TO WHO YOU ARE.
-            BECAUSE AT THE HEART OF EVERY GREAT PHOTO IS A GREAT CONNECTION.
-          </p>
-
-          <div class="approachStage__rule" aria-hidden="true"></div>
-
-          <p class="approachStage__body">
-            If you’re a couple who thrives on adventure, laughs at the little things, and loves to enjoy the ride,
-            we’d love to be there to document your story. Let’s create images that will make you smile for years to come!
-          </p>
-
-          <div class="approachStage__cta">
-            <a class="btn btn--primary" href="categories.html">View Portfolio</a>
-          </div>
-        </article>
+      <!-- RIGHT SIDE CHANGING IMAGES -->
+      <div class="approachStage__half approachStage__half--right">
+        <img class="approachStage__rightImg is-active" src="assets/img4.jpg" alt="">
+        <img class="approachStage__rightImg" src="assets/img5.jpg" alt="">
+        <img class="approachStage__rightImg" src="assets/im8.jpg" alt="">
+        <img class="approachStage__rightImg" src="assets/img10.jpg" alt="">
+        <img class="approachStage__rightImg" src="assets/img.jpg" alt="">
       </div>
-    </section>
 
-    <!-- ✅ LAYER 2 -->
-    <section class="section serviceTiles servicesSwitch layer" id="services" style="--layer:2">
-      <div class="container">
-        <div class="serviceTiles__head reveal">
-          <h2 class="h2 h2--spaced">Services</h2>
-          <p class="lead muted">Pick what you need. We’ll handle the rest.</p>
-        </div>
+    </div>
 
-        <div class="tilesGrid reveal" role="tablist" aria-label="Services">
-          <button class="tile tileBtn is-active" type="button"
-            style="--img:url('assets/thumb3.png')"
-            data-title="Wedding Cinematography"
-            data-desc="Cinematic wedding films with real moments, clean colour and smooth edits.">
-            <span class="tile__bg" aria-hidden="true"></span>
-            <span class="tile__shade" aria-hidden="true"></span>
-            <span class="tile__text">WEDDING<br/>CINEMATOGRAPHY</span>
-          </button>
+    <div class="approachStage__overlay" aria-hidden="true"></div>
 
-          <button class="tile tileBtn" type="button"
-            style="--img:url('assets/img11.jpg')"
-            data-title="Wedding Photography"
-            data-desc="Natural storytelling + timeless portraits. Full day coverage available.">
-            <span class="tile__bg" aria-hidden="true"></span>
-            <span class="tile__shade" aria-hidden="true"></span>
-            <span class="tile__text">WEDDING<br/>PHOTOGRAPHY</span>
-          </button>
+    <div class="approachStage__titleWrap" aria-hidden="true">
+      <div class="approachStage__title">
+          EVERY MOMENT<br>
+          TELLS A<br>
+          BEAUTIFUL STORY
+</div>
+    </div>
 
-          <button class="tile tileBtn" type="button"
-            style="--img:url('assets/img2.jpg')"
-            data-title="Pre Wedding Shoots"
-            data-desc="Golden hour sessions, beautiful locations and gentle posing guidance.">
-            <span class="tile__bg" aria-hidden="true"></span>
-            <span class="tile__shade" aria-hidden="true"></span>
-            <span class="tile__text">PRE WEDDING<br/>SHOOTS</span>
-          </button>
+    <article class="approachStage__card" aria-label="Our approach message">
+      <p class="approachStage__top">
+        LET THE DAY UNFOLD NATURALLY.WE’LL CAPTURE THE REAL CONNECTION.
+      </p>
 
-          <button class="tile tileBtn" type="button"
-            style="--img:url('assets/evenycoverage.jpg')"
-            data-title="Event Coverage"
-            data-desc="Corporate events, parties, stage shows and live moments captured cleanly.">
-            <span class="tile__bg" aria-hidden="true"></span>
-            <span class="tile__shade" aria-hidden="true"></span>
-            <span class="tile__text">EVENT<br/>COVERAGE</span>
-          </button>
+      <div class="approachStage__rule" aria-hidden="true"></div>
 
-          <button class="tile tileBtn" type="button"
-            style="--img:url('assets/COMMERCIALPRODUCTIONS.jpg')"
-            data-title="Commercial Productions"
-            data-desc="Brand promos, product shoots, reels and ads for your business.">
-            <span class="tile__bg" aria-hidden="true"></span>
-            <span class="tile__shade" aria-hidden="true"></span>
-            <span class="tile__text">COMMERCIAL<br/>PRODUCTIONS</span>
-          </button>
-        </div>
+      <p class="approachStage__body">
+        If you love adventure, laughter, and natural moments, 
+        we’d love to be there to capture your story beautifully.
+      </p>
 
-        <div class="svcPanel reveal" id="svcPanel" aria-live="polite">
-          <div class="svcPanel__inner"></div>
-        </div>
+      <div class="approachStage__cta">
+        <a class="btn btn--primary" href="categories.html">View Portfolio</a>
       </div>
-    </section>
+    </article>
+  </div>
+</section>
 
     <!-- ✅ LAYER 5 -->
-    <section class="section videoShowcase layer" id="films" style="--layer:5">
-      <div class="container">
+<section class="section videoShowcase layer" id="films"style="--layer:4; --hold:10vh; --stack-offset:28px;">
+        <div class="container">
         <div class="head reveal head--center">
           <div>
             <h2 class="h2 h2--spaced">Cinematic Gallery</h2>
@@ -288,23 +251,254 @@
       </div>
     </section>
 
-    <!-- ✅ LAYER 6 -->
-    <section class="contactHero layer" id="contact"
-      style="--layer:6; --contact-bg:url('assets/img15.jpg'); --contact-pos:50% 55%;">
-      <div class="container">
-        <div class="contactHero__intro reveal">
-          <h2 class="contactHero__title">LET’S CONNECT!</h2>
-          <p class="contactHero__text muted">
-            You don’t need to have everything figured out yet.<br />
-            Share your date + location, and we’ll guide the next steps.
-          </p>
-          <p class="contactHero__text muted">
-            Fill out the form below and we’ll reply with availability & a quote.
-          </p>
-          <a class="contactHero__cta btn btn--primary" href="contact.html">GET IN TOUCH</a>
+<!-- ✅ STORY MOMENT SECTION (5 REVIEWS - CONTENT SWAPS) -->
+<section class="storyMoment layer" id="storyMoment" style="--layer:3;" data-storymoment>
+
+  <!-- RIGHT BACKGROUND IMAGE -->
+  <div class="storyMoment__bgPhoto">
+    <img id="storyBgImg" src="assets/review.png" alt="">
+  </div>
+
+  <div class="storyMoment__inner">
+
+    <!-- LEFT TEXT -->
+    <div class="storyMoment__text">
+
+      <span class="storyMoment__label">Client Review</span>
+
+      <h2 class="storyMoment__quoteTitle" id="storyQuote">
+        <span>“From the first call,</span>
+        <span>we felt calm</span>
+        <span>and knew our day</span>
+        <span>was in safe hands”</span>
+      </h2>
+
+      <p class="storyMoment__review" id="storyReview">
+        A day full of love and happy moments. The photos feel natural, elegant, and real.
+        Thank you for being so friendly and guiding us gently. MR FOCUS highly recommended.
+      </p>
+
+      <div class="storyMoment__reviewAuthor">
+        <small id="storyAuthor">Sachitha & Hiruni • Wedding Client</small>
+      </div>
+
+    </div>
+
+    <!-- BIG MAIN IMAGE -->
+    <div class="storyMoment__mainPhoto">
+      <img id="storyMainImg" src="assets/review.png" alt="Wedding couple">
+    </div>
+
+  </div>
+
+  <!-- DOTS -->
+  <div class="storyMoment__dots" id="storyDots" aria-label="Review dots"></div>
+
+</section>
+
+  <!-- RIGHT BACKGROUND IMAGE -->
+  <div class="storyMoment__bgPhoto">
+    <img id="storyBgImg" src="assets/work2.jpg" alt="">
+  </div>
+
+  <div class="storyMoment__inner">
+
+    <!-- LEFT TEXT -->
+    <div class="storyMoment__text">
+
+      <span class="storyMoment__label">Client Review</span>
+
+      <h2 class="storyMoment__quoteTitle" id="storyQuote">
+        <span>“From the first call,</span>
+        <span>we felt calm</span>
+        <span>and knew our day</span>
+        <span>was in safe hands”</span>
+      </h2>
+
+      <p class="storyMoment__review" id="storyReview">
+        A day full of love and happy moments. The photos feel natural, elegant, and real.
+        Thank you for being so friendly and guiding us gently. MR FOCUS highly recommended.
+      </p>
+
+      <!-- ✅ Author (your CSS already supports this) -->
+      <div class="storyMoment__reviewAuthor">
+        <small id="storyAuthor">Sachitha & Hiruni • Wedding Client</small>
+      </div>
+
+    </div>
+
+    <!-- BIG MAIN IMAGE -->
+    <div class="storyMoment__mainPhoto">
+      <img id="storyMainImg" src="assets/img13.jpg" alt="Wedding couple">
+    </div>
+
+  </div>
+
+  <!-- ✅ Dots -->
+  <div class="storyMoment__dots" id="storyDots" aria-label="Review dots"></div>
+
+</section>
+
+<!-- ✅ REVIEWS SECTION - DOT CAROUSEL ONLY -->
+<section id="reviews" class="reviews section">
+
+  <div class="container">
+
+    <div class="head head--center reviewHead">
+      <div>
+        <h2 class="h2 h2--spaced">Reviews</h2>
+        <p class="lead lead--center">
+          Honest words from couples and clients who trusted MR FOCUS to capture their special moments.
+        </p>
+      </div>
+    </div>
+
+    <div class="reviewCarousel" data-review-carousel>
+      <div class="reviewViewport">
+        <div class="reviewTrack">
+
+          <article class="reviewTile">
+            <div class="reviewQuoteIcon">“</div>
+            <div class="reviewTop">
+              <div class="reviewStars" aria-label="5 stars">★★★★★</div>
+              <div class="reviewTag">Wedding</div>
+            </div>
+            <p class="reviewMsg">
+              Very professional work. The video quality is cinematic and the delivery was on time.
+              Highly recommended.
+            </p>
+            <div class="reviewBy">
+              <div class="reviewAvatar">S</div>
+              <div>
+                <div class="reviewName">Sachitha & Hiruni</div>
+                <div class="reviewRole muted small">Wedding Client</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="reviewTile">
+            <div class="reviewQuoteIcon">“</div>
+            <div class="reviewTop">
+              <div class="reviewStars" aria-label="5 stars">★★★★★</div>
+              <div class="reviewTag">Commercial</div>
+            </div>
+            <p class="reviewMsg">
+              Communication was clear and easy. Final output looked premium and clean.
+              Great experience overall.
+            </p>
+            <div class="reviewBy">
+              <div class="reviewAvatar">A</div>
+              <div>
+                <div class="reviewName">Ayesh T.</div>
+                <div class="reviewRole muted small">Commercial Client</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="reviewTile">
+            <div class="reviewQuoteIcon">“</div>
+            <div class="reviewTop">
+              <div class="reviewStars" aria-label="5 stars">★★★★★</div>
+              <div class="reviewTag">Event</div>
+            </div>
+            <p class="reviewMsg">
+              Super friendly and professional. The shots felt natural and the edits were clean.
+              Highly recommended!
+            </p>
+            <div class="reviewBy">
+              <div class="reviewAvatar">G</div>
+              <div>
+                <div class="reviewName">Gayani Fernando</div>
+                <div class="reviewRole muted small">Event Client</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="reviewTile">
+            <div class="reviewQuoteIcon">“</div>
+            <div class="reviewTop">
+              <div class="reviewStars" aria-label="5 stars">★★★★★</div>
+              <div class="reviewTag">Wedding</div>
+            </div>
+            <p class="reviewMsg">
+              Beautiful storytelling and calm guidance. We felt comfortable and the photos came out natural.
+            </p>
+            <div class="reviewBy">
+              <div class="reviewAvatar">N</div>
+              <div>
+                <div class="reviewName">Nethmi K.</div>
+                <div class="reviewRole muted small">Wedding Client</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="reviewTile">
+            <div class="reviewQuoteIcon">“</div>
+            <div class="reviewTop">
+              <div class="reviewStars" aria-label="5 stars">★★★★★</div>
+              <div class="reviewTag">Pre-Shoot</div>
+            </div>
+            <p class="reviewMsg">
+              Posing guidance was perfect. Photos look premium and the whole session was fun and easy.
+            </p>
+            <div class="reviewBy">
+              <div class="reviewAvatar">K</div>
+              <div>
+                <div class="reviewName">Kasun P.</div>
+                <div class="reviewRole muted small">Pre-Shoot Client</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="reviewTile">
+            <div class="reviewQuoteIcon">“</div>
+            <div class="reviewTop">
+              <div class="reviewStars" aria-label="5 stars">★★★★★</div>
+              <div class="reviewTag">Brand</div>
+            </div>
+            <p class="reviewMsg">
+              Fast delivery and clean edits. Great color and sharp output.
+              Exactly what we wanted for our brand.
+            </p>
+            <div class="reviewBy">
+              <div class="reviewAvatar">D</div>
+              <div>
+                <div class="reviewName">Dushan M.</div>
+                <div class="reviewRole muted small">Brand Client</div>
+              </div>
+            </div>
+          </article>
+
         </div>
       </div>
-    </section>
+
+      <div class="reviewDots" aria-label="Review pages"></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ✅ CONTACT SECTION - NORMAL SECTION, NOT LAYER -->
+<section class="contactHero section" id="contact"style="--contact-bg:url('assets/img15.jpg'); --contact-pos:50% 55%;">
+
+  <div class="container">
+    <div class="contactHero__intro">
+      <h2 class="contactHero__title">LET’S CONNECT!</h2>
+
+      <p class="contactHero__text muted">
+        You don’t need to have everything figured out yet.<br>
+        Share your date + location, and we’ll guide the next steps.
+      </p>
+
+      <p class="contactHero__text muted">
+        Fill out the form below and we’ll reply with availability & a quote.
+      </p>
+
+      <a class="contactHero__cta btn btn--primary" href="contact.html">GET IN TOUCH</a>
+    </div>
+  </div>
+</section>
 
   </main>
 
@@ -385,35 +579,81 @@
 
   <script src="script.js"></script>
 
-  <!-- ✅ NEW PRELOADER SCRIPT -->
   <script>
-    (function(){
-      const pre = document.getElementById("preloader");
-      const bar = document.getElementById("preBar");
-      const pct = document.getElementById("prePct");
-      if(!pre || !bar || !pct) return;
+(function () {
+  const pre = document.getElementById("preloader");
+  const bar = document.getElementById("preBar");
+  const pct = document.getElementById("prePct");
 
-      let p = 0;
-      const tick = setInterval(() => {
-        p = Math.min(92, p + Math.random() * 6);
-        const v = Math.floor(p);
-        bar.style.width = v + "%";
-        pct.textContent = v + "%";
-      }, 140);
+  if (!pre || !bar || !pct) return;
 
-      window.addEventListener("load", () => {
-        clearInterval(tick);
-        bar.style.width = "100%";
-        pct.textContent = "100%";
+  document.documentElement.classList.add("is-loading");
 
-        setTimeout(() => {
+  let progress = 0;
+  let finished = false;
+  let timer = null;
+
+  function setProgress(value) {
+    progress = Math.max(0, Math.min(100, value));
+
+    const rounded = Math.floor(progress);
+    bar.style.width = rounded + "%";
+    pct.textContent = rounded + "%";
+  }
+
+  function startLoading() {
+    timer = setInterval(function () {
+      if (progress < 55) {
+        setProgress(progress + Math.random() * 7);
+      } else if (progress < 82) {
+        setProgress(progress + Math.random() * 3.5);
+      } else if (progress < 94) {
+        setProgress(progress + Math.random() * 1.2);
+      }
+    }, 140);
+  }
+
+  function finishLoading() {
+    if (finished) return;
+    finished = true;
+
+    clearInterval(timer);
+
+    function complete() {
+      const next = progress + (100 - progress) * 0.2;
+
+      if (next >= 99.5) {
+        setProgress(100);
+
+        setTimeout(function () {
           pre.classList.add("preloader--hide");
           document.documentElement.classList.remove("is-loading");
-          setTimeout(() => pre.remove(), 500);
-        }, 220);
-      });
-    })();
-  </script>
 
+          setTimeout(function () {
+            pre.remove();
+          }, 850);
+        }, 420);
+
+        return;
+      }
+
+      setProgress(next);
+      requestAnimationFrame(complete);
+    }
+
+    requestAnimationFrame(complete);
+  }
+
+  setProgress(0);
+  startLoading();
+
+  window.addEventListener("load", function () {
+    setTimeout(finishLoading, 650);
+  });
+
+  /* safety fallback */
+  setTimeout(finishLoading, 5000);
+})();
+</script>
 </body>
 </html>
