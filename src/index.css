@@ -1,0 +1,1000 @@
+/* =========================================================
+   MR FOCUS — Clean Updated Styles
+   Smooth scroll feel, animated cards, white fade transitions,
+   smooth side drawer, responsive fixes.
+========================================================= */
+
+:root{
+  --bg:#fbfaf7;
+  --panel:#ffffff;
+  --ink:#141414;
+  --muted:rgba(20,20,20,.66);
+  --line:rgba(20,20,20,.12);
+  --accent:#c8a26a;
+  --accent2:#7f9a93;
+  --radius:0px;
+  --shadow:0 18px 55px rgba(0,0,0,.10);
+  --container:1140px;
+  --font-sans:"Plus Jakarta Sans", system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-logo:"Cormorant Garamond", Georgia, "Times New Roman", serif;
+}
+
+*{box-sizing:border-box}
+html{
+  scroll-behavior:smooth;
+  scrollbar-gutter:stable;
+}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-sans);
+  line-height:1.6;
+  overflow-x:hidden;
+  text-rendering:geometricPrecision;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img,video,svg{display:block;max-width:100%}
+button,input,textarea,select{font:inherit}
+.container{width:min(var(--container), calc(100% - 40px)); margin:0 auto}
+.muted{color:var(--muted)}
+.small{font-size:12px}
+
+::selection{background:rgba(200,162,106,.30)}
+
+
+/* =========================================================
+   Progress + soft reveal
+========================================================= */
+.progress{position:fixed; inset:0 0 auto 0; height:3px; z-index:5000; pointer-events:none}
+.progress__bar{height:100%; width:0%; background:#111; transform-origin:left}
+
+.reveal-soft{
+  opacity:0;
+  transform:translateY(28px);
+  filter:blur(10px);
+  transition:
+    opacity .85s cubic-bezier(.2,.7,.2,1),
+    transform .85s cubic-bezier(.2,.7,.2,1),
+    filter .85s cubic-bezier(.2,.7,.2,1);
+  transition-delay:var(--delay, 0ms);
+  will-change:opacity, transform, filter;
+}
+.reveal-soft.is-in{
+  opacity:1;
+  transform:translateY(0);
+  filter:blur(0);
+}
+
+
+/* =========================================================
+   Common UI
+========================================================= */
+.section{padding:78px 0}
+.head{display:flex; justify-content:space-between; gap:18px; align-items:flex-end; margin-bottom:18px}
+.head--center{justify-content:center; text-align:center; margin-bottom:clamp(22px,3vw,34px)}
+.h2{margin:0; font-weight:700; font-size:38px; letter-spacing:-.01em}
+.h2--spaced{
+  margin:0 0 14px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.20em;
+  font-size:clamp(30px,4vw,75px);
+  line-height:1.05;
+}
+.lead{font-size:16px; color:rgba(0,0,0,.76); max-width:62ch}
+.lead--center{margin:0 auto; max-width:74ch; font-size:clamp(15px,1.45vw,20px); line-height:1.9; color:rgba(20,20,20,.60)}
+.btn{
+  position:relative;
+  overflow:hidden;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:46px;
+  padding:0 18px;
+  border-radius:var(--radius);
+  font-size:13px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, background .35s ease, color .35s ease;
+}
+.btn::after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  transform:translateX(-120%);
+  background:linear-gradient(110deg, transparent 0%, rgba(255,255,255,.22) 40%, transparent 70%);
+  transition:transform .7s ease;
+  pointer-events:none;
+}
+.btn:hover::after{transform:translateX(120%)}
+.btn:hover{transform:translateY(-2px)}
+.btn--primary{background:#111; color:#fff; border:1px solid #111}
+.btn--primary:hover{box-shadow:0 18px 40px rgba(0,0,0,.18)}
+.btn--ghost{background:rgba(255,255,255,.86); color:#111; border:1px solid rgba(255,255,255,.85)}
+.btn--ghost:hover{background:rgba(255,255,255,.96)}
+.btn:focus-visible,
+a:focus-visible,
+button:focus-visible{outline:3px solid rgba(200,162,106,.38); outline-offset:3px}
+
+/* =========================================================
+   Layer scroll behavior
+========================================================= */
+.layerScroll{position:relative; isolation:isolate; overflow:visible}
+.layerScroll > section{position:relative; z-index:var(--layer,1)}
+.layerScroll > .hero.layer,
+.layerScroll > .storyMoment.layer{
+  position:sticky;
+  top:var(--stack-offset,0px);
+  min-height:100vh;
+  min-height:100svh;
+  z-index:var(--layer,1);
+  isolation:isolate;
+  margin-bottom:var(--hold,0vh);
+}
+.layerScroll > .approachStage.layer,
+.layerScroll > .videoShowcase.layer,
+.layerScroll > .contactHero.layer{
+  position:relative;
+  top:auto;
+  min-height:auto;
+  margin-bottom:0;
+  z-index:var(--layer,1);
+}
+
+
+/* =========================================================
+   Responsive
+========================================================= */
+@media (min-width:1440px){:root{--container:1240px}}
+@media (max-width:980px){
+  .layerScroll > .hero.layer,
+  .layerScroll > .storyMoment.layer{position:relative; top:auto; min-height:auto; margin-bottom:0}
+  .hero__content{left:50%; bottom:34px; width:100%; padding:0 24px; transform:translateX(-50%); text-align:center}
+  .hero__title{max-width:26ch; margin:0 auto 14px; font-size:clamp(30px,4.2vw,46px)}
+  .hero__title::after{margin-left:auto; margin-right:auto}
+  .hero__actions{justify-content:center}
+  .approachStage{height:170vh}
+  .videoGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .reviewTrack{--perView:2}
+  .reviewMsg{min-height:125px}
+  .footer__wrap{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  .storyMoment{min-height:auto}
+  .storyMoment::after{width:100%; height:100%}
+  .storyMoment::before{display:none}
+  .storyMoment__inner{min-height:auto; padding:64px 18px 42px; display:flex; flex-direction:column; gap:20px; opacity:1 !important; filter:none !important}
+  .storyMoment__bgPhoto{position:absolute; inset:0; width:100%; height:100%; opacity:1; transform:none; filter:none}
+  .storyMoment__bgPhoto::after{background:rgba(0,0,0,.72)}
+  .storyMoment__text,
+  .storyMoment__mainPhoto{position:relative; left:auto; top:auto; width:100%; transform:none}
+  .storyMoment__text{order:1; max-width:520px; margin:0 auto; text-align:center; opacity:1; filter:none}
+  .storyMoment__quoteTitle{font-size:clamp(30px,9vw,46px); line-height:1.08; letter-spacing:.04em}
+  .storyMoment__review{max-width:100%; font-size:13px; line-height:1.7; letter-spacing:.04em}
+  .storyMoment__reviewAuthor{max-width:300px; margin-left:auto; margin-right:auto}
+  .storyMoment__mainPhoto{order:2; width:min(430px,92vw); height:auto; aspect-ratio:4/5; max-height:560px; margin:0 auto; opacity:1; filter:none}
+  .storyMoment__dots{left:50%; bottom:14px; transform:translateX(-50%); opacity:1 !important; filter:none !important}
+}
+@media (max-width:640px){
+  .container{width:min(var(--container), calc(100% - 28px))}
+  .header__inner{min-height:72px; padding:12px 0}
+  .brand__name{font-size:clamp(26px,9vw,42px); letter-spacing:.14em}
+  .brand__tag{font-size:9px; letter-spacing:.22em}
+  .drawer__panel{width:100vw; padding:78px 22px 26px}
+  .drawer__link{font-size:13px; letter-spacing:.14em}
+  .h2--spaced{font-size:clamp(26px,8vw,44px); letter-spacing:.18em}
+  .section{padding:70px 0}
+  .videoGrid{grid-template-columns:1fr}
+  .videoShowcase::before,.videoShowcase::after{width:240px; height:240px; opacity:.16}
+  .reviewTrack{--perView:1; --gap:14px}
+  .reviews{padding:60px 0 30px}
+  .reviewTile{min-height:auto; padding:24px}
+  .reviewMsg{min-height:auto; font-size:22px}
+  .contactHero{min-height:80vh; padding:80px 0}
+  .contactHero .container{transform:none}
+  .contactHero__intro:hover{transform:none; box-shadow:none}
+  .contactHero__cta{width:min(340px,92%); min-width:0}
+  .footer{padding-top:48px}
+  .footer__wrap{grid-template-columns:1fr; gap:22px; padding-bottom:36px}
+  .footer__bottomInner{flex-direction:column; align-items:flex-start}
+}
+@media (max-width:560px){
+  .approachStage__bg{grid-template-columns:1fr}
+  .approachStage__half--left{display:none}
+  .approachStage__overlay::after{display:none}
+  .approachStage__title{font-size:clamp(22px,7vw,42px); width:85%; line-height:1}
+  .approachStage__card{top:60%; width:min(92%,520px)}
+  .approachStage__top{font-size:12px; letter-spacing:.12em}
+  .approachStage__body{font-size:15px}
+}
+@media (max-width:420px){
+  .container{width:min(var(--container), calc(100% - 22px))}
+  .btn{height:44px; padding:0 16px; font-size:12px}
+  .storyMoment__inner{padding:56px 14px 38px}
+  .storyMoment__mainPhoto{aspect-ratio:3/4; max-height:520px}
+}
+
+/* =========================================================
+   Reduced motion
+========================================================= */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    scroll-behavior:auto !important;
+    transition-duration:.001ms !important;
+  }
+  .reveal-soft{opacity:1 !important; transform:none !important; filter:none !important}
+  .hero__bg,.hero__content,.storyMoment__inner,.storyMoment__dots{opacity:1 !important; filter:none !important}
+  .hero::before,.storyMoment::before{display:none !important}
+}
+
+
+/* =========================================================
+   FINAL SCROLL + WHITE SPACE FIX
+   - Removes sticky hold gaps that created blank white areas
+   - Keeps Story Moment and Hero fade smooth
+   - Lets Reviews sit directly after Story Moment
+========================================================= */
+html{
+  scroll-behavior:smooth;
+  overscroll-behavior-y:none;
+}
+body{
+  overscroll-behavior-y:none;
+}
+.layerScroll > .hero.layer,
+.layerScroll > .storyMoment.layer{
+  margin-bottom:0 !important;
+}
+#storyMoment.storyMoment{
+  margin-bottom:0 !important;
+  --storyWhiteFade:0;
+  --storyExitOpacity:1;
+  --storyBlur:0px;
+}
+#storyMoment + #reviews,
+#reviews.reviews{
+  margin-top:0 !important;
+}
+#reviews.reviews{
+  position:relative !important;
+  z-index:200 !important;
+  background:var(--bg, #fbfaf7) !important;
+  transform:translateZ(0);
+}
+#reviews.reviews::before{
+  display:none !important;
+}
+.storyMoment::before{
+  background:rgba(251,250,247,var(--storyWhiteFade,0)) !important;
+  z-index:28 !important;
+}
+.storyMoment__inner,
+.storyMoment__bgPhoto,
+.storyMoment__dots{
+  opacity:var(--storyExitOpacity,1);
+  filter:blur(var(--storyBlur,0px));
+  will-change:opacity, filter;
+}
+.storyMoment.story-hidden .storyMoment__inner,
+.storyMoment.story-hidden .storyMoment__bgPhoto,
+.storyMoment.story-hidden .storyMoment__dots{
+  visibility:visible !important;
+}
+.hero.hero-hidden .hero__bg,
+.hero.hero-hidden .hero__content{
+  visibility:visible !important;
+}
+.hero__bg,
+.hero__content,
+.storyMoment__inner,
+.storyMoment__bgPhoto,
+.storyMoment__dots,
+.reviewTrack,
+.videoCard,
+.reviewTile,
+.contactHero__intro,
+.footer__col,
+.footer__brandBlock{
+  transform-style:preserve-3d;
+  backface-visibility:hidden;
+}
+@media (max-width:980px){
+  html{scroll-behavior:smooth;}
+  .layerScroll > .hero.layer,
+  .layerScroll > .storyMoment.layer{
+    position:relative !important;
+    top:auto !important;
+    min-height:auto !important;
+    margin-bottom:0 !important;
+  }
+  .storyMoment__inner,
+  .storyMoment__bgPhoto,
+  .storyMoment__dots{
+    opacity:1 !important;
+    filter:none !important;
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+}
+
+/* =========================================================
+   FINAL GAP + SMOOTH SCROLL FIX
+   - Story Moment no longer uses sticky hold, so it cannot leave blank space
+   - Reviews and Contact flow directly after it
+   - Contact has a dark fallback background if the image path fails
+   - Removes heavy overscroll settings that made scrolling feel stuck
+========================================================= */
+html,
+body{
+  overscroll-behavior-y: auto !important;
+}
+
+.layerScroll > #storyMoment.storyMoment.layer{
+  position: relative !important;
+  top: auto !important;
+  min-height: auto !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  z-index: 5 !important;
+}
+
+#storyMoment.storyMoment{
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+#storyMoment .storyMoment__inner{
+  min-height: 100vh !important;
+}
+
+#storyMoment + #reviews,
+#reviews.reviews{
+  margin-top: 0 !important;
+}
+
+#reviews.reviews{
+  position: relative !important;
+  z-index: 30 !important;
+  padding-top: 72px !important;
+  padding-bottom: 58px !important;
+  margin-bottom: 0 !important;
+  background: var(--bg, #fbfaf7) !important;
+  border-bottom: 1px solid rgba(0,0,0,.06) !important;
+}
+
+#reviews .reviewCarousel{
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+#reviews .reviewViewport{
+  padding-bottom: 18px !important;
+}
+
+#reviews .reviewDots{
+  margin-bottom: 0 !important;
+}
+
+#reviews.reviews::before{
+  display: none !important;
+}
+
+#contact.contactHero{
+  margin-top: 0 !important;
+  min-height: clamp(520px, 72vh, 760px) !important;
+  padding-top: 90px !important;
+  padding-bottom: 90px !important;
+  background-color: #0b0b0b !important;
+  background-image:
+    linear-gradient(rgba(0,0,0,.52), rgba(0,0,0,.52)),
+    url("/assets/img15.jpg") !important;
+  background-size: cover !important;
+  background-position: var(--contact-pos, 50% 55%) !important;
+  background-repeat: no-repeat !important;
+}
+
+#contact .contactHero__intro,
+#contact .contactHero__title,
+#contact .contactHero__text,
+#contact .contactHero__cta{
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
+}
+
+.storyMoment.story-hidden .storyMoment__inner,
+.storyMoment.story-hidden .storyMoment__bgPhoto,
+.storyMoment.story-hidden .storyMoment__dots{
+  visibility: visible !important;
+}
+
+@media (max-width: 980px){
+  .layerScroll > #storyMoment.storyMoment.layer{
+    position: relative !important;
+    min-height: auto !important;
+  }
+
+  #storyMoment .storyMoment__inner{
+    min-height: auto !important;
+  }
+
+  #reviews.reviews{
+    padding-top: 60px !important;
+    padding-bottom: 44px !important;
+  }
+
+  #contact.contactHero{
+    min-height: 70vh !important;
+    padding-top: 75px !important;
+    padding-bottom: 75px !important;
+  }
+}
+
+/* =========================================================
+   ASTRAY-STYLE DYNAMIC STORY + SMOOTH SCROLL FINAL UPDATE
+   - Faster Story Moment movement
+   - Visible text/photo slide during every review change
+   - Animated dot progress so users can see it is moving
+   - Keeps page scroll native and smooth, no stuck wheel behavior
+========================================================= */
+html{
+  scroll-behavior: smooth !important;
+  overscroll-behavior-y: auto !important;
+}
+body{
+  overscroll-behavior-y: auto !important;
+}
+
+/* Do not let Story Moment create a sticky white gap */
+.layerScroll > #storyMoment.storyMoment.layer{
+  position: relative !important;
+  top: auto !important;
+  min-height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  z-index: 20 !important;
+}
+#storyMoment + #reviews,
+#reviews.reviews{
+  margin-top: 0 !important;
+}
+#reviews.reviews{
+  position: relative !important;
+  z-index: 80 !important;
+  background: var(--bg, #fbfaf7) !important;
+}
+#reviews.reviews::before{
+  display: none !important;
+}
+
+/* Story section visual speed */
+#storyMoment.storyMoment{
+  --storyWhiteFade: 0;
+  --storyExitOpacity: 1;
+  --storyBlur: 0px;
+  --storyAutoTime: 3200ms;
+}
+
+/* Make every auto-slide visibly move */
+#storyMoment .storyMoment__text,
+#storyMoment .storyMoment__mainPhoto,
+#storyMoment .storyMoment__bgPhoto{
+  transition:
+    opacity .42s cubic-bezier(.2,.8,.2,1),
+    transform .52s cubic-bezier(.2,.8,.2,1),
+    filter .42s ease !important;
+}
+
+#storyMoment.is-changing-out .storyMoment__text{
+  opacity: 0 !important;
+  transform: translate(-38px, -50%) !important;
+  filter: blur(9px) !important;
+}
+
+#storyMoment.is-changing-out .storyMoment__mainPhoto{
+  opacity: 0 !important;
+  transform: translateX(-46px) translateY(calc(var(--storyProgress, 0) * -18px)) scale(.96) !important;
+  filter: blur(8px) saturate(.9) !important;
+}
+
+#storyMoment.is-changing-out .storyMoment__bgPhoto{
+  opacity: .15 !important;
+  transform: translateX(-28px) scale(1.02) !important;
+  filter: blur(8px) grayscale(1) !important;
+}
+
+#storyMoment.is-changing-in .storyMoment__text{
+  animation: storyTextSwapIn .58s cubic-bezier(.2,.8,.2,1) both !important;
+}
+
+#storyMoment.is-changing-in .storyMoment__mainPhoto{
+  animation: storyPhotoSwapIn .62s cubic-bezier(.2,.8,.2,1) both !important;
+}
+
+#storyMoment.is-changing-in .storyMoment__bgPhoto{
+  animation: storyBgSwapIn .72s cubic-bezier(.2,.8,.2,1) both !important;
+}
+
+#storyMoment.is-changing-in .storyMoment__quoteTitle span{
+  animation: storyLineIn .52s cubic-bezier(.2,.8,.2,1) both;
+  animation-delay: var(--line-delay, 0ms);
+}
+
+#storyMoment.is-changing-in .storyMoment__review,
+#storyMoment.is-changing-in .storyMoment__reviewAuthor{
+  animation: storySmallTextIn .55s cubic-bezier(.2,.8,.2,1) .12s both;
+}
+
+@keyframes storyTextSwapIn{
+  from{opacity:0; transform:translate(38px, -50%); filter:blur(10px)}
+  to{opacity:1; transform:translate(0, -50%); filter:blur(0)}
+}
+@keyframes storyPhotoSwapIn{
+  from{opacity:0; transform:translateX(70px) translateY(calc(var(--storyProgress, 0) * -18px)) scale(1.045); filter:blur(10px)}
+  to{opacity:1; transform:translateX(0) translateY(calc(var(--storyProgress, 0) * -18px)) scale(1); filter:blur(0)}
+}
+@keyframes storyBgSwapIn{
+  from{opacity:.15; transform:translateX(42px) scale(1.035); filter:blur(10px) grayscale(1)}
+  to{opacity:1; transform:translateX(0) scale(1); filter:blur(0) grayscale(0)}
+}
+@keyframes storyLineIn{
+  from{opacity:0; transform:translateX(24px); filter:blur(8px)}
+  to{opacity:1; transform:translateX(0); filter:blur(0)}
+}
+@keyframes storySmallTextIn{
+  from{opacity:0; transform:translateY(12px); filter:blur(6px)}
+  to{opacity:1; transform:translateY(0); filter:blur(0)}
+}
+
+/* Progress style dots: user can clearly see the Story Moment is moving */
+#storyMoment .storyMoment__dots{
+  gap: 12px !important;
+}
+#storyMoment .storyMoment__dot{
+  position: relative !important;
+  width: 34px !important;
+  height: 3px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,.22) !important;
+  overflow: hidden !important;
+  transform: none !important;
+}
+#storyMoment .storyMoment__dot span,
+#storyMoment .storyMoment__dot::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,.92);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+#storyMoment .storyMoment__dot.is-active span,
+#storyMoment .storyMoment__dot.is-active::after{
+  animation: storyDotProgress var(--storyAutoTime) linear forwards;
+}
+@keyframes storyDotProgress{
+  from{transform:scaleX(0)}
+  to{transform:scaleX(1)}
+}
+
+/* Faster hover interaction for cards, but still soft */
+.videoCard,
+.reviewTile,
+.contactHero__intro,
+.footer__link,
+.btn{
+  transition-timing-function: cubic-bezier(.2,.8,.2,1) !important;
+}
+.videoCard:hover,
+.reviewTile:hover{
+  transform: translateY(-6px) scale(1.012) !important;
+}
+
+@media (max-width: 760px){
+  #storyMoment.is-changing-out .storyMoment__text,
+  #storyMoment.is-changing-in .storyMoment__text{
+    transform: none !important;
+    animation: storyMobileSwapIn .5s cubic-bezier(.2,.8,.2,1) both !important;
+  }
+  @keyframes storyMobileSwapIn{
+    from{opacity:0; transform:translateY(18px); filter:blur(8px)}
+    to{opacity:1; transform:translateY(0); filter:blur(0)}
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  #storyMoment .storyMoment__dot.is-active span,
+  #storyMoment .storyMoment__dot.is-active::after,
+  #storyMoment.is-changing-in .storyMoment__text,
+  #storyMoment.is-changing-in .storyMoment__mainPhoto,
+  #storyMoment.is-changing-in .storyMoment__bgPhoto,
+  #storyMoment.is-changing-in .storyMoment__quoteTitle span,
+  #storyMoment.is-changing-in .storyMoment__review,
+  #storyMoment.is-changing-in .storyMoment__reviewAuthor{
+    animation: none !important;
+  }
+}
+
+/* =========================================================
+   DYNAMIC EXPERIENCE POLISH
+   - Smooth scroll-linked depth without hijacking native scrolling
+   - Magnetic desktop interactions
+   - Softer active-section motion and richer image movement
+========================================================= */
+:root{
+  --motion-ease:cubic-bezier(.16,1,.3,1);
+  --magnetX:0px;
+  --magnetY:0px;
+  --scrollVelocity:0;
+  --sectionProgress:0;
+  --sectionCenter:0;
+}
+
+html{
+  scroll-padding-top:92px;
+}
+
+body{
+  transition:background-color .7s var(--motion-ease);
+}
+
+#hero.hero{
+  min-height:clamp(560px, 88vh, 860px) !important;
+  min-height:clamp(560px, 88svh, 860px) !important;
+}
+
+.layerScroll > #hero.hero.layer{
+  position:sticky !important;
+  top:var(--stack-offset, 0px) !important;
+  min-height:clamp(560px, 88vh, 860px) !important;
+  min-height:clamp(560px, 88svh, 860px) !important;
+  z-index:var(--layer, 1) !important;
+  isolation:isolate;
+}
+
+.layerScroll > #approach.approachStage.layer{
+  position:relative !important;
+  z-index:calc(var(--layer, 2) + 10) !important;
+  margin-top:0 !important;
+}
+
+.hero__video{
+  transform:
+    scale(calc(1.025 + (var(--sectionProgress, 0) * .018)))
+    translate3d(0, calc(var(--sectionCenter, 0) * -18px), 0) !important;
+  transition:transform .18s linear;
+  will-change:transform;
+}
+
+.hero__content{
+  transform:translate3d(0, calc(var(--sectionProgress, 0) * -18px), 0);
+}
+
+.approachStage__card{
+  transform:
+    translate(-50%,-50%)
+    translateY(var(--cardOffset))
+    translate3d(calc(var(--sectionCenter, 0) * -10px), 0, 0) !important;
+}
+
+.approachStage.is-section-active .approachStage__title{
+  text-shadow:0 10px 42px rgba(0,0,0,.42);
+}
+
+.videoShowcase,
+.reviews{
+  background-attachment:fixed;
+}
+
+.videoGrid{
+  perspective:1200px;
+}
+
+.videoCard{
+  transform:
+    translate3d(var(--magnetX), var(--magnetY), 0)
+    translateY(var(--cardY))
+    scale(var(--cardScale))
+    rotateX(var(--rx))
+    rotateY(var(--ry)) !important;
+  transition:
+    transform .55s var(--motion-ease),
+    box-shadow .55s var(--motion-ease),
+    border-color .45s ease,
+    opacity .7s ease,
+    filter .7s ease !important;
+}
+
+.videoCard:hover{
+  --cardY:-10px;
+  --cardScale:1.018;
+}
+
+.videoCard:nth-child(odd).is-in{
+  transition-delay:calc(var(--delay, 0ms) + 35ms);
+}
+
+.playBtn{
+  transform:
+    translate(-50%,-50%)
+    translate3d(calc(var(--magnetX) * -.25), calc(var(--magnetY) * -.25), 0) !important;
+}
+
+.videoCard:hover .playBtn{
+  transform:
+    translate(-50%,-50%)
+    translate3d(calc(var(--magnetX) * -.25), calc(var(--magnetY) * -.25), 0)
+    scale(1.12) !important;
+}
+
+.storyMoment__bgPhoto img{
+  transform:
+    scale(calc(1.105 - (var(--storyProgress, 0) * .035) + (var(--scrollVelocity, 0) * .012)))
+    translate3d(
+      calc((var(--storyProgress, 0) * -22px) + (var(--mx, 0px) * .12)),
+      calc(var(--my, 0px) * .12),
+      0
+    ) !important;
+  transition:transform .18s linear, filter .42s ease;
+}
+
+.storyMoment__mainPhoto img{
+  transform:
+    scale(calc(1.08 - (var(--storyProgress, 0) * .035)))
+    translate3d(calc(var(--mx, 0px) * .42), calc(var(--my, 0px) * .42), 0) !important;
+}
+
+.storyMoment.is-section-active .storyMoment__quoteTitle span{
+  text-shadow:0 12px 44px rgba(0,0,0,.38);
+}
+
+/* Cleaned story carousel: calmer timing and no double progress layer */
+#storyMoment.storyMoment{
+  --storyAutoTime:6200ms;
+}
+
+#storyMoment .storyMoment__text,
+#storyMoment .storyMoment__mainPhoto,
+#storyMoment .storyMoment__bgPhoto{
+  transition:
+    opacity .72s var(--motion-ease),
+    transform .78s var(--motion-ease),
+    filter .72s ease !important;
+}
+
+#storyMoment.is-changing-out .storyMoment__text{
+  opacity:0 !important;
+  transform:translate(-18px, -50%) !important;
+  filter:blur(7px) !important;
+}
+
+#storyMoment.is-changing-out .storyMoment__mainPhoto{
+  opacity:0 !important;
+  transform:translateX(-22px) translateY(calc(var(--storyProgress, 0) * -18px)) scale(.985) !important;
+  filter:blur(7px) saturate(.96) !important;
+}
+
+#storyMoment.is-changing-out .storyMoment__bgPhoto{
+  opacity:.35 !important;
+  transform:translateX(-14px) scale(1.01) !important;
+  filter:blur(7px) grayscale(.75) !important;
+}
+
+#storyMoment.is-changing-in .storyMoment__text{
+  animation:storyTextSwapIn .82s var(--motion-ease) both !important;
+}
+
+#storyMoment.is-changing-in .storyMoment__mainPhoto{
+  animation:storyPhotoSwapIn .86s var(--motion-ease) both !important;
+}
+
+#storyMoment.is-changing-in .storyMoment__bgPhoto{
+  animation:storyBgSwapIn .96s var(--motion-ease) both !important;
+}
+
+#storyMoment .storyMoment__dot::after{
+  display:none !important;
+}
+
+#storyMoment .storyMoment__dot.is-active span{
+  animation:storyDotProgress var(--storyAutoTime) linear forwards !important;
+}
+
+@media (max-width:760px){
+  #storyMoment.storyMoment{
+    min-height:auto !important;
+    padding:0 !important;
+    background:#0d0d0d !important;
+  }
+
+  #storyMoment .storyMoment__bgPhoto{
+    display:none !important;
+  }
+
+  #storyMoment .storyMoment__inner{
+    min-height:auto !important;
+    padding:54px 16px 34px !important;
+    gap:22px !important;
+  }
+
+  #storyMoment .storyMoment__text{
+    order:2 !important;
+    max-width:520px !important;
+    opacity:1 !important;
+    transform:none !important;
+    filter:none !important;
+  }
+
+  #storyMoment .storyMoment__mainPhoto{
+    order:1 !important;
+    width:min(430px, 92vw) !important;
+    height:auto !important;
+    aspect-ratio:4 / 5 !important;
+    max-height:560px !important;
+    opacity:1 !important;
+    transform:none !important;
+    filter:none !important;
+    box-shadow:0 26px 70px rgba(0,0,0,.38) !important;
+  }
+
+  #storyMoment .storyMoment__mainPhoto img{
+    transform:none !important;
+    transition:opacity .7s var(--motion-ease), filter .7s ease !important;
+  }
+
+  #storyMoment .storyMoment__dots{
+    position:relative !important;
+    left:auto !important;
+    bottom:auto !important;
+    justify-content:center !important;
+    transform:none !important;
+    margin:0 auto 34px !important;
+    opacity:1 !important;
+    filter:none !important;
+  }
+
+  #storyMoment.is-changing-out .storyMoment__text,
+  #storyMoment.is-changing-out .storyMoment__mainPhoto{
+    opacity:.18 !important;
+    transform:translateY(10px) !important;
+    filter:blur(6px) !important;
+  }
+
+  #storyMoment.is-changing-in .storyMoment__text,
+  #storyMoment.is-changing-in .storyMoment__mainPhoto{
+    animation:storyMobileCleanIn .78s var(--motion-ease) both !important;
+  }
+}
+
+@keyframes storyMobileCleanIn{
+  from{opacity:0; transform:translateY(16px); filter:blur(7px)}
+  to{opacity:1; transform:translateY(0); filter:blur(0)}
+}
+
+.reviewTile{
+  transform:translate3d(var(--magnetX), var(--magnetY), 0) !important;
+  transition:
+    transform .55s var(--motion-ease),
+    box-shadow .55s var(--motion-ease),
+    border-color .45s ease,
+    opacity .7s ease,
+    filter .7s ease !important;
+}
+
+.reviewTile:hover{
+  transform:translate3d(var(--magnetX), calc(var(--magnetY) - 8px), 0) scale(1.016) !important;
+}
+
+.reviewTile:hover .reviewAvatar{
+  transform:scale(1.08);
+}
+
+.reviewAvatar{
+  transition:transform .45s var(--motion-ease), background .45s ease;
+}
+
+.reviewTrack{
+  transition:transform .95s var(--motion-ease) !important;
+}
+
+#contact.contactHero,
+.contactHero{
+  background-position:
+    calc(50% + (var(--contactMx, 0px) * -.35))
+    calc(55% + (var(--contactMy, 0px) * -.25)) !important;
+  transition:background-position .45s ease-out;
+}
+
+.contactHero__intro{
+  transform:translate3d(var(--magnetX), var(--magnetY), 0);
+}
+
+.contactHero__intro:hover{
+  transform:translate3d(var(--magnetX), calc(var(--magnetY) - 6px), 0) !important;
+}
+
+.btn,
+.socialBtn,
+.footer__cta{
+  transform:translate3d(var(--magnetX), var(--magnetY), 0);
+  transition:
+    transform .45s var(--motion-ease),
+    box-shadow .45s var(--motion-ease),
+    background .35s ease,
+    color .35s ease,
+    border-color .35s ease !important;
+}
+
+.btn:hover,
+.socialBtn:hover,
+.footer__cta:hover{
+  transform:translate3d(var(--magnetX), calc(var(--magnetY) - 3px), 0) !important;
+}
+
+.footer__col.is-in,
+.footer__brandBlock.is-in{
+  animation:footerFloatIn .9s var(--motion-ease) both;
+}
+
+body.is-scrolling-fast .reveal-soft:not(.is-in){
+  transition-duration:.55s;
+}
+
+body.is-scrolling-fast .hero__bg,
+body.is-scrolling-fast .storyMoment__bgPhoto,
+body.is-scrolling-fast .contactHero{
+  filter:saturate(1.02) contrast(1.015);
+}
+
+@keyframes footerFloatIn{
+  from{opacity:0; transform:translateY(22px); filter:blur(8px)}
+  to{opacity:1; transform:translateY(0); filter:blur(0)}
+}
+
+@media (max-width:980px){
+  html{scroll-padding-top:78px}
+  .hero__video,
+  .storyMoment__bgPhoto img,
+  .storyMoment__mainPhoto img{
+    transition-duration:.28s;
+  }
+  .videoShowcase,
+  .reviews{
+    background-attachment:scroll;
+  }
+}
+
+@media (max-width:760px){
+  .hero__content{
+    transform:translateX(-50%) !important;
+  }
+  .storyMoment__mainPhoto img,
+  .storyMoment__bgPhoto img{
+    transform:none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .hero__video,
+  .hero__content,
+  .approachStage__card,
+  .videoCard,
+  .reviewTile,
+  .contactHero__intro,
+  .btn,
+  .socialBtn,
+  .footer__cta{
+    transform:none !important;
+  }
+}
+
+
+

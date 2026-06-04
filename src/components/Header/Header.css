@@ -1,0 +1,213 @@
+/* =========================================================
+   Header + smooth side drawer
+========================================================= */
+.header--astray{
+  position:sticky;
+  top:0;
+  z-index:9999;
+  overflow:visible;
+  background:rgba(251,250,247,.94);
+  border-bottom:1px solid rgba(0,0,0,.06);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  transition:background .45s ease, border-color .45s ease, box-shadow .45s ease;
+}
+.header--astray::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:0;
+  width:0;
+  height:1px;
+  transform:translateX(-50%);
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+  opacity:0;
+  transition:width .55s ease, opacity .55s ease;
+}
+.header--astray.nav-ready{animation:navDropIn .65s cubic-bezier(.2,.8,.2,1) both}
+.header--astray.is-scrolled{
+  background:rgba(8,8,8,.92);
+  border-bottom-color:rgba(255,255,255,.12);
+  box-shadow:0 18px 55px rgba(0,0,0,.24);
+}
+.header--astray.is-scrolled::after{width:100%; opacity:1}
+.header__inner{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:14px;
+  min-height:78px;
+  padding:14px 0;
+}
+.header__spacer{height:1px}
+.header__logo{display:flex; align-items:center; justify-content:center; color:var(--ink)}
+.header__logo--center{justify-self:center}
+.brand--center{display:flex; flex-direction:column; align-items:center; line-height:1; text-align:center}
+.brand__name{
+  font-family:var(--font-logo);
+  font-weight:700;
+  letter-spacing:.16em;
+  font-size:clamp(26px, 3.4vw, 52px);
+  text-transform:uppercase;
+  line-height:.95;
+  transition:color .45s ease, letter-spacing .45s ease, transform .45s ease;
+}
+.brand__tag{
+  margin-top:6px;
+  font-size:11px;
+  letter-spacing:.20em;
+  text-transform:uppercase;
+  color:rgba(20,20,20,.60);
+  transition:color .45s ease;
+}
+.header--astray.is-scrolled .brand__name{color:rgba(255,255,255,.94); letter-spacing:.18em}
+.header--astray.is-scrolled .brand__tag{color:rgba(255,255,255,.62)}
+.header__right{justify-self:end; display:flex; align-items:center; justify-content:flex-end}
+.burger{
+  width:44px;
+  height:44px;
+  border:0;
+  padding:0;
+  background:transparent;
+  cursor:pointer;
+  display:inline-grid;
+  align-content:center;
+  justify-items:end;
+  gap:6px;
+}
+.burger span{
+  display:block;
+  width:28px;
+  height:2px;
+  border-radius:999px;
+  background:rgba(0,0,0,.75);
+  transition:background .45s ease, transform .35s ease, opacity .35s ease, width .35s ease;
+}
+.burger span:nth-child(2){width:22px}
+.header--astray.is-scrolled .burger span{background:rgba(255,255,255,.88)}
+.header--astray .burger:hover span:nth-child(1){transform:translateX(4px)}
+.header--astray .burger:hover span:nth-child(2){transform:translateX(-3px)}
+.header--astray .burger:hover span:nth-child(3){transform:translateX(4px)}
+body.drawer-open .burger span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+body.drawer-open .burger span:nth-child(2){opacity:0; transform:translateX(10px)}
+body.drawer-open .burger span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+.burger:focus-visible{outline:3px solid rgba(200,162,106,.35); outline-offset:3px}
+
+.navScrollLine{
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:99999;
+  width:100%;
+  height:3px;
+  pointer-events:none;
+  background:#111;
+  transform:scaleX(var(--scrollLine,0));
+  transform-origin:left center;
+  transition:transform .12s linear, background .35s ease;
+}
+.header--astray.is-scrolled .navScrollLine{background:rgba(255,255,255,.95)}
+
+.drawer{
+  position:fixed;
+  inset:0;
+  z-index:12000;
+  display:block;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  background:rgba(0,0,0,0);
+  transition:opacity .45s ease, visibility 0s linear .45s, background .45s ease;
+}
+.drawer.is-open{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  background:rgba(0,0,0,.42);
+  transition:opacity .45s ease, visibility 0s linear 0s, background .45s ease;
+}
+.drawer__panel{
+  position:absolute;
+  top:0;
+  right:0;
+  width:min(420px, 86vw);
+  height:100vh;
+  padding:82px 24px 28px;
+  background:rgba(12,12,12,.94);
+  border-left:1px solid rgba(255,255,255,.12);
+  box-shadow:-30px 0 90px rgba(0,0,0,.35);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  transform:translateX(105%);
+  opacity:0;
+  transition:transform .65s cubic-bezier(.2,.8,.2,1), opacity .45s ease;
+}
+.drawer.is-open .drawer__panel{transform:translateX(0); opacity:1}
+.drawer__close{
+  position:absolute;
+  top:26px;
+  right:24px;
+  width:42px;
+  height:42px;
+  border:0;
+  padding:0;
+  background:transparent;
+  cursor:pointer;
+}
+.drawer__close span{
+  position:absolute;
+  left:9px;
+  top:20px;
+  width:24px;
+  height:2px;
+  background:rgba(255,255,255,.86);
+  transform-origin:center;
+  transition:background .25s ease, transform .35s ease;
+}
+.drawer__close span:nth-child(1){transform:rotate(45deg)}
+.drawer__close span:nth-child(2){transform:rotate(-45deg)}
+.drawer__close:hover span{background:#fff}
+.drawer__nav{display:grid; gap:12px}
+.drawer__link{
+  position:relative;
+  display:block;
+  padding:16px 14px;
+  border-bottom:1px solid rgba(255,255,255,.10);
+  color:rgba(255,255,255,.82);
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  opacity:0;
+  transform:translateX(34px);
+  transition:opacity .55s ease, transform .55s cubic-bezier(.2,.8,.2,1), color .25s ease, padding-left .25s ease;
+}
+.drawer.is-open .drawer__link{opacity:1; transform:translateX(0)}
+.drawer.is-open .drawer__link:nth-child(1){transition-delay:.12s}
+.drawer.is-open .drawer__link:nth-child(2){transition-delay:.18s}
+.drawer.is-open .drawer__link:nth-child(3){transition-delay:.24s}
+.drawer.is-open .drawer__link:nth-child(4){transition-delay:.30s}
+.drawer.is-open .drawer__link:nth-child(5){transition-delay:.36s}
+.drawer.is-open .drawer__link:nth-child(6){transition-delay:.42s}
+.drawer.is-open .drawer__link:nth-child(7){transition-delay:.48s}
+.drawer.is-open .drawer__link:nth-child(8){transition-delay:.54s}
+.drawer__link::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:50%;
+  width:0;
+  height:1px;
+  background:rgba(255,255,255,.85);
+  transform:translateY(-50%);
+  transition:width .3s ease;
+}
+.drawer__link:hover{color:#fff; padding-left:28px}
+.drawer__link:hover::before{width:18px}
+body.drawer-open{overflow:hidden}
+
+@keyframes navDropIn{
+  from{opacity:0; transform:translateY(-18px)}
+  to{opacity:1; transform:translateY(0)}
+}
+

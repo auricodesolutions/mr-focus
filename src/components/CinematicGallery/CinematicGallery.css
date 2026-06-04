@@ -1,0 +1,430 @@
+/* =========================================================
+   Video cards
+========================================================= */
+
+.videoShowcase {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 78px 0;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(200, 162, 106, 0.1), transparent 44%),
+    radial-gradient(circle at 86% 18%, rgba(127, 154, 147, 0.1), transparent 48%),
+    var(--bg);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.videoShowcase::before,
+.videoShowcase::after {
+  content: "";
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(35px);
+  opacity: 0.22;
+  animation: galleryFloat 9s ease-in-out infinite alternate;
+}
+
+.videoShowcase::before {
+  left: -120px;
+  top: 80px;
+  background: rgba(200, 162, 106, 0.32);
+}
+
+.videoShowcase::after {
+  right: -120px;
+  bottom: 60px;
+  background: rgba(0, 0, 0, 0.18);
+  animation-delay: -3s;
+}
+
+.videoShowcase > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.videoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 20px;
+  perspective: 1200px;
+}
+
+.videoCard {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  padding: 0;
+  text-align: left;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  appearance: none;
+
+  --rx: 0deg;
+  --ry: 0deg;
+  --cardY: 0px;
+  --cardScale: 1;
+
+  transform:
+    translateY(var(--cardY))
+    scale(var(--cardScale))
+    rotateX(var(--rx))
+    rotateY(var(--ry));
+  transform-style: preserve-3d;
+  will-change: transform, opacity, filter;
+  transition:
+    transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.45s ease,
+    border-color 0.45s ease,
+    opacity 0.75s ease,
+    filter 0.75s ease;
+}
+
+.videoCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    transparent 32%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 68%,
+    transparent 100%
+  );
+  transform: translateX(-130%) skewX(-15deg);
+  transition: transform 0.9s ease;
+}
+
+.videoCard:hover {
+  --cardY: -8px;
+  --cardScale: 1.015;
+  border-color: rgba(0, 0, 0, 0.18);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
+}
+
+.videoCard:hover::before {
+  transform: translateX(130%) skewX(-15deg);
+}
+
+.videoThumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-image: var(--thumb);
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.01);
+  transition:
+    transform 0.75s cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 0.75s ease;
+}
+
+.videoThumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.25));
+  transition: background 0.45s ease;
+}
+
+.videoThumb::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.22), transparent 45%);
+  opacity: 0;
+  transform: scale(0.8);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s ease;
+}
+
+.videoCard:hover .videoThumb {
+  transform: scale(1.055);
+  filter: saturate(1.06) contrast(1.05);
+}
+
+.videoCard:hover .videoThumb::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.videoCard:hover .videoThumb::after {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.36));
+}
+
+.playBtn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(8px);
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.playBtn::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  opacity: 0.45;
+  animation: playRing 1.9s ease-out infinite;
+}
+
+.videoCard:hover .playBtn {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: rgba(0, 0, 0, 0.82);
+  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.36);
+}
+
+.videoMeta {
+  padding: 14px 14px 16px;
+  transition: transform 0.45s ease;
+}
+
+.videoCard:hover .videoMeta {
+  transform: translateY(-2px);
+}
+
+.videoTitle {
+  margin: 0 0 6px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 13px;
+  color: rgba(20, 20, 20, 0.9);
+  transition:
+    letter-spacing 0.35s ease,
+    color 0.35s ease;
+}
+
+.videoCard:hover .videoTitle {
+  letter-spacing: 0.085em;
+  color: rgba(0, 0, 0, 0.95);
+}
+
+.videoSub {
+  margin: 0;
+  font-size: 13px;
+  color: rgba(20, 20, 20, 0.62);
+}
+
+/* =========================================================
+   Video modal player
+========================================================= */
+
+body.videoModalOpen {
+  overflow: hidden;
+}
+
+.videoModal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.videoModal__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border: 0;
+  background: rgba(0, 0, 0, 0.76);
+  backdrop-filter: blur(14px);
+  cursor: pointer;
+  animation: videoFadeIn 0.28s ease both;
+}
+
+.videoModal__panel {
+  position: relative;
+  z-index: 1;
+  width: min(1080px, 100%);
+  background: #101010;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 35px 100px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+  animation: videoPanelIn 0.36s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.videoModal__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+}
+
+.videoModal__eyebrow {
+  margin: 0 0 4px;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.videoModal__title {
+  margin: 0;
+  font-size: clamp(16px, 2vw, 22px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.videoModal__close {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.videoModal__close:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: scale(1.04);
+}
+
+.videoModal__player {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.videoModal__iframe,
+.videoModal__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  background: #000;
+}
+
+/* =========================================================
+   Animations
+========================================================= */
+
+@keyframes galleryFloat {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(26px, -22px, 0) scale(1.08);
+  }
+}
+
+@keyframes playRing {
+  from {
+    transform: scale(0.86);
+    opacity: 0.55;
+  }
+
+  to {
+    transform: scale(1.24);
+    opacity: 0;
+  }
+}
+
+@keyframes videoFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes videoPanelIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* =========================================================
+   Responsive
+========================================================= */
+
+@media (max-width: 900px) {
+  .videoGrid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .videoShowcase {
+    padding: 64px 0;
+  }
+
+  .videoModal {
+    padding: 14px;
+  }
+
+  .videoModal__top {
+    padding: 13px 14px;
+  }
+
+  .videoModal__close {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .videoShowcase,
+  .videoShowcase *,
+  .videoShowcase *::before,
+  .videoShowcase *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

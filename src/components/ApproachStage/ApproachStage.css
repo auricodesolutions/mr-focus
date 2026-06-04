@@ -1,0 +1,482 @@
+/* =========================================================
+   Approach section — fixed black space version
+========================================================= */
+
+.approachStage {
+  position: relative;
+  z-index: 70;
+  min-height: 100vh;
+  height: auto;
+  background: #0b0b0b;
+  overflow: hidden;
+
+  --cardOffset: 0px;
+  --cardOpacity: 1;
+  --titleOpacity: 1;
+  --leftScale: 1.03;
+  --rightScale: 1.06;
+}
+
+/* Removed sticky hold to prevent black empty space */
+.approachStage__sticky {
+  position: relative;
+  top: auto;
+  min-height: 100vh;
+  height: auto;
+  overflow: hidden;
+}
+
+/* Background split */
+.approachStage__bg {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.approachStage__half {
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Left image */
+.approachStage__half--left {
+  background-image: var(--img-left);
+  filter: grayscale(1) contrast(1.06) brightness(.86);
+  transform: scale(var(--leftScale));
+  will-change: transform;
+}
+
+/* Right image carousel */
+.approachStage__half--right {
+  background: #000;
+}
+
+.approachStage__rightImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transform: scale(var(--rightScale));
+  filter: contrast(1.06) brightness(.78);
+  transition:
+    opacity 1.8s ease-in-out,
+    transform 5.5s ease-in-out,
+    filter 1.8s ease-in-out;
+  will-change: opacity, transform;
+}
+
+.approachStage__rightImg.is-active {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* Overlay */
+.approachStage__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, .30), rgba(0, 0, 0, .18)),
+    radial-gradient(780px 480px at 50% 50%, rgba(255, 255, 255, .06), transparent 62%);
+}
+
+.approachStage__overlay::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background: rgba(255, 255, 255, .12);
+}
+
+/* Title */
+.approachStage__titleWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.approachStage__title {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(620px, 80%);
+  font-family: var(--font-logo);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(24px, 3.4vw, 58px);
+  line-height: .95;
+  letter-spacing: .025em;
+  text-align: center;
+  color: rgba(255, 255, 255, .72);
+  opacity: var(--titleOpacity);
+  text-shadow: 0 8px 30px rgba(0, 0, 0, .28);
+}
+
+.approachStage__sticky {
+  position: relative;
+  top: auto;
+  min-height: 100vh;
+  height: auto;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(90px, 12vh, 150px) 0;
+}
+
+.approachStage__card {
+  position: relative;
+  z-index: 3;
+  width: min(600px, calc(100% - 50px));
+  margin: 0 auto;
+  padding: clamp(18px, 3vw, 32px);
+  background: rgba(245, 241, 233, .94);
+  border: 1px solid rgba(0, 0, 0, .14);
+  box-shadow: 0 26px 80px rgba(0, 0, 0, .35);
+  text-align: center;
+  opacity: var(--cardOpacity);
+  transform: translateY(var(--cardOffset));
+  transition:
+    transform .55s cubic-bezier(.2, .8, .2, 1),
+    box-shadow .45s ease,
+    opacity .45s ease;
+}
+
+.approachStage__card:hover {
+  box-shadow: 0 36px 110px rgba(0, 0, 0, .44);
+  transform: translateY(calc(var(--cardOffset) - 6px));
+}
+
+.approachStage__top {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(17, 17, 17, .70);
+  line-height: 1.8;
+}
+
+.approachStage__rule {
+  height: 1px;
+  width: 86%;
+  margin: 16px auto;
+  background: rgba(0, 0, 0, .14);
+}
+
+.approachStage__body {
+  margin: 0;
+  font-size: 17px;
+  color: rgba(17, 17, 17, .70);
+  line-height: 1.85;
+}
+
+.approachStage__cta {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Button safety */
+.approachStage__cta .btn {
+  position: relative;
+  z-index: 5;
+}
+
+/* Active state polish */
+.approachStage.is-section-active .approachStage__title {
+  text-shadow: 0 10px 42px rgba(0, 0, 0, .42);
+}
+
+/* =========================================================
+   Responsive
+========================================================= */
+
+@media (max-width: 980px) {
+  .approachStage {
+    min-height: auto;
+    height: auto;
+  }
+
+  .approachStage__sticky {
+    min-height: auto;
+    height: auto;
+    padding: 90px 0;
+  }
+
+  .approachStage__bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .approachStage__title {
+    width: min(520px, 86%);
+    font-size: clamp(24px, 6vw, 44px);
+  }
+
+  .approachStage__card {
+    width: min(560px, calc(100% - 34px));
+  }
+}
+
+@media (max-width: 760px) {
+  .approachStage__bg {
+    grid-template-columns: 1fr;
+  }
+
+  .approachStage__half--left {
+    display: none;
+  }
+
+  .approachStage__half--right {
+    min-height: 100%;
+  }
+
+  .approachStage__overlay {
+    background:
+      linear-gradient(rgba(0, 0, 0, .58), rgba(0, 0, 0, .58)),
+      radial-gradient(640px 420px at 50% 45%, rgba(255, 255, 255, .08), transparent 68%);
+  }
+
+  .approachStage__overlay::after {
+    display: none;
+  }
+
+  .approachStage__title {
+    top: 33%;
+    width: 88%;
+    font-size: clamp(24px, 8vw, 42px);
+    color: rgba(255, 255, 255, .76);
+  }
+
+  .approachStage__sticky {
+    padding: 190px 0 70px;
+  }
+
+  .approachStage__card {
+    width: min(92%, 520px);
+    padding: 24px 20px;
+  }
+
+  .approachStage__top {
+    font-size: 12px;
+    letter-spacing: .12em;
+    line-height: 1.7;
+  }
+
+  .approachStage__body {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 420px) {
+  .approachStage__sticky {
+    padding: 170px 0 58px;
+  }
+
+  .approachStage__card {
+    width: calc(100% - 24px);
+    padding: 22px 16px;
+  }
+
+  .approachStage__title {
+    top: 30%;
+    font-size: clamp(22px, 9vw, 36px);
+  }
+}
+
+/* =========================================================
+   Reduced motion
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .approachStage__rightImg,
+  .approachStage__card,
+  .approachStage__half--left {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* FINAL CARD CENTER FIX */
+.approachStage .approachStage__card {
+  left: auto !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  transform: translateY(var(--cardOffset, 0px)) !important;
+}
+
+.approachStage .approachStage__card:hover {
+  transform: translateY(calc(var(--cardOffset, 0px) - 6px)) !important;
+}
+
+/* =========================================================
+   FINAL MOBILE BLACK SPACE FIX
+   Add this at the VERY BOTTOM of ApproachStage.css
+========================================================= */
+
+@media (max-width: 768px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  .approachStage.layer,
+  section.approachStage.layer,
+  .approachStage {
+    position: relative !important;
+    z-index: 70 !important;
+    height: auto !important;
+    min-height: 100dvh !important;
+    max-height: none !important;
+    background: #0b0b0b !important;
+    overflow: hidden !important;
+  }
+
+  .approachStage__sticky {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    height: auto !important;
+    min-height: 100dvh !important;
+    max-height: none !important;
+    overflow: hidden !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 130px 16px 70px !important;
+  }
+
+  .approachStage__bg {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    display: block !important;
+    overflow: hidden !important;
+    background: #000 !important;
+  }
+
+  .approachStage__half--left {
+    display: none !important;
+  }
+
+  .approachStage__half--right {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    display: block !important;
+    overflow: hidden !important;
+    background: #000 url("/assets/img4.jpg") center center / cover no-repeat !important;
+  }
+
+  .approachStage__rightImg {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    display: block !important;
+
+    opacity: 0 !important;
+    transform: scale(1.04) !important;
+    filter: brightness(0.72) contrast(1.05) !important;
+  }
+
+  .approachStage__rightImg.is-active {
+    opacity: 1 !important;
+  }
+
+  .approachStage__overlay {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 1 !important;
+    background:
+      linear-gradient(
+        rgba(0, 0, 0, 0.55),
+        rgba(0, 0, 0, 0.58)
+      ) !important;
+  }
+
+  .approachStage__overlay::after {
+    display: none !important;
+  }
+
+ 
+
+  .approachStage__card {
+    position: relative !important;
+    z-index: 5 !important;
+
+    width: calc(100% - 28px) !important;
+    max-width: 520px !important;
+    margin: 0 auto !important;
+    padding: 24px 18px !important;
+
+    background: rgba(245, 241, 233, 0.95) !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    text-align: center !important;
+
+    transform: none !important;
+  }
+
+  .approachStage__card:hover {
+    transform: none !important;
+  }
+
+  .approachStage__top {
+    font-size: 12px !important;
+    line-height: 1.7 !important;
+    letter-spacing: 0.12em !important;
+  }
+
+  .approachStage__body {
+    font-size: 15px !important;
+    line-height: 1.75 !important;
+  }
+
+  .approachStage__cta {
+    margin-top: 18px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .approachStage__sticky {
+    padding: 115px 12px 55px !important;
+  }
+
+  .approachStage__card {
+    width: calc(100% - 24px) !important;
+    padding: 22px 16px !important;
+  }
+
+  .approachStage__top {
+    font-size: 11px !important;
+  }
+
+  .approachStage__body {
+    font-size: 14px !important;
+  }
+}
