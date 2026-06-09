@@ -3,8 +3,8 @@ export const navLinks = [
   { label: "About", href: "/about" },
   { label: "Our Portfolio", href: "/portfolio" },
   { label: "Cinematic Gallery", href: "/#films" },
-  { label: "Stories", href: "/#storyMoment" },
-  { label: "Reviews", href: "/#reviews" },
+  { label: "Packages", href: "/packges" },
+  { label: "Reviews", href: "/reviews" },
   { label: "Contact", href: "/contact" },
 ];
 

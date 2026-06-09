@@ -13,7 +13,7 @@ export const reviewTiles = [
     headline: "TIMELESS MEMORIES",
     message:
       "Every frame felt timeless, graceful, and full of real emotion. The whole session was relaxed and enjoyable, and the final images looked elegant and premium. We are truly happy with the experience.",
-    img: "/assets/img3.jpg",
+    img: "/assets/review.png",
   },
   {
     name: "DUSHAN M.",
@@ -37,6 +37,6 @@ export const reviewTiles = [
     headline: "HIGHLY RECOMMENDED",
     message:
       "From the first conversation to the final delivery, everything was handled with care and professionalism. The edits were clean, the colors were beautiful, and the memories were preserved in the most special way. Highly recommended!",
-    img: "/assets/img7.jpg",
+    img: "/assets/img14.jpg",
   },
 ];

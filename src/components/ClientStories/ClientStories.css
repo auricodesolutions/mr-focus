@@ -1,0 +1,576 @@
+@font-face {
+  font-family: "Amelaryas";
+  src: url("/fonts/Amelaryas.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* =========================================================
+   Client Stories Section - MR FOCUS Premium Design
+========================================================= */
+
+.clientStories {
+  position: relative;
+  z-index: 90;
+  min-height: 100vh;
+  overflow: hidden;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  padding: 110px 20px 92px;
+  background: #d7d7d7;
+}
+
+/* =========================================================
+   Soft black-and-white garden background
+========================================================= */
+
+.clientStories__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: var(--client-stories-bg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: grayscale(1) brightness(1.04) contrast(0.9);
+  transform: scale(1.04);
+  animation: clientStoriesBgFloat 18s ease-in-out infinite alternate;
+}
+
+.clientStories__softLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.18),
+      rgba(255, 255, 255, 0.08)
+    ),
+    radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.12),
+      transparent 62%
+    );
+  pointer-events: none;
+}
+
+/* =========================================================
+   Large MR FOCUS WEDDINGS text overlay
+========================================================= */
+
+.clientStories__movingText {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.clientStories__textLine {
+  width: max-content;
+  white-space: nowrap;
+  font-family: "Amelaryas", Georgia, serif;
+  font-size: clamp(60px, 4vw, 100px);
+  line-height: 0.78;
+  letter-spacing: 0.015em;
+  color: rgba(0, 0, 0, 0.45);
+  opacity: 0.68;
+  transform: translateX(-10%);
+  animation: clientStoriesTextMove 30s linear infinite;
+}
+
+.clientStories__textLine:nth-child(odd) {
+  margin-left: -5vw;
+}
+
+.clientStories__textLine:nth-child(even) {
+  margin-left: -20vw;
+}
+
+.clientStories__textLine--reverse {
+  animation-direction: reverse;
+  opacity: 0.56;
+}
+
+/* =========================================================
+   Main stage
+========================================================= */
+
+.clientStories__stage {
+  position: relative;
+  z-index: 10;
+  width: min(900px, 100%);
+  display: grid;
+  place-items: center;
+}
+
+/* =========================================================
+   Center card
+========================================================= */
+
+.clientStoriesCard {
+  position: relative;
+  width: min(820px, 100%);
+  min-height: 500px;
+  background:
+    radial-gradient(
+      circle at 50% 8%,
+      rgba(255, 255, 255, 0.96),
+      transparent 42%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(253, 250, 243, 0.965),
+      rgba(247, 243, 234, 0.965)
+    );
+  border: 2px solid rgba(0, 0, 0, 0.92);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.24),
+    inset 0 0 70px rgba(180, 160, 120, 0.08);
+  overflow: hidden;
+  animation: clientStoriesCardIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.clientStoriesCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.22;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.012) 1px, transparent 1px),
+    linear-gradient(rgba(0, 0, 0, 0.008) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+.clientStoriesCard__inner {
+  position: relative;
+  z-index: 2;
+  min-height: 500px;
+  padding: 54px 64px 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.clientStoriesCard__stars {
+  margin-bottom: 16px;
+  color: #111;
+  font-size: 15px;
+  letter-spacing: 0.26em;
+}
+
+.clientStoriesCard__title {
+  margin: 0 0 28px;
+  max-width: 720px;
+  font-family: var(--font-logo);
+  font-size: clamp(34px, 3vw, 50px);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: 0.09em;
+  color: rgba(0, 0, 0, 0.92);
+}
+
+.clientStoriesCard__image {
+  width: 250px;
+  height: 330px;
+  border-radius: 14px;
+  margin: 0 auto 24px;
+  overflow: hidden;
+  background: #e4e4e4;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.16);
+}
+
+.clientStoriesCard__image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.02);
+  animation: clientStoriesImageAlive 4s ease-in-out infinite alternate;
+}
+
+.clientStoriesCard__message {
+  max-width: 660px;
+  margin: 0 auto;
+  font-size: clamp(12px, 0.9vw, 14px);
+  line-height: 1.72;
+  letter-spacing: 0.08em;
+  color: rgba(0, 0, 0, 0.72);
+}
+
+.clientStoriesCard__author {
+  margin-top: 16px;
+  display: grid;
+  gap: 5px;
+}
+
+.clientStoriesCard__author span {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.82);
+}
+
+.clientStoriesCard__author small {
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.52);
+}
+
+/* =========================================================
+   Arrows
+========================================================= */
+
+.clientStoriesArrow {
+  position: absolute;
+  top: 50%;
+  z-index: 20;
+  width: 54px;
+  height: 54px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  background: rgba(255, 255, 255, 0.72);
+  color: rgba(0, 0, 0, 0.76);
+  font-size: 42px;
+  line-height: 1;
+  cursor: pointer;
+  transform: translateY(-50%);
+  backdrop-filter: blur(8px);
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.clientStoriesArrow:hover {
+  background: rgba(0, 0, 0, 0.82);
+  color: #ffffff;
+  border-color: rgba(0, 0, 0, 0.82);
+  transform: translateY(-50%) scale(1.06);
+}
+
+.clientStoriesArrow--left {
+  left: -90px;
+}
+
+.clientStoriesArrow--right {
+  right: -90px;
+}
+
+/* =========================================================
+   Dots
+========================================================= */
+
+.clientStoriesDots {
+  position: absolute;
+  left: 50%;
+  bottom: -40px;
+  z-index: 15;
+  display: flex;
+  gap: 10px;
+  transform: translateX(-50%);
+}
+
+.clientStoriesDot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.22);
+  background: rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  transition:
+    width 0.35s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.clientStoriesDot.is-active {
+  width: 38px;
+  background: rgba(0, 0, 0, 0.78);
+}
+
+.clientStoriesDot:hover {
+  transform: scale(1.08);
+}
+
+/* =========================================================
+   Animations
+========================================================= */
+
+@keyframes clientStoriesBgFloat {
+  from {
+    transform: scale(1.04) translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: scale(1.08) translate3d(-10px, -8px, 0);
+  }
+}
+
+@keyframes clientStoriesTextMove {
+  from {
+    transform: translateX(-10%);
+  }
+
+  to {
+    transform: translateX(5%);
+  }
+}
+
+@keyframes clientStoriesCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(26px) scale(0.985);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes clientStoriesImageAlive {
+  from {
+    transform: scale(1.02) translateY(0);
+  }
+
+  to {
+    transform: scale(1.06) translateY(-4px);
+  }
+}
+
+/* =========================================================
+   Small laptop height
+========================================================= */
+
+@media (max-height: 760px) and (min-width: 769px) {
+  .clientStories {
+    padding: 92px 20px 70px;
+  }
+
+  .clientStoriesCard {
+    width: min(800px, 100%);
+  }
+
+  .clientStoriesCard__inner {
+    padding: 36px 58px 36px;
+    min-height: auto;
+  }
+
+  .clientStoriesCard__title {
+    margin-bottom: 20px;
+    font-size: clamp(30px, 2.6vw, 44px);
+  }
+
+  .clientStoriesCard__image {
+    width: 220px;
+    height: 285px;
+    margin-bottom: 20px;
+  }
+
+  .clientStoriesCard__message {
+    font-size: 12px;
+    line-height: 1.58;
+  }
+}
+
+/* =========================================================
+   Responsive
+========================================================= */
+
+@media (max-width: 1100px) {
+  .clientStoriesArrow--left {
+    left: 10px;
+  }
+
+  .clientStoriesArrow--right {
+    right: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .clientStories {
+    min-height: auto;
+    padding: 96px 14px 76px;
+  }
+
+  .clientStories__textLine {
+    font-size: clamp(64px, 22vw, 118px);
+    line-height: 0.84;
+    opacity: 0.34;
+  }
+
+  .clientStoriesCard {
+    width: 100%;
+    min-height: auto;
+    border-width: 2px;
+  }
+
+  .clientStoriesCard__inner {
+    min-height: auto;
+    padding: 34px 18px 36px;
+  }
+
+  .clientStoriesCard__stars {
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+
+  .clientStoriesCard__title {
+    margin-bottom: 22px;
+    font-size: clamp(25px, 8vw, 36px);
+    letter-spacing: 0.065em;
+    line-height: 1.15;
+  }
+
+  .clientStoriesCard__image {
+    width: min(205px, 68vw);
+    height: 260px;
+    margin-bottom: 22px;
+  }
+
+  .clientStoriesCard__message {
+    max-width: 310px;
+    font-size: 11px;
+    line-height: 1.68;
+    letter-spacing: 0.055em;
+  }
+
+  .clientStoriesCard__author span {
+    font-size: 9.5px;
+    letter-spacing: 0.15em;
+  }
+
+  .clientStoriesCard__author small {
+    font-size: 8px;
+    letter-spacing: 0.11em;
+  }
+
+  .clientStoriesArrow {
+    display: none;
+  }
+
+  .clientStoriesDots {
+    bottom: -34px;
+  }
+}
+
+@media (max-width: 420px) {
+  .clientStories {
+    padding: 88px 12px 72px;
+  }
+
+  .clientStoriesCard__inner {
+    padding: 30px 14px 34px;
+  }
+
+  .clientStoriesCard__title {
+    font-size: 24px;
+  }
+
+  .clientStoriesCard__image {
+    width: 185px;
+    height: 235px;
+  }
+
+  .clientStoriesCard__message {
+    font-size: 10.5px;
+  }
+}
+
+/* =========================================================
+   Reduced motion
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .clientStories,
+  .clientStories *,
+  .clientStories *::before,
+  .clientStories *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =========================================================
+   FINAL MOBILE FIX - reduce review card width
+========================================================= */
+
+@media (max-width: 768px) {
+  .clientStories__stage {
+    width: 100% !important;
+    display: grid !important;
+    place-items: center !important;
+  }
+
+  .clientStoriesCard {
+    width: 82% !important;
+    max-width: 320px !important;
+    min-height: auto !important;
+    margin: 0 auto !important;
+  }
+
+  .clientStoriesCard__inner {
+    padding: 28px 14px 30px !important;
+  }
+
+  .clientStoriesCard__title {
+    font-size: 23px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .clientStoriesCard__image {
+    width: 175px !important;
+    height: 220px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .clientStoriesCard__message {
+    max-width: 245px !important;
+    font-size: 10.5px !important;
+    line-height: 1.65 !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .clientStoriesCard {
+    width: 85% !important;
+    max-width: 350px !important;
+  }
+
+  .clientStoriesCard__inner {
+    padding: 25px 12px 28px !important;
+  }
+
+  .clientStoriesCard__title {
+    font-size: 21px !important;
+  }
+
+  .clientStoriesCard__image {
+    width: 160px !important;
+    height: 205px !important;
+  }
+
+  .clientStoriesCard__message {
+    max-width: 220px !important;
+    font-size: 10px !important;
+  }
+}

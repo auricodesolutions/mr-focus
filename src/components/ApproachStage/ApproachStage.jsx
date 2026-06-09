@@ -81,11 +81,11 @@ export default function ApproachStage() {
             be there to capture your story beautifully.
           </p>
 
-          <div className="approachStage__cta">
-            <Link className="btn btn--primary" to="/portfolio">
-              View Portfolio
-            </Link>
-          </div>
+        <div className="approachStage__cta">
+          <a href="/portfolio" className="btn btn--primary">
+             View Portfolio
+          </a>
+        </div>
         </article>
       </div>
     </section>

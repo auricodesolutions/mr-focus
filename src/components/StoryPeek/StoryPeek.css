@@ -1,0 +1,320 @@
+@font-face {
+  font-family: "ZasliaCustom";
+  src: url("/fonts/Zaslia.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "KugileCustom";
+  src: url("/fonts/Kugile_Demo.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AmelaryasCustom";
+  src: url("/fonts/Amelaryas.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.storyPeek {
+  width: 100%;
+  min-height: 100svh;
+  background: #f6efe6;
+  color: #111;
+  overflow: hidden;
+}
+
+.storyPeek__inner {
+  width: min(100%, 1720px);
+  min-height: 100svh;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(420px, 640px) 1fr;
+  gap: clamp(48px, 6vw, 105px);
+  align-items: center;
+  padding: 8px clamp(34px, 7vw, 140px);
+  box-sizing: border-box;
+}
+
+/* LEFT IMAGE */
+.storyPeek__media {
+  position: relative;
+  width: 100%;
+  height: calc(100svh - 16px);
+  min-height: 600px;
+  max-height: 880px;
+  overflow: hidden;
+  background: #eee6da;
+}
+
+.storyPeek__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transform: scale(1.04);
+  transition:
+    opacity 0.7s ease,
+    transform 2s ease;
+}
+
+.storyPeek__img.is-active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1;
+}
+
+/* RIGHT CONTENT */
+.storyPeek__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 1.7vw, 28px);
+  text-align: center;
+  padding: 8px 0;
+}
+
+/* MR FOCUS LOGO STYLE */
+.storyPeek__brandMark {
+  text-align: center;
+  margin-bottom: clamp(14px, 1.8vw, 24px);
+}
+
+.storyPeek__brandMark h3 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 3.2vw, 4rem);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: 0.34em;
+  color: #111;
+  text-transform: uppercase;
+}
+
+.storyPeek__brandMark span {
+  display: block;
+  margin-top: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(0.68rem, 0.82vw, 0.95rem);
+  font-weight: 400;
+  letter-spacing: 0.34em;
+  color: rgba(17, 17, 17, 0.55);
+  text-transform: uppercase;
+}
+
+/* MAIN TITLE - BEST FONT FOR THIS SECTION */
+.storyPeek h2 {
+  margin: 0;
+  max-width: 980px;
+  font-family: "ZasliaCustom", Georgia, "Times New Roman", serif !important;
+  font-size: clamp(4rem, 5.5vw, 6.3rem);
+  font-weight: 400 !important;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  color: #111;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+  font-synthesis: none;
+}
+
+.storyPeek p {
+  max-width: 760px;
+  margin: 8px 0 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(1rem, 1.26vw, 1.28rem);
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(17, 17, 17, 0.78);
+}
+
+.storyPeek__btn {
+  position: relative;
+  display: inline-flex;
+  margin-top: clamp(8px, 1vw, 16px);
+  color: #111;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(0.86rem, 1vw, 1rem);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.storyPeek__btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 2px;
+  background: #111;
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.storyPeek__btn:hover::after {
+  transform: scaleX(0.45);
+}
+
+/* Laptop */
+@media (max-width: 1280px) {
+  .storyPeek__inner {
+    grid-template-columns: minmax(360px, 530px) 1fr;
+    gap: 44px;
+    padding-inline: 44px;
+  }
+
+  .storyPeek__media {
+    height: calc(100svh - 20px);
+    min-height: 540px;
+  }
+
+  .storyPeek__brandMark h3 {
+    font-size: clamp(1.9rem, 3vw, 3.6rem);
+  }
+
+  .storyPeek__brandMark span {
+    font-size: 0.72rem;
+  }
+
+  .storyPeek h2 {
+    font-size: clamp(3.3rem, 5vw, 5.1rem);
+    line-height: 0.95;
+  }
+
+  .storyPeek p {
+    max-width: 660px;
+    font-size: 1rem;
+  }
+}
+
+/* Small height desktop */
+@media (max-height: 760px) and (min-width: 981px) {
+  .storyPeek__media {
+    min-height: 500px;
+  }
+
+  .storyPeek__brandMark {
+    margin-bottom: 12px;
+  }
+
+  .storyPeek__brandMark h3 {
+    font-size: clamp(1.7rem, 2.8vw, 3.1rem);
+  }
+
+  .storyPeek__brandMark span {
+    margin-top: 8px;
+    font-size: 0.62rem;
+  }
+
+  .storyPeek__content {
+    gap: 14px;
+  }
+
+  .storyPeek h2 {
+    font-size: clamp(2.9rem, 4.6vw, 4.6rem);
+    line-height: 0.95;
+  }
+
+  .storyPeek p {
+    max-width: 620px;
+    line-height: 1.55;
+  }
+}
+
+/* Tablet */
+@media (max-width: 980px) {
+  .storyPeek {
+    min-height: auto;
+    overflow: visible;
+  }
+
+  .storyPeek__inner {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 0;
+  }
+
+  .storyPeek__media {
+    width: 100%;
+    height: 560px;
+    min-height: 560px;
+    max-height: none;
+  }
+
+  .storyPeek__content {
+    padding: 62px 24px 76px;
+  }
+
+  .storyPeek__brandMark {
+    margin-bottom: 20px;
+  }
+
+  .storyPeek__brandMark h3 {
+    font-size: clamp(2.1rem, 7vw, 4rem);
+  }
+
+  .storyPeek h2 {
+    font-size: clamp(3rem, 8.5vw, 4.8rem);
+    line-height: 0.95;
+  }
+
+  .storyPeek p {
+    max-width: 680px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 560px) {
+  .storyPeek__media {
+    height: 420px;
+    min-height: 420px;
+  }
+
+  .storyPeek__content {
+    padding: 52px 18px 62px;
+    gap: 18px;
+  }
+
+  .storyPeek__brandMark {
+    margin-bottom: 14px;
+  }
+
+  .storyPeek__brandMark h3 {
+    font-size: 2rem;
+    letter-spacing: 0.22em;
+  }
+
+  .storyPeek__brandMark span {
+    margin-top: 10px;
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+  }
+
+  .storyPeek h2 {
+    font-size: 2.45rem;
+    line-height: 0.96;
+    letter-spacing: -0.03em;
+  }
+
+  .storyPeek p {
+    font-size: 0.96rem;
+    line-height: 1.65;
+  }
+
+  .storyPeek__btn {
+    font-size: 0.8rem;
+  }
+}

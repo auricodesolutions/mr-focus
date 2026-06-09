@@ -225,7 +225,7 @@ useEffect(() => {
             <h1 className="h1">Photography • Films</h1>
 
             <p className="subline">
-              Pre-shoots • Weddings • Model Shoots • Drone • Events • Production Reels
+              Wedding Photography • Engagement Photography • Cinematic wedding Films • Pre-wedding Videography • Cinematography • Event Coverage • Commercial & corporate Films • Production
             </p>
 
             <p className="heroLead">
@@ -262,7 +262,7 @@ useEffect(() => {
 
             <div className="heroBadge">
               <span className="dot" aria-hidden="true" />
-              Story-first • Clean edit • Calm guidance
+              MR.FOCUS WEDDINGS
             </div>
           </div>
         </div>

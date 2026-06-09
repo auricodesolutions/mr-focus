@@ -12,9 +12,12 @@ export default function Hero() {
       </div>
 
       <div className="container hero__content reveal-soft">
-        <h1 className="hero__title">Photography & films that feel like your real story.</h1>
-        <div className="heroActions">
-          <a href="/portfolio" className="btn btn--primary">Enquire Now</a>
+<h1 className="hero__title">
+  Photography & films 
+  <br />
+  that feel like your real story.
+</h1>        <div className="heroActions">
+          <a href="/contact" className="btn btn--primary">Enquire Now</a>
           <a href="/portfolio" className="btn btn--ghost"> View Work</a>
 </div>
 

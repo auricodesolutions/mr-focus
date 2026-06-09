@@ -1,32 +1,56 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Portfolio.css";
+import StoryPeek from "../../components/StoryPeek/StoryPeek";
 
 const categories = [
   {
-    title: "Wedding Cinematography",
-    image: "/assets/categories1.jpg",
-    link: "/portfolio/wedding-cinematography",
-  },
-  {
     title: "Wedding Photography",
-    image: "/assets/thumb2.png",
+    text: "WEDDING\nPHOTOGRAPHY",
+    image: "/assets/work5.jpg",
     link: "/portfolio/wedding-photography",
   },
   {
-    title: "Pre Wedding Shoots",
-    image: "/assets/thumb3.png",
-    link: "/portfolio/pre-wedding-shoots",
+    title: "Engagement Photography",
+    text: "ENGAGEMENT\nPHOTOGRAPHY",
+    image: "/assets/img11.jpg",
+    link: "/portfolio/engagement-photography",
+  },
+  {
+    title: "Cinematic Wedding Films",
+    text: "CINEMATIC\nWEDDING FILMS",
+    image: "/assets/img2.jpg",
+    link: "/portfolio/cinematic-wedding-films",
+  },
+  {
+    title: "Pre-wedding Videography",
+    text: "PRE-WEDDING\nVIDEOGRAPHY",
+    image: "/assets/img10.jpg",
+    link: "/portfolio/pre-wedding-videography",
+  },
+  {
+    title: "Cinematography",
+    text: "CINEMATOGRAPHY",
+    image: "/assets/cinematography.jpg",
+    link: "/portfolio/cinematography",
   },
   {
     title: "Event Coverage",
-    image: "/assets/thumb4.png",
+    text: "EVENT\nCOVERAGE",
+    image: "/assets/eventcoverage.jpg",
     link: "/portfolio/event-coverage",
   },
   {
-    title: "Commercial Productions",
-    image: "/assets/thumb5.png",
-    link: "/portfolio/commercial-productions",
+    title: "Commercial Corporate Films",
+    text: "COMMERCIAL\nCORPORATE FILMS",
+    image: "/assets/COMMERCIALPRODUCTIONS.jpg",
+    link: "/portfolio/commercial-corporate-films",
+  },
+  {
+    title: "Production",
+    text: "PRODUCTION",
+    image: "/assets/production.jpg",
+    link: "/portfolio/production",
   },
 ];
 
@@ -191,8 +215,8 @@ export default function Portfolio() {
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
-    const rotateY = (x / rect.width - 0.5) * 8;
-    const rotateX = (y / rect.height - 0.5) * -8;
+    const rotateY = (x / rect.width - 0.5) * 6;
+    const rotateX = (y / rect.height - 0.5) * -6;
 
     card.style.setProperty("--rx", `${rotateX}deg`);
     card.style.setProperty("--ry", `${rotateY}deg`);
@@ -221,23 +245,20 @@ export default function Portfolio() {
             <span>Portfolio</span>
           </h1>
 
-          <p className="portfolioHero__sub">
-            Sri Lankan wedding stories, cinematic films, event coverage, and commercial visuals.
-          </p>
+         
         </div>
       </section>
 
-      <section className="portfolioCategories" id="categories">
+      <section className="portfolioCategories" id="portfolio-gallery">
         <div className="container">
           <div className="portfolioHead">
-            <span className="portfolioHead__tag">Selected Work</span>
 
             <h2>Choose a Story</h2>
 
-            <p>
+            {/* <p>
               Explore our main portfolio categories and see the style, mood, and detail behind each
-              MR Focus production.
-            </p>
+              MR FOCUS production.
+            </p> */}
           </div>
 
           <div className="portfolioGrid">
@@ -245,7 +266,7 @@ export default function Portfolio() {
               <article
                 className="portfolioCard"
                 key={category.title}
-                style={{ "--delay": `${index * 100}ms` }}
+                style={{ "--delay": `${index * 90}ms` }}
                 onPointerMove={handleCardMove}
                 onPointerLeave={resetCardMove}
               >
@@ -260,8 +281,17 @@ export default function Portfolio() {
                   </div>
 
                   <div className="portfolioCard__body">
-                    <h3>{category.title}</h3>
-                    <span>View Collection</span>
+                    <h3>
+                      {category.text.split("\n").map((line) => (
+                        <span className="portfolioCard__titleLine" key={line}>
+                          {line}
+                        </span>
+                      ))}
+                    </h3>
+
+                    <p>{category.desc}</p>
+                    <span className="portfolioCard__cta">VIEW GALLERY</span>
+
                   </div>
                 </Link>
               </article>
@@ -269,6 +299,8 @@ export default function Portfolio() {
           </div>
         </div>
       </section>
+
+      <StoryPeek />
     </main>
   );
 }

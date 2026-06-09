@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Kugile Demo";
+  src: url("/fonts/Kugile_Demo.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* =========================================================
    Story Moment Section - Smooth Dynamic Review Slider
 ========================================================= */
@@ -118,6 +126,7 @@
 .storyMoment__review {
   margin: 0;
   max-width: 410px;
+  font-family: "Kugile Demo", Georgia, serif;
   font-size: clamp(13px, 0.9vw, 15px);
   line-height: 1.75;
   letter-spacing: 0.055em;
@@ -626,4 +635,3 @@
     filter: blur(7px);
   }
 }
-

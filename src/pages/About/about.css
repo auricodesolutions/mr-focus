@@ -494,7 +494,7 @@
 }
 
 .tilesGrid {
-  --gap: 14px;
+  --gap: 18px;
 
   position: relative;
   z-index: 1;
@@ -503,6 +503,8 @@
   gap: var(--gap);
   justify-content: center;
   perspective: 1200px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .tileBtn {
@@ -526,7 +528,8 @@
   border: 1px solid rgba(20, 20, 20, .10);
   background: rgba(255, 255, 255, .65);
   flex: 0 0 calc((100% - (4 * var(--gap))) / 5);
-  min-height: 320px;
+  min-height: 360px;
+  width: 100%;
   display: grid;
   place-items: center;
   opacity: 1;
