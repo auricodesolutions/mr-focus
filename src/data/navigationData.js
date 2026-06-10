@@ -16,9 +16,13 @@ export const socialLinks = [
 ];
 
 export const footerServices = [
-  "Wedding Cinematography",
   "Wedding Photography",
-  "Pre Wedding Shoots",
+  "Engagement Photography",
+  "Cinematic Wedding Films",
+  "Pre-wedding Videography",
+   "Professional Drone",
+  "Cinematography",
   "Event Coverage",
-  "Commercial Productions",
+  "Commercial Corporate Films",
+  "Production",
 ];

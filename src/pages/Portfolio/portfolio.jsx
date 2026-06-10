@@ -28,6 +28,12 @@ const categories = [
     image: "/assets/img10.jpg",
     link: "/portfolio/pre-wedding-videography",
   },
+    {
+    title: "Professional Drone Coverage",
+    text: "PROFESSIONAL\nDRONE COVERAGE",
+    image: "/assets/drone.jpg",
+    link: "/portfolio/professional-drone-coverage",
+  },
   {
     title: "Cinematography",
     text: "CINEMATOGRAPHY",

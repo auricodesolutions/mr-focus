@@ -29,7 +29,9 @@ import CommercialCorporateFilms from "./pages/Portfolio/CommercialCorporateFilms
 import Production from "./pages/Portfolio/Production/Production";
 import FeaturedReviewSection from "./components/FeaturedReviewSection/FeaturedReviewSection";
 import WeddingAlbumGallery from "./pages/Portfolio/wedding-photography/wedding-album-gallery";
+import ProfessionalDroneCoverage from "./pages/Portfolio/ProfessionalDroneCoverage/ProfessionalDroneCoverage";
 import Reviews from "./pages/Reviews/Reviews";
+
 
 function HomeContent() {
   useHomeAnimations();
@@ -168,6 +170,11 @@ export default function App() {
           path="/portfolio/commercial-corporate-films"
           element={<CommercialCorporateFilms />}
         />
+
+        <Route
+  path="/portfolio/professional-drone-coverage"
+  element={<ProfessionalDroneCoverage />}
+/>
 
         <Route
           path="/portfolio/production"

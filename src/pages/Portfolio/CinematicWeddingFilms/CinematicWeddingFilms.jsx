@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import "./CinematicWeddingFilms.css";
+import { Link } from "react-router-dom";
 
 const weddingFilms = [
   {
@@ -85,6 +86,10 @@ export default function CinematicWeddingFilms() {
         <p>
           Emotional wedding stories created to keep every special moment alive.
         </p>
+
+        <Link className="portfolioBackBtn" to="/portfolio">
+  Back to Portfolio
+</Link>
       </section>
 
       <section className="filmsGrid" aria-label="Cinematic wedding films">

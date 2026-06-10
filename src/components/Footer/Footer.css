@@ -378,3 +378,89 @@
   opacity: .92;
   line-height: 1.6;
 }
+/* =========================================================
+   Footer Developer Credit
+========================================================= */
+
+.footer__credit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  color: rgba(255, 255, 255, 0.68);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  transition:
+    color 0.25s ease,
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.footer__credit:hover {
+  color: #ffffff;
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.footer__credit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.footer__creditLogo {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  display: block;
+  background: #ffffff;
+  border-radius: 50%;
+  padding: 4px;
+}
+
+.footer__creditName {
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.footer__creditText {
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.footer__credit:hover .footer__creditName {
+  text-decoration: underline;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .footer__bottomInner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .footer__credit {
+    order: 2;
+    font-size: 11px;
+  }
+
+  .footer__creditLogo {
+    width: 26px;
+    height: 26px;
+  }
+
+  .footer__miniLinks {
+    order: 3;
+  }
+}

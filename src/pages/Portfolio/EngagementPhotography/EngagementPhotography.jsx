@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 import "./EngagementPhotography.css";
+import { Link } from "react-router-dom";
+
 
 const engagementImages = Array.from({ length: 20 }, (_, index) => ({
   id: index + 1,
@@ -45,6 +47,10 @@ export default function EngagementPhotography() {
           A soft and elegant collection of engagement memories, couple portraits,
           and meaningful moments captured with natural emotion.
         </p>
+
+        <Link className="portfolioBackBtn" to="/portfolio">
+  Back to Portfolio
+</Link>
       </section>
 
       <section className="engagementGallery" aria-label="Engagement photography gallery">

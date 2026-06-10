@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 import "./Cinematography.css";
+import { Link } from "react-router-dom";
+
 
 const cinematographyVideos = [
   {
@@ -91,6 +93,10 @@ export default function Cinematography() {
           A collection of cinematic visuals, creative productions, event films,
           and meaningful stories crafted with emotion and detail.
         </p>
+
+                <Link className="portfolioBackBtn" to="/portfolio">
+  Back to Portfolio
+</Link>
       </section>
 
       <section className="cinematographyVideoGrid" aria-label="Cinematography videos">

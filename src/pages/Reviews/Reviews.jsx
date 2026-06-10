@@ -8,6 +8,23 @@ const clientPhotos = [
   "/assets/img4.jpg",
 ];
 
+const eventTypes = [
+  "Wedding Photography",
+  "Engagement Photography",
+  "Pre-wedding Photography",
+  "Cinematic Wedding Films",
+  "Pre-wedding Videography",
+  "Cinematography",
+  "Event Coverage",
+  "Commercial Corporate Films",
+  "Production",
+  "Photography",
+  "Videography",
+  "Photography + Videography",
+  "Drone Coverage",
+  "Other",
+];
+
 const defaultReviews = [
   {
     id: 1,
@@ -38,11 +55,14 @@ const defaultReviews = [
   },
 ];
 
+const REVIEWS_PER_LOAD = 6;
+
 export default function Reviews() {
   const formRef = useRef(null);
   const reviewsRef = useRef(null);
 
   const [reviews, setReviews] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(REVIEWS_PER_LOAD);
   const [showForm, setShowForm] = useState(false);
   const [formError, setFormError] = useState("");
   const [rating, setRating] = useState(5);
@@ -52,6 +72,7 @@ export default function Reviews() {
       const savedReviews = JSON.parse(
         localStorage.getItem("mrFocusReviewsBW") || "[]"
       );
+
       setReviews([...savedReviews, ...defaultReviews]);
     } catch {
       setReviews(defaultReviews);
@@ -75,10 +96,20 @@ export default function Reviews() {
     elements.forEach(el => observer.observe(el));
 
     return () => observer.disconnect();
-  }, [reviews, showForm]);
+  }, [reviews, showForm, visibleCount]);
+
+  const visibleReviews = reviews.slice(0, visibleCount);
+  const hasMoreReviews = visibleCount < reviews.length;
+
+  const handleLoadMore = () => {
+    setVisibleCount(current =>
+      Math.min(current + REVIEWS_PER_LOAD, reviews.length)
+    );
+  };
 
   const handleOpenForm = () => {
     setShowForm(true);
+
     setTimeout(() => {
       formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 100);
@@ -126,6 +157,7 @@ export default function Reviews() {
     );
 
     setReviews([newReview, ...reviews]);
+    setVisibleCount(REVIEWS_PER_LOAD);
     setRating(5);
     setShowForm(false);
     e.currentTarget.reset();
@@ -139,7 +171,9 @@ export default function Reviews() {
         <div className="testimonials-content-wrap">
           <div className="testimonials-header bw-reveal">
             <span className="bw-kicker">Testimonials</span>
+
             <h1>What Our Clients Say</h1>
+
             <p>
               Clean, emotional, and timeless reviews from MR Focus photography
               and film clients.
@@ -157,7 +191,7 @@ export default function Reviews() {
           </div>
 
           <div ref={reviewsRef} className="reviews-grid-bw">
-            {reviews.map((review, index) => (
+            {visibleReviews.map((review, index) => (
               <article
                 className="review-card-bw bw-reveal"
                 key={review.id}
@@ -190,6 +224,18 @@ export default function Reviews() {
             ))}
           </div>
 
+          {hasMoreReviews && (
+            <div className="reviews-load-more-wrap">
+              <button
+                type="button"
+                className="bw-main-btn reviews-load-more-btn"
+                onClick={handleLoadMore}
+              >
+                Load More
+              </button>
+            </div>
+          )}
+
           {showForm && (
             <section ref={formRef} className="review-form-section-bw active">
               <div className="review-form-card-bw bw-reveal">
@@ -203,15 +249,21 @@ export default function Reviews() {
                 </div>
 
                 <form className="review-form-bw" onSubmit={handleSubmit}>
-                  {formError && <div className="review-error-bw">{formError}</div>}
+                  {formError && (
+                    <div className="review-error-bw">{formError}</div>
+                  )}
 
                   <div className="form-row-bw">
                     <input type="text" name="name" placeholder="Your name" />
-                    <input
-                      type="text"
-                      name="event"
-                      placeholder="Event type (Wedding Shoot, Pre-shoot...)"
-                    />
+
+                    <select name="event" defaultValue="">
+                      <option value="">Select service</option>
+                      {eventTypes.map(service => (
+                        <option key={service} value={service}>
+                          {service}
+                        </option>
+                      ))}
+                    </select>
                   </div>
 
                   <div className="rating-box-bw">

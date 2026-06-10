@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { weddingAlbums } from "../../../data/weddingAlbumsData";
 import "./wedding-photography.css";
 
+
 export default function WeddingPhotography() {
   const pageRef = useRef(null);
 
@@ -39,6 +40,9 @@ export default function WeddingPhotography() {
           A collection of real wedding stories and timeless couple memories
           captured with care.
         </p>
+        <Link className="portfolioBackBtn" to="/portfolio">
+  Back to Portfolio
+</Link>
       </section>
 
       <section

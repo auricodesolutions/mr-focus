@@ -618,7 +618,7 @@
   opacity: 0;
   transition:
     opacity .35s ease,
-    transform .7s cubic-bezier(.2, .8, .2, 1);
+    transform .5s cubic-bezier(.2, .8, .2, 1);
 }
 
 .tile__activeLine::before {
@@ -963,5 +963,536 @@
       var(--heroTextY, 0px),
       0
     ) scale(1);
+  }
+}
+/* =========================================================
+   Services Section - Mobile Responsive Only
+   Desktop view will not change
+========================================================= */
+
+@media (max-width: 768px) {
+  .aboutServices {
+    overflow-x: hidden !important;
+  }
+
+  .aboutServices .container {
+    width: calc(100% - 24px) !important;
+    max-width: 520px !important;
+    margin: 0 auto !important;
+  }
+
+  .aboutServices__head {
+    text-align: center !important;
+    margin-bottom: 28px !important;
+  }
+
+  .aboutServices__head .kicker {
+    font-size: 12px !important;
+    padding: 11px 22px !important;
+  }
+
+  .aboutServices__head .h2,
+  .aboutServices__head .h2--spaced {
+    font-size: clamp(34px, 10vw, 48px) !important;
+    letter-spacing: 0.14em !important;
+    line-height: 1 !important;
+  }
+
+  .aboutServices__head .lead {
+    max-width: 330px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+  }
+
+  .tilesGrid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
+  .tile,
+  .tileBtn {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 235px !important;
+    overflow: hidden !important;
+  }
+
+  .tile__bg {
+    background-size: cover !important;
+    background-position: center !important;
+  }
+
+  .tile__shade {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.12),
+      rgba(0, 0, 0, 0.68)
+    ) !important;
+  }
+
+  .tile__text {
+    width: 94% !important;
+    left: 50% !important;
+    bottom: 24px !important;
+    transform: translateX(-50%) !important;
+
+    font-size: 11.5px !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0.09em !important;
+    text-align: center !important;
+
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .tile__activeLine {
+    bottom: 13px !important;
+    width: 30px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .aboutServices .container {
+    width: calc(100% - 20px) !important;
+  }
+
+  .tilesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+
+  .tile,
+  .tileBtn {
+    height: 215px !important;
+  }
+
+  .tile__text {
+    font-size: 10px !important;
+    letter-spacing: 0.08em !important;
+    line-height: 1.25 !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .tilesGrid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .tile,
+  .tileBtn {
+    height: 250px !important;
+  }
+
+  .tile__text {
+    font-size: 12px !important;
+  }
+}
+
+/* Mobile only - keep heroMini 3 items in one row */
+@media (max-width: 768px) {
+  .heroMini {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  .heroMini span {
+    white-space: nowrap !important;
+    font-size: 10px !important;
+    letter-spacing: 0.08em !important;
+    padding: 10px 9px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .heroMini {
+    gap: 6px !important;
+  }
+
+  .heroMini span {
+    font-size: 9px !important;
+    padding: 9px 7px !important;
+    letter-spacing: 0.06em !important;
+  }
+}
+
+/* =========================================================
+   Services Section - 9 Cards Balance
+   Desktop: 3 columns x 3 rows
+   Tablet: 2 columns
+   Mobile: 2 columns / 1 column very small
+========================================================= */
+
+/* DESKTOP - 3 COLUMNS */
+@media (min-width: 981px) {
+  .tilesGrid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 22px !important;
+    width: 100% !important;
+    max-width: 1280px !important;
+    margin: 0 auto !important;
+    justify-content: center !important;
+    align-items: stretch !important;
+  }
+
+  .tileBtn,
+  .tile {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .tile {
+    min-height: 380px !important;
+    flex: none !important;
+  }
+}
+
+/* TABLET - 2 COLUMNS */
+@media (min-width: 641px) and (max-width: 980px) {
+  .tilesGrid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+    width: 100% !important;
+    max-width: 820px !important;
+    margin: 0 auto !important;
+  }
+
+  .tileBtn,
+  .tile {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .tile {
+    min-height: 320px !important;
+    flex: none !important;
+  }
+}
+
+/* MOBILE - 2 COLUMNS */
+@media (max-width: 640px) {
+  .tilesGrid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .tileBtn,
+  .tile {
+    width: 70% !important;
+    min-width: 0 !important;
+    flex: none !important;
+  }
+
+  .tile {
+    min-height: 215px !important;
+  }
+}
+
+/* VERY SMALL MOBILE - 1 COLUMN */
+@media (max-width: 360px) {
+  .tilesGrid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .tile {
+    min-height: 250px !important;
+  }
+}
+/* =========================================================
+   FINAL ABOUT SERVICES GRID FIX
+   9 Services Layout
+   Desktop: 3 columns x 3 rows
+   Tablet: 2 columns
+   Mobile: 1 column with clean gaps
+========================================================= */
+
+/* DESKTOP - 3 COLUMNS x 3 ROWS */
+@media (min-width: 981px) {
+  .aboutServices .container {
+    width: min(var(--container, 1180px), calc(100% - 40px)) !important;
+    max-width: 1280px !important;
+    margin: 0 auto !important;
+  }
+
+  .tilesGrid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 24px !important;
+    width: 100% !important;
+    max-width: 1280px !important;
+    margin: 0 auto !important;
+    justify-content: center !important;
+    align-items: stretch !important;
+    overflow: visible !important;
+  }
+
+  .tileBtn,
+  .tile {
+    width: 100% !important;
+    min-width: 0 !important;
+    flex: none !important;
+  }
+
+  .tile {
+    position: relative !important;
+    height: 380px !important;
+    min-height: 380px !important;
+    display: grid !important;
+    place-items: center !important;
+    overflow: hidden !important;
+  }
+
+  .tile__text {
+    position: relative !important;
+    z-index: 3 !important;
+    width: 90% !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+    padding: 0 18px !important;
+
+    text-align: center !important;
+    white-space: pre-line !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    hyphens: none !important;
+
+    font-size: clamp(13px, 1vw, 16px) !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0.18em !important;
+    font-weight: 850 !important;
+  }
+
+  .tile:hover .tile__text,
+  .tile.is-active .tile__text {
+    transform: translateY(-5px) !important;
+    letter-spacing: 0.2em !important;
+  }
+}
+
+/* TABLET - 2 COLUMNS */
+@media (min-width: 641px) and (max-width: 980px) {
+  .aboutServices .container {
+    width: calc(100% - 36px) !important;
+    max-width: 860px !important;
+    margin: 0 auto !important;
+  }
+
+  .tilesGrid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 20px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    overflow: visible !important;
+  }
+
+  .tileBtn,
+  .tile {
+    width: 100% !important;
+    min-width: 0 !important;
+    flex: none !important;
+  }
+
+  .tile {
+    position: relative !important;
+    height: 320px !important;
+    min-height: 320px !important;
+    display: grid !important;
+    place-items: center !important;
+    overflow: hidden !important;
+  }
+
+  .tile__text {
+    position: relative !important;
+    z-index: 3 !important;
+    width: 88% !important;
+    max-width: 280px !important;
+    margin: 0 auto !important;
+    padding: 0 14px !important;
+
+    text-align: center !important;
+    white-space: pre-line !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    hyphens: none !important;
+
+    font-size: 13px !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0.14em !important;
+    font-weight: 850 !important;
+  }
+
+  .tile:hover .tile__text,
+  .tile.is-active .tile__text {
+    transform: translateY(-5px) !important;
+    letter-spacing: 0.14em !important;
+  }
+}
+
+/* MOBILE - 1 COLUMN CLEAN VIEW */
+@media (max-width: 640px) {
+  .aboutServices {
+    padding: 58px 0 !important;
+    overflow-x: hidden !important;
+  }
+
+  .aboutServices .container {
+    width: calc(100% - 18px) !important;
+    max-width: 430px !important;
+    margin: 0 auto !important;
+  }
+
+  .aboutServices__head {
+    text-align: center !important;
+    margin-bottom: 30px !important;
+  }
+
+  .aboutServices__head .lead {
+    max-width: 340px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .tilesGrid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 22px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    overflow: visible !important;
+  }
+
+  .tileBtn,
+  .tile {
+    width: 100% !important;
+    min-width: 0 !important;
+    flex: none !important;
+  }
+
+  .tile {
+    position: relative !important;
+    height: 310px !important;
+    min-height: 310px !important;
+    display: grid !important;
+    place-items: center !important;
+    overflow: hidden !important;
+  }
+
+  .tile__bg {
+    background-size: cover !important;
+    background-position: center !important;
+  }
+
+  .tile__shade {
+    background:
+      radial-gradient(
+        600px 420px at 50% 55%,
+        rgba(0, 0, 0, 0.08),
+        rgba(0, 0, 0, 0.42)
+      ),
+      linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.58),
+        rgba(0, 0, 0, 0.08)
+      ) !important;
+  }
+
+  .tile__text {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    top: auto !important;
+    transform: none !important;
+    z-index: 3 !important;
+
+    width: 100% !important;
+    max-width: 270px !important;
+    margin: 0 auto !important;
+    padding: 0 18px !important;
+
+    display: block !important;
+    text-align: center !important;
+    white-space: pre-line !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    hyphens: none !important;
+
+    font-size: 15px !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0.12em !important;
+    font-weight: 850 !important;
+  }
+
+  .tile:hover .tile__text,
+  .tile.is-active .tile__text {
+    transform: translateY(-4px) !important;
+    letter-spacing: 0.12em !important;
+  }
+
+  .tile__activeLine {
+    left: 44px !important;
+    right: 44px !important;
+    bottom: 20px !important;
+  }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 390px) {
+  .aboutServices .container {
+    width: calc(100% - 16px) !important;
+  }
+
+  .tilesGrid {
+    gap: 20px !important;
+  }
+
+  .tile {
+    height: 285px !important;
+    min-height: 285px !important;
+  }
+
+  .tile__text {
+    max-width: 245px !important;
+    font-size: 13.5px !important;
+    letter-spacing: 0.1em !important;
+  }
+
+  .tile:hover .tile__text,
+  .tile.is-active .tile__text {
+    letter-spacing: 0.1em !important;
+  }
+}
+
+/* VERY SMALL MOBILE */
+@media (max-width: 360px) {
+  .tilesGrid {
+    gap: 18px !important;
+  }
+
+  .tile {
+    height: 270px !important;
+    min-height: 270px !important;
+  }
+
+  .tile__text {
+    max-width: 230px !important;
+    font-size: 13px !important;
+    letter-spacing: 0.09em !important;
   }
 }

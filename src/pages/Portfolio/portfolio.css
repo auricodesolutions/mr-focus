@@ -253,13 +253,13 @@
   text-transform: none;
 }
 
-/* GRID - 4 CARDS IN ONE ROW */
+/* GRID - 3 CARDS IN ONE ROW */
 .portfolioGrid {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 70px 30px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 78px 44px;
   align-items: start;
   perspective: 1200px;
   width: min(var(--container, 1180px), calc(100% - 40px));

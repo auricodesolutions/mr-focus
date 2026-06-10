@@ -24,6 +24,12 @@ export const services = [
     desc: "Creative pre-wedding videos with beautiful scenes, natural emotions, and cinematic shots."
   },
   {
+    title: "Professional Drone Coverage",
+    text: "PROFESSIONAL\nDRONE COVERAGE",
+    image: "/assets/drone.jpg",
+    link: "/portfolio/professional-drone-coverage",
+  },
+  {
     title: "Cinematography",
     text: "CINEMATOGRAPHY",
     image: "/assets/thumb1.png",
@@ -41,6 +47,7 @@ export const services = [
     image: "/assets/COMMERCIALPRODUCTIONS.jpg",
     desc: "High-quality brand videos, business promos, product shoots, reels, and advertising content."
   },
+
   {
     title: "Production",
     text: "PRODUCTION",

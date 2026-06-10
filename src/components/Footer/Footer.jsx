@@ -116,16 +116,36 @@ export default function Footer() {
       </div>
 
       <div className="footer__bottom">
-        <div className="container footer__bottomInner">
-          <div className="footer__mini">© {year} MR FOCUS. All rights reserved.</div>
+  <div className="container footer__bottomInner">
+    <div className="footer__mini">
+      © {year} MR FOCUS. All rights reserved.
+    </div>
 
-          <div className="footer__miniLinks">
-            <a href="#" className="footer__miniLink">Privacy</a>
-            <span className="dotSep">•</span>
-            <a href="#" className="footer__miniLink">Terms</a>
-          </div>
-        </div>
-      </div>
+    <a
+      className="footer__credit"
+      href="https://auricodesolutions.com/"
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Visit Auricode Solutions website"
+    >
+      <span className="footer__creditText">Made in</span>
+
+      <img
+        className="footer__creditLogo"
+        src="/assets/auricode-logo.png"
+        alt="Auricode Solutions"
+      />
+
+      <span className="footer__creditName">Auricode Solutions</span>
+    </a>
+
+    <div className="footer__miniLinks">
+      <a href="#" className="footer__miniLink">Privacy</a>
+      <span className="dotSep">•</span>
+      <a href="#" className="footer__miniLink">Terms</a>
+    </div>
+  </div>
+</div>
     </footer>
   );
 }

@@ -1,38 +1,38 @@
 import { useEffect, useRef } from "react";
-import "./CommercialCorporateFilms.css";
+import "./ProfessionalDroneCoverage.css";
 import { Link } from "react-router-dom";
 
 
-const commercialVideos = [
+const droneVideos = [
   {
-    title: "Commercial Film 01",
-    type: "Commercial Film",
-    youtube: "https://youtu.be/vYSRh7t_IUA?si=P8Ha35hepKYn0He5",
+    title: "Drone Coverage 01",
+    type: "Aerial Wedding Film",
+    youtube: "https://youtu.be/cvUvYiJOp_c?si=oZxzxhPGZoMsUF-3",
   },
   {
-    title: "Corporate Film 02",
-    type: "Corporate Video",
-    youtube: "https://youtu.be/vYSRh7t_IUA?si=P8Ha35hepKYn0He5",
+    title: "Drone Coverage 02",
+    type: "Aerial Event Coverage",
+    youtube: "https://youtu.be/cvUvYiJOp_c?si=oZxzxhPGZoMsUF-3",
   },
   {
-    title: "Brand Film 03",
-    type: "Brand Story",
-    youtube: "https://youtu.be/vYSRh7t_IUA?si=P8Ha35hepKYn0He5",
+    title: "Drone Coverage 03",
+    type: "Cinematic Drone Shot",
+    youtube: "https://youtu.be/cvUvYiJOp_c?si=oZxzxhPGZoMsUF-3",
   },
   {
-    title: "Product Film 04",
-    type: "Product Video",
-    youtube: "https://youtu.be/vYSRh7t_IUA?si=P8Ha35hepKYn0He5",
+    title: "Drone Coverage 04",
+    type: "Outdoor Location Film",
+    youtube: "https://youtu.be/cvUvYiJOp_c?si=oZxzxhPGZoMsUF-3",
   },
   {
-    title: "Business Film 05",
-    type: "Business Promo",
-    youtube: "https://youtu.be/vYSRh7t_IUA?si=P8Ha35hepKYn0He5",
+    title: "Drone Coverage 05",
+    type: "Aerial Highlights",
+    youtube: "https://youtu.be/cvUvYiJOp_c?si=oZxzxhPGZoMsUF-3",
   },
   {
-    title: "Corporate Highlights 06",
-    type: "Highlights",
-    youtube: "https://youtu.be/vYSRh7t_IUA?si=P8Ha35hepKYn0He5",
+    title: "Drone Coverage 06",
+    type: "Professional Drone Reel",
+    youtube: "https://youtu.be/cvUvYiJOp_c?si=oZxzxhPGZoMsUF-3",
   },
 ];
 
@@ -55,11 +55,11 @@ function getYouTubeEmbedUrl(url) {
     : url;
 }
 
-export default function CommercialCorporateFilms() {
+export default function ProfessionalDroneCoverage() {
   const pageRef = useRef(null);
 
   useEffect(() => {
-    const cards = pageRef.current?.querySelectorAll(".commercialVideoCard");
+    const cards = pageRef.current?.querySelectorAll(".droneVideoCard");
 
     if (!cards?.length) return;
 
@@ -84,28 +84,29 @@ export default function CommercialCorporateFilms() {
   }, []);
 
   return (
-    <main className="commercialPage" ref={pageRef}>
-      <section className="commercialHero">
+    <main className="dronePage" ref={pageRef}>
+      <section className="droneHero">
 
-        <h1>Commercial Corporate Films</h1>
+        <h1>Professional Drone Coverage</h1>
 
         <p>
-          Professional corporate films, brand stories, product videos, and
-          business visuals created with clean cinematic quality.
+          Cinematic aerial visuals, wedding drone coverage, event flyovers, and
+          professional drone footage captured with smooth cinematic movement.
         </p>
-         <Link className="portfolioBackBtn" to="/portfolio">
+
+        <Link className="portfolioBackBtn" to="/portfolio">
   Back to Portfolio
 </Link>
       </section>
 
-      <section className="commercialVideoGrid" aria-label="Commercial corporate films">
-        {commercialVideos.map((video, index) => (
+      <section className="droneVideoGrid" aria-label="Professional drone coverage videos">
+        {droneVideos.map((video, index) => (
           <article
-            className="commercialVideoCard"
+            className="droneVideoCard"
             key={video.title}
             style={{ "--delay": `${index * 0.08}s` }}
           >
-            <div className="commercialVideoCard__video">
+            <div className="droneVideoCard__video">
               <iframe
                 src={getYouTubeEmbedUrl(video.youtube)}
                 title={video.title}
@@ -115,7 +116,7 @@ export default function CommercialCorporateFilms() {
               />
             </div>
 
-            <div className="commercialVideoCard__content">
+            <div className="droneVideoCard__content">
               <span>{video.type}</span>
               <h2>{video.title}</h2>
             </div>

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import "./EventCoverage.css";
+import { Link } from "react-router-dom";
 
 const eventVideos = [
   {
@@ -91,6 +92,10 @@ export default function EventCoverage() {
           Professional event coverage, stage moments, corporate functions, and
           special occasions captured with cinematic detail.
         </p>
+
+        <Link className="portfolioBackBtn" to="/portfolio">
+  Back to Portfolio
+</Link>
       </section>
 
       <section className="eventVideoGrid" aria-label="Event coverage videos">
