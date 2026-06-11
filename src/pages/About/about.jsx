@@ -15,78 +15,78 @@ export default function About() {
   /* ================================
      FORCE ABOUT PAGE NORMAL SCROLL
   ================================= */
-useEffect(() => {
-  const touched = [];
+  useEffect(() => {
+    const touched = [];
 
-  const setImportant = (el, prop, value) => {
-    touched.push([el, prop, el.style.getPropertyValue(prop), el.style.getPropertyPriority(prop)]);
-    el.style.setProperty(prop, value, "important");
-  };
+    const setImportant = (el, prop, value) => {
+      touched.push([el, prop, el.style.getPropertyValue(prop), el.style.getPropertyPriority(prop)]);
+      el.style.setProperty(prop, value, "important");
+    };
 
-  const unlockPageScroll = () => {
-    const selectors = [
-      "html",
-      "body",
-      "#root",
-      ".App",
-      ".app",
-      ".site",
-      ".siteWrap",
-      ".layout",
-      ".page",
-      ".pageWrap",
-      ".router",
-      ".routes",
-      ".about-page",
-    ];
+    const unlockPageScroll = () => {
+      const selectors = [
+        "html",
+        "body",
+        "#root",
+        ".App",
+        ".app",
+        ".site",
+        ".siteWrap",
+        ".layout",
+        ".page",
+        ".pageWrap",
+        ".router",
+        ".routes",
+        ".about-page",
+      ];
 
-    selectors.forEach((selector) => {
-      document.querySelectorAll(selector).forEach((el) => {
-        setImportant(el, "height", "auto");
-        setImportant(el, "min-height", selector === "html" || selector === "body" ? "100%" : "100dvh");
-        setImportant(el, "max-height", "none");
-        setImportant(el, "overflow-x", "hidden");
+      selectors.forEach((selector) => {
+        document.querySelectorAll(selector).forEach((el) => {
+          setImportant(el, "height", "auto");
+          setImportant(el, "min-height", selector === "html" || selector === "body" ? "100%" : "100dvh");
+          setImportant(el, "max-height", "none");
+          setImportant(el, "overflow-x", "hidden");
 
-        if (selector === "html" || selector === "body") {
-          setImportant(el, "overflow-y", "auto");
-          setImportant(el, "position", "static");
+          if (selector === "html" || selector === "body") {
+            setImportant(el, "overflow-y", "auto");
+            setImportant(el, "position", "static");
+          } else {
+            setImportant(el, "overflow-y", "visible");
+            setImportant(el, "position", "relative");
+          }
+        });
+      });
+
+      document.body.classList.remove(
+        "menu-open",
+        "drawer-open",
+        "nav-open",
+        "lock-scroll",
+        "no-scroll",
+        "is-locked"
+      );
+    };
+
+    unlockPageScroll();
+
+    const timer1 = window.setTimeout(unlockPageScroll, 100);
+    const timer2 = window.setTimeout(unlockPageScroll, 400);
+    const timer3 = window.setTimeout(unlockPageScroll, 900);
+
+    return () => {
+      window.clearTimeout(timer1);
+      window.clearTimeout(timer2);
+      window.clearTimeout(timer3);
+
+      touched.forEach(([el, prop, oldValue, oldPriority]) => {
+        if (oldValue) {
+          el.style.setProperty(prop, oldValue, oldPriority);
         } else {
-          setImportant(el, "overflow-y", "visible");
-          setImportant(el, "position", "relative");
+          el.style.removeProperty(prop);
         }
       });
-    });
-
-    document.body.classList.remove(
-      "menu-open",
-      "drawer-open",
-      "nav-open",
-      "lock-scroll",
-      "no-scroll",
-      "is-locked"
-    );
-  };
-
-  unlockPageScroll();
-
-  const timer1 = window.setTimeout(unlockPageScroll, 100);
-  const timer2 = window.setTimeout(unlockPageScroll, 400);
-  const timer3 = window.setTimeout(unlockPageScroll, 900);
-
-  return () => {
-    window.clearTimeout(timer1);
-    window.clearTimeout(timer2);
-    window.clearTimeout(timer3);
-
-    touched.forEach(([el, prop, oldValue, oldPriority]) => {
-      if (oldValue) {
-        el.style.setProperty(prop, oldValue, oldPriority);
-      } else {
-        el.style.removeProperty(prop);
-      }
-    });
-  };
-}, []);
+    };
+  }, []);
 
   /* ================================
      HERO MOUSE DEPTH EFFECT
@@ -134,8 +134,8 @@ useEffect(() => {
   ================================= */
   useEffect(() => {
     const revealItems = document.querySelectorAll(
-  ".about-page .reveal-soft, .about-page .showreelSection"
-);
+      ".about-page .reveal-soft, .about-page .showreelSection"
+    );
     if (!revealItems.length) return undefined;
 
     const observer = new IntersectionObserver(
@@ -222,15 +222,14 @@ useEffect(() => {
           <div className="aboutHero__content reveal-soft">
             <span className="kicker">About MR Focus</span>
 
-            <h1 className="h1">Photography • Films</h1>
+            <h1 className="h1">Welcome to MR FOCUS WEDDING FILMS.</h1>
 
-            <p className="subline">
-              Wedding Photography • Engagement Photography • Cinematic wedding Films • Pre-wedding Videography • Cinematography • Event Coverage • Commercial & corporate Films • Production
+            <p className="heroLead">
+              Your wedding day is one of the most significant chapters of your life, and we believe it deserves to be told as a beautiful, cinematic story. At MR FOCUS WEDDING FILMS, we are not just capturing events; we are preserving the raw emotions, the joyful tears, and the heartfelt promises that make your union unique.
             </p>
 
             <p className="heroLead">
-              I capture real moments — calm, natural, and timeless. My style is clean and true
-              to color, with gentle guidance so you never feel awkward.
+              Combining cutting-edge technology with an artistic eye, our team is dedicated to turning your special day into a timeless masterpiece. From the smallest gestures to the grandest celebrations, we ensure every frame reflects the love and essence of your relationship.
             </p>
 
             <div className="heroActions">
@@ -320,6 +319,33 @@ useEffect(() => {
                 <span className="tile__activeLine" aria-hidden="true" />
               </button>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* WHY CHOOSE US */}
+      <section className="aboutWhy" data-layer>
+        <div className="container">
+          <div className="aboutWhy__inner reveal-soft">
+            <h2 className="h2 h2--spaced">Why Choose Us?</h2>
+
+            <div className="aboutWhy__list">
+              <p>
+                <strong>Professional Expertise:</strong> Years of experience in high-end wedding cinematography.
+              </p>
+
+              <p>
+                <strong>Modern Technology:</strong> Equipped with the latest professional cameras, advanced stabilization gear, and high-quality drone systems.
+              </p>
+
+              <p>
+                <strong>Cinematic Excellence:</strong> We focus on natural storytelling, ensuring your film feels like a journey through your best memories.
+              </p>
+            </div>
+
+            <p className="aboutWhy__closing">
+              Let us help you relive your magic forever.
+            </p>
           </div>
         </div>
       </section>

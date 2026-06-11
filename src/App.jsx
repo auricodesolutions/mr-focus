@@ -31,7 +31,7 @@ import FeaturedReviewSection from "./components/FeaturedReviewSection/FeaturedRe
 import WeddingAlbumGallery from "./pages/Portfolio/wedding-photography/wedding-album-gallery";
 import ProfessionalDroneCoverage from "./pages/Portfolio/ProfessionalDroneCoverage/ProfessionalDroneCoverage";
 import Reviews from "./pages/Reviews/Reviews";
-
+import Packages from "./pages/Packages/Packages";
 
 function HomeContent() {
   useHomeAnimations();
@@ -130,7 +130,7 @@ export default function App() {
 
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/reviews" element={<Reviews />} />
-
+        <Route path="/packages" element={<Packages />} />
        <Route
   path="/portfolio/wedding-photography"
   element={<WeddingPhotography />}

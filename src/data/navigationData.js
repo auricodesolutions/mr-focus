@@ -1,9 +1,11 @@
+import { href } from "react-router-dom";
+
 export const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Our Portfolio", href: "/portfolio" },
   { label: "Cinematic Gallery", href: "/#films" },
-  { label: "Packages", href: "/packges" },
+  {label: "Packages", href: "/packages"},
   { label: "Reviews", href: "/reviews" },
   { label: "Contact", href: "/contact" },
 ];

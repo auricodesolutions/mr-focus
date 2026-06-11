@@ -65,8 +65,8 @@ export default function StoryPeek() {
             most timeless form.
           </p>
 
-          <a className="storyPeek__btn" href="/contact">
-           Get In Touch
+          <a className="storyPeek__btn" href="/packages">
+           View Packages
           </a>
         </div>
       </div>
